@@ -1,19 +1,34 @@
 @extends('layouts.index')
+@section('styles')
+
+@endsection
 @section('content')
     <div class="container-fluid py-4">
+        <form action="{{route('admin.search.users')}}" method="GET">
+            <div class="row g-0">
+                <div class="col-6">
+                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search users">
+                </div>
+
+                <div class="col-6"><button type="submit" class="btn btn-primary" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
+            </div>
+        </form>
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Përdoruesit</h6>
+                        <h6>Users</h6>
                     </div>
+                    @if (session('min_length_input'))
+                        <span style="color:red">{{session('min_length_input')}}</span>
+                    @endif
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             @if (count($users)>0)
                             <table class="table align-items-center mb-0">
                                 <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">I regjistruar</th>
@@ -59,7 +74,7 @@
 
                             </table>
                             @else
-                                <span style="color:red; margin-left: 25px;">Nuk u gjetën përdorues.</span>
+                                <span style="color:red; margin-left: 25px;">Users not found.</span>
                             @endif
                             <div class="d-flex justify-content-center mt-3">
                                 {{$users->links()}}

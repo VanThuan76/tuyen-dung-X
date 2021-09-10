@@ -59,18 +59,18 @@ class JobsController extends Controller
             $request['price_type'] = 'Hourly';
         }
         if (!$request->has_endDate && empty($request->endingDate)){
-            session()->flash('error_endDate', 'Ju lutem plotësoni datën.');
+            session()->flash('error_endDate', 'Please fill in the date.');
             return back()->withInput();
         }
         if (!$request->remote && empty($request->address)){
-            session()->flash('error_address', 'Ju lutem plotësoni adresen.');
+            session()->flash('error_address', 'Please fill in the address.');
             return back()->withInput();
         }
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
 
         Job::create($input);
-        session()->flash('job_created', 'Shpallja e punës u krijua me sukses.');
+        session()->flash('job_created', 'Job offer successfully created.');
         return back();
 
     }
@@ -113,7 +113,7 @@ class JobsController extends Controller
         $job = Job::findBySlugOrFail($slug);
         $category = Category::find($request->category_id);
         if (!$category){
-            session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
+            session()->flash('category_error', 'Oops ... Category not found.');
             return back()->withInput();
         }
         if ($request->has_endDate == 'on'){
@@ -129,17 +129,17 @@ class JobsController extends Controller
             $request['price_type'] = 'Hourly';
         }
         if (!$request->has_endDate && empty($request->endingDate)){
-            session()->flash('error_endDate', 'Ju lutem plotësoni datën.');
+            session()->flash('error_endDate', 'Please fill in the date.');
             return back()->withInput();
         }
         if (!$request->remote && empty($request->address)){
-            session()->flash('error_address', 'Ju lutem plotësoni adresen.');
+            session()->flash('error_address', 'Please fill in the address.');
             return back()->withInput();
         }
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
         $job->update($input);
-        session()->flash('job_updated', 'Shpallja e punës u ndryshua me sukses.');
+        session()->flash('job_updated', 'Job offer updated sucessfully.');
         return back();
     }
 
@@ -153,7 +153,7 @@ class JobsController extends Controller
     {
         $job = Job::findBySlugOrFail($slug);
         $job->delete();
-        session()->flash('deleted_job', 'Shpallja u fshi me sukses.');
+        session()->flash('deleted_job', 'Job offer deleted sucessfully');
         return back();
     }
 }

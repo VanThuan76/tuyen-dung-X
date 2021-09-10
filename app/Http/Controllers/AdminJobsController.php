@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class AdminJobsController extends Controller
     {
         $user = auth()->user();
         $jobs = Job::paginate(15);
-        return view ('admin.jobs.index',compact('user','jobs'));
+        $categories = Category::all();
+        return view ('admin.jobs.index',compact('user','jobs','categories'));
     }
 
     /**

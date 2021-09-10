@@ -94,11 +94,11 @@
             <div class="col-12 col-md-6 col-xl-4">
                 <div class="card h-100">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">Përshkrimi</h6>
+                        <h6 class="mb-0">Description</h6>
                     </div>
                     <div class="card-body p-3">
                         @if ($user->about)
-                            <h6 class="text-uppercase text-body text-xs font-weight-bolder">Rreth companisë</h6>
+                            <h6 class="text-uppercase text-body text-xs font-weight-bolder">About</h6>
                             <p class="text-sm">
                                 {{$user->about}}
                             </p>
@@ -111,7 +111,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-0">Informatat e përgjithshme</h6>
+                                <h6 class="mb-0">Overall Information</h6>
                             </div>
                             <div class="col-md-4 text-end">
                                 <a href="{{route('company.edit')}}">
@@ -124,14 +124,14 @@
 
                         <hr class="horizontal gray-light my-1">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Emri i plotë:</strong> &nbsp; {{$user->name . " ". $user->surname}}</li>
+                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; {{$user->name . " ". $user->surname}}</li>
                            @if ($user->email)
                             <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp;{{$user->email}}</li>@endif
-                          @if($user->company->name)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Emri i kompanisë:</strong> &nbsp;{{$user->company->name}}</li>@endif
-                            @if($user->company->industry)   <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Industria:</strong> &nbsp;{{$user->company->industry}}</li>@endif
-                            @if($user->company->capacity)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Kapaciteti:</strong> &nbsp;{{$user->company->capacity}}</li>@endif
-                            @if($user->company->address)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Adresa:</strong> &nbsp;{{$user->company->address}}</li>@endif
-                            @if($user->company->tel)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tel:</strong> &nbsp;&nbsp;{{$user->company->tel}}</li>@endif
+                          @if($user->company->name)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Company Name:</strong> &nbsp;{{$user->company->name}}</li>@endif
+                            @if($user->company->industry)   <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Industry:</strong> &nbsp;{{$user->company->industry}}</li>@endif
+                            @if($user->company->capacity)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Capacity:</strong> &nbsp;{{$user->company->capacity}}</li>@endif
+                            @if($user->company->address)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address:</strong> &nbsp;{{$user->company->address}}</li>@endif
+                            @if($user->company->tel)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile Number:</strong> &nbsp;&nbsp;{{$user->company->tel}}</li>@endif
                             @if($user->company->website)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Website:</strong> &nbsp;{{$user->company->website}}</li>@endif
 
                             <li class="list-group-item border-0 ps-0 pb-0">
@@ -216,8 +216,8 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-1">Shpalljet</h6>
-                        <p class="text-sm">Të gjitha shpalljet e postuara</p>
+                        <h6 class="mb-1">Jobs</h6>
+                        <p class="text-sm">All posted jobs</p>
                     </div>
                     <div class="card-body p-3">
                         <div class="row">

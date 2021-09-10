@@ -54,26 +54,26 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Perdoruesit</span>
+                    <span class="nav-link-text ms-1">Users</span>
                 </a>
                 <div class="collapse " id="pagesExamples">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item active">
                             <a class="nav-link active" href="{{route('admin.users')}}">
 {{--                                <span class="sidenav-mini-icon"> D </span>--}}
-                                <span class="sidenav-normal"> Përdoruesit e thjeshtë </span>
+                                <span class="sidenav-normal"> Users</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.companies')}}">
                                 {{--                                <span class="sidenav-mini-icon"> D </span>--}}
-                                <span class="sidenav-normal"> Kompanitë </span>
+                                <span class="sidenav-normal"> Companies </span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.admins')}}">
                                 {{--                                <span class="sidenav-mini-icon"> D </span>--}}
-                                <span class="sidenav-normal"> Administratorët </span>
+                                <span class="sidenav-normal"> Administrators </span>
                             </a>
                         </li>
 
@@ -96,7 +96,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Kategoritë</span>
+                        <span class="nav-link-text ms-1">Categories</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -116,12 +116,12 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Shpalljet e postuara</span>
+                        <span class="nav-link-text ms-1">Posted Job Offers</span>
                     </a>
                 </li>
             @endif
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Preferencat</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Preferences</h6>
             </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#profile-button" class="nav-link " aria-controls="pagesExamples" role="button" aria-expanded="false">
@@ -141,7 +141,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Profili</span>
+                    <span class="nav-link-text ms-1">Profile</span>
                 </a>
                 <div class="collapse " id="profile-button">
                     <ul class="nav ms-4 ps-3">
@@ -149,14 +149,14 @@
                         <li class="nav-item active">
                             <a class="nav-link active" @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.show',auth()->user()->slug)}}" @else href="{{route('company.show',auth()->user()->slug)}}"  @endif>
                                 {{--                                <span class="sidenav-mini-icon"> D </span>--}}
-                                <span class="sidenav-normal"> Profili </span>
+                                <span class="sidenav-normal"> Profile </span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.edit')}}" @else href="{{route('company.edit')}}" @endif>
                                 {{--                                <span class="sidenav-mini-icon"> D </span>--}}
-                                <span class="sidenav-normal"> Preferencat </span>
+                                <span class="sidenav-normal"> Proferences </span>
                             </a>
                         </li>
 
@@ -182,7 +182,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Krijo shpallje</span>
+                        <span class="nav-link-text ms-1">Create Job</span>
                     </a>
                 </li>
             @endif

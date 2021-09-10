@@ -8,22 +8,22 @@
         @csrf
         @method('POST')
         <div class="card card-body mt-4">
-            <h6 class="mb-0">Punë e re</h6>
-            <p class="text-sm mb-0">Krijo punë të re</p>
+            <h6 class="mb-0">New job</h6>
+            <p class="text-sm mb-0">Create new job</p>
             @if (session('job_created'))
                 <span style="color:green;">
            {{ session('job_created') }}
             </span>
             @endif
             <hr class="horizontal dark my-3">
-            <label for="jobName" class="form-label">Emri i projektit</label>
+            <label for="jobName" class="form-label">Title</label>
             <input type="text" class="form-control" name="title" id="jobName" autocomplete="off" value="{{ old('title') }}">
             @error('title')
             <span style="color:red;">{{ $message }}</span>
             @enderror
-            <label class="mt-4">Përshkrimi i punës</label>
+            <label class="mt-4">Description</label>
             <p class="form-text text-muted text-xs ms-1">
-                Kështu do të mësojnë të tjerët për punën, kështu që bëjeni mirë!
+                This is how others will learn about the project, so make it good!
             </p>
 
 
@@ -34,8 +34,8 @@
             @enderror
             <div class="row mt-2">
                 <div class="col-6">
-                    <label class="form-label">Adresa</label>
-                    <input class="form-control address" type="text" name="address" autocomplete="off" placeholder="Shkruani adresen" value="{{old('address')}}">
+                    <label class="form-label">Address</label>
+                    <input class="form-control address" type="text" name="address" autocomplete="off" placeholder="Address" value="{{old('address')}}">
 
                     @if (session('error_address'))
                         <span style="color:red;">{{ session('error_address') }}</span>
@@ -52,7 +52,7 @@
 
                         <div class="form-check form-switch ms-1">
                             <input class="form-check-input" type="checkbox" name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >
-                            <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Puna është remote</label>
+                            <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Work is remote</label>
                         </div>
                     </div>
                     @error('remote')
@@ -62,9 +62,9 @@
             </div>
             <div class="row mt-2">
                 <div class="col-6">
-                    <label class="form-label">Përvoja</label>
+                    <label class="form-label">Experience</label>
                     <select class="form-select" name="category_id" aria-label="Default select example">
-                        <option value="" selected>Zgjedhni kategorinë</option>
+                        <option value="" selected>Choose Category</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
                         @endforeach
@@ -79,8 +79,8 @@
                     @endif
                 </div>
                 <div class="col-6">
-                    <label class="form-label">Përgjegjësitë</label>
-                    <input class="form-control" type="text" name="duties" autocomplete="off" placeholder="Shkruani përgjegjësitë e punëtorit" value="{{old('duties')}}">
+                    <label class="form-label">Responsibilities</label>
+                    <input class="form-control" type="text" name="duties" autocomplete="off" placeholder="Responsibilities of worker" value="{{old('duties')}}">
                     @error('duties')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
@@ -89,15 +89,15 @@
 
             <div class="row mt-2">
                 <div class="col-6">
-                    <label class="form-label">Data e fillimit</label>
-                    <input class="form-control datetimepicker startingDate" type="text" style="cursor: pointer" name="startingDate" placeholder="Zgjedhni datën e fillimit të punës" autocomplete="off" data-input value="{{old('startingDate')}}">
+                    <label class="form-label">Starting Date</label>
+                    <input class="form-control datetimepicker startingDate" type="text" style="cursor: pointer" name="startingDate" placeholder="Start date of the work" autocomplete="off" data-input value="{{old('startingDate')}}">
                     @error('startingDate')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label class="form-label">Data e mbarimit</label>
-                    <input class="form-control datetimepicker endingDate" type="text" style="cursor: pointer" name="endingDate" placeholder="Zgjedhni datën e mbarimit të punës" autocomplete="off" data-input value="{{old('endingDate')}}">
+                    <label class="form-label">Ending Date</label>
+                    <input class="form-control datetimepicker endingDate" type="text" style="cursor: pointer" name="endingDate" placeholder="End date of the work" autocomplete="off" data-input value="{{old('endingDate')}}">
                     @error('endingDate')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
@@ -111,14 +111,14 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>
-                                Pa afat
+                                Long-term
                             </label>
                             <p class="form-text text-muted text-xs ms-1">
-                                Kjo pozitë është afatgjate.
+                                This position is long-term.
                             </p>
                             <div class="form-check form-switch ms-1">
                                 <input class="form-check-input" type="checkbox" name="has_endDate" id="flexSwitchCheckDefault" onclick="notify(this)" >
-                                <label class="form-check-label" for="flexSwitchCheckDefault">Puna është afatgjate</label>
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Work is long-term</label>
                             </div>
                         </div>
                     </div>
@@ -127,19 +127,19 @@
 
             <div class="row mt-2">
                 <div class="col-6">
-                    <label class="form-label">Pagesa</label>
+                    <label class="form-label">Payment</label>
                     <select class="form-select" name="price_type" aria-label="Default select example">
-                        <option value="" selected>Zgjedhni pagesën</option>
-                        <option value="1" @if (old('price_type')==1) selected @endif>Fikse</option>
-                        <option value="2" @if (old('price_type')==2) selected @endif>Me ore</option>
+                        <option value="" selected>Select Payment</option>
+                        <option value="1" @if (old('price_type')==1) selected @endif>Fixed</option>
+                        <option value="2" @if (old('price_type')==2) selected @endif>Hourly</option>
                     </select>
                     @error('price_type')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label class="form-label">Çmimi</label>
-                    <input class="form-control" type="number" name="price" autocomplete="off" placeholder="Shkruani çmimin" value="{{old('price')}}">
+                    <label class="form-label">Price</label>
+                    <input class="form-control" type="number" name="price" autocomplete="off" placeholder="Price" value="{{old('price')}}">
                     @error('price')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
@@ -149,8 +149,8 @@
 
 
             <div class="d-flex justify-content-end mt-4">
-                <button type="button" name="button" class="btn btn-light m-0">Anulo</button>
-                <button type="submit" class="btn bg-gradient-primary m-0 ms-2">Krijo shpalljen e punës</button>
+                <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
+                <button type="submit" class="btn bg-gradient-primary m-0 ms-2">Create Job offer</button>
             </div>
         </div>
     </form>

@@ -13,7 +13,7 @@
                 <!-- Card Basic Info -->
                     <div class="card mt-4" id="basic-info">
                         <div class="card-header">
-                            <h5>Ndrysho foton e profilit</h5>
+                            <h5>Edit profile picture</h5>
                         </div>
                         <div class="card-body pt-0">
                             <div class="row">
@@ -45,7 +45,7 @@
                                             <form action="{{route('user.photo.destroy')}}" method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                <button type="submit" name="remove_photo" style="text-decoration: none; color:red" class="btn btn-link">Fshij foton</button>
+                                                <button type="submit" name="remove_photo" style="text-decoration: none; color:red" class="btn btn-link">Delete Photo</button>
 
 
                                             </form>
@@ -53,14 +53,14 @@
                                         <form action="{{route('user.photo.update')}}" method="POST" enctype="multipart/form-data" id="input-form">
                                             @csrf
                                             @method('PATCH')
-                                    <label class="form-label">Ngarko foton</label>
+                                    <label class="form-label">Upload Image</label>
                                     <div class="input-group">
                                         <input id="photo_id" name="photo_id" class="form-control" type="file">
                                     </div>
                                     @error('photo_id')
                                     <span style="color:red;">{{ $message }}</span>
                                     @enderror
-                                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0 m-2">Ndrysho foton</button>
+                                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0 m-2">Change</button>
 
                                     </form>
                                 </div>

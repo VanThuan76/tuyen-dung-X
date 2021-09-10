@@ -102,7 +102,7 @@ class UserChangePhotoController extends Controller
                 $user->photo()->delete();
             }
             $user->update($input);
-            session()->flash('updated_photo', 'Foto e profilit u ndryshua me sukses.');
+            session()->flash('updated_photo', 'Profile picture successfully changed.');
             return back();
 
 
@@ -133,7 +133,7 @@ class UserChangePhotoController extends Controller
                 unlink(public_path() .'/images/'.$user->photo->name);
             }
             $user->update(['photo_id'=>1]);
-            session()->flash('deleted_photo', 'Foto e profilit u fshi me sukses.');
+            session()->flash('deleted_photo', 'Profile picture deleted successfully.');
             return back();
         }
     }

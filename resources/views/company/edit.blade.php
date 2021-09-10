@@ -13,7 +13,7 @@
                 <!-- Card Basic Info -->
                     <div class="card mt-4" id="basic-info">
                         <div class="card-header">
-                            <h5>Të dhënat bazike</h5>
+                            <h5>Basic Information</h5>
                             @if (session('profile_updated'))
                                 <span style="color:green">{{session('profile_updated')}}</span>
                                 @endif
@@ -22,7 +22,7 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="form-label">Emri</label>
+                                    <label class="form-label">Name</label>
                                     <div class="input-group">
                                         <input id="name" name="name" class="form-control" type="text" placeholder="{{$user->name}}" required="required" autocomplete="off" value="{{$user->name}}">
                                     </div>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label class="form-label mt-4">Rreth kompanisë</label>
+                                    <label class="form-label mt-4">About</label>
                                     <div class="input-group">
                                         <textarea id="about" name="about" class="form-control" rows="5">{{$user->about}}</textarea>
 
@@ -65,7 +65,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-6">
-                                    <label class="form-label mt-4">Industria</label>
+                                    <label class="form-label mt-4">Industry</label>
                                     <div class="input-group">
                                         <input id="industry" name="industry" class="form-control" type="text" placeholder="{{$user->company->industry}}" value="{{$user->company->industry}}">
                                     </div>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="form-label mt-4">Kapaciteti</label>
+                                    <label class="form-label mt-4">Capacity</label>
                                     <div class="input-group">
                                         <input id="capacity" name="capacity" class="form-control" type="text" placeholder="{{$user->company->capacity}}" value="{{$user->company->capacity}}">
                                     </div>
@@ -86,7 +86,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-6">
-                                    <label class="form-label mt-4">Adresa</label>
+                                    <label class="form-label mt-4">Address</label>
                                     <div class="input-group">
                                         <input id="address" name="address" class="form-control" type="text" placeholder="{{$user->company->address}}" value="{{$user->company->address}}">
                                     </div>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="form-label mt-4">Numri i telefonit</label>
+                                    <label class="form-label mt-4">Mobile Number</label>
                                     <div class="input-group">
                                         <input id="tel" name="tel" class="form-control" type="text" placeholder="{{$user->company->tel}}" value="{{$user->company->tel}}">
                                     </div>
@@ -117,7 +117,7 @@
                                 </div>
 
                             </div>
-                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Ndrysho profilin</button>
+                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update Profile</button>
                         </div>
                     </div>
                 </form>

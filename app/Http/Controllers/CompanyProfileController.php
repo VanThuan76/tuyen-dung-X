@@ -87,7 +87,7 @@ class CompanyProfileController extends Controller
         $input['tel']=$request['tel'];
         $input['website']=$request['website'];
         $user->company()->update($input);
-        session()->flash('profile_updated','Profili u ndryshua me sukses.');
+        session()->flash('profile_updated','Profile updated sucessfully.');
         return redirect()->back();
     }
 

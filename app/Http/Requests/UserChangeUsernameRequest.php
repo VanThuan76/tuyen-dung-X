@@ -29,12 +29,12 @@ class UserChangeUsernameRequest extends FormRequest
     }
     public function messages(){
         return [
-            'username.required'=>'Username duhet të plotesohet.',
-            'username.max'=>'Username duhet të ketë maksimum 255 karaktere.',
-            'username.min'=>'Username duhet të ketë minimum 3 karaktere.',
-            'username.string'=>'Username duhet të jetë me shkronja.',
-            'username.regex'=>'Username duhet të përmbajë shkronja A-Z dhe numra 0-9.',
-            'username.unique'=>'Username është në përdorim nga një përdorues tjetër.',
+            'username.required' => 'Username must be filled in.',
+            'username.max' => 'Username must have a maximum of 255 characters.',
+            'username.min' => 'Username must have a minimum of 3 characters.',
+            'username.string' => 'Username must be in letters.',
+            'username.regex' => 'Username must contain letters A-Z and numbers 0-9.',
+            'username.unique' => 'Username is being used by another user.',
 
         ];
     }

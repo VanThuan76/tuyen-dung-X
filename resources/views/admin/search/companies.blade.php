@@ -41,29 +41,29 @@
 
                                         <tr>
                                             <td>
-                                                <a href="{{route('company.show',$user->slug)}}">
+                                                <a href="{{route('company.show',$user->user->slug)}}">
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
-                                                            <img src="/images/{{$user->photo->name}}" class="avatar avatar-sm me-3" alt="user1">
+                                                            <img src="/images/{{$user->user->photo->name}}" class="avatar avatar-sm me-3" alt="user1">
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{$user->name. " ". $user->surname}}</h6>
-                                                            <p class="text-xs text-secondary mb-0">{{$user->email}}</p>
+                                                            <h6 class="mb-0 text-sm">{{$user->user->name. " ". $user->user->surname}}</h6>
+                                                            <p class="text-xs text-secondary mb-0">{{$user->user->email}}</p>
                                                         </div>
                                                     </div>
                                                 </a>
                                             </td>
                                             <td>
-                                                <p class="text-xs  font-weight-bold mb-0">{{$user->company->industry ? $user->company->industry : "/"}}</p>
+                                                <p class="text-xs  font-weight-bold mb-0">{{$user->industry ? $user->industry : "/"}}</p>
                                             </td>
                                             <td>
-                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->company->capacity ? $user->company->capacity : "/"}}</p>
+                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->capacity ? $user->capacity : "/"}}</p>
                                             </td>
                                             <td>
-                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->company->address ? $user->company->address : "/"}}</p>
+                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->address ? $user->address : "/"}}</p>
                                             </td>
                                             <td>
-                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->company->tel ? $user->company->tel : "/"}}</p>
+                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->tel ? $user->tel : "/"}}</p>
                                             </td>
 
 

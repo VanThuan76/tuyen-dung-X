@@ -4,10 +4,10 @@
 @endsection
 @section('content')
     <div class="container-fluid py-4">
-        <form action="{{route('admin.search.companies')}}" method="GET">
+        <form action="{{route('admin.search.users')}}" method="GET">
             <div class="row g-0">
                 <div class="col-6">
-                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search companies">
+                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search users">
                 </div>
 
                 <div class="col-6"><button type="submit" class="btn btn-primary" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
@@ -17,7 +17,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Companies</h6>
+                        <h6>Users</h6>
                     </div>
                     @if (session('min_length_input'))
                         <span style="color:red">{{session('min_length_input')}}</span>
@@ -29,10 +29,9 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Industry</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Capacity</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mobile Number</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company name</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CV</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                     </thead>
@@ -41,7 +40,7 @@
 
                                         <tr>
                                             <td>
-                                                <a href="{{route('company.show',$user->slug)}}">
+                                                <a href="@if ($user->company){{route('company.show',$user->slug)}} @else {{route('user.show',$user->slug)}}  @endif">
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
                                                             <img src="/images/{{$user->photo->name}}" class="avatar avatar-sm me-3" alt="user1">
@@ -54,16 +53,14 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <p class="text-xs  font-weight-bold mb-0">{{$user->company->industry ? $user->company->industry : "/"}}</p>
+                                                <p class="text-xs  font-weight-bold mb-0">{{$user->category ? $user->category->name : "/"}}</p>
                                             </td>
                                             <td>
-                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->company->capacity ? $user->company->capacity : "/"}}</p>
+                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->company ? $user->company->name : "/"}}</p>
                                             </td>
                                             <td>
-                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->company->address ? $user->company->address : "/"}}</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->company->tel ? $user->company->tel : "/"}}</p>
+                                                <p class="text-xs text-center font-weight-bold mb-0">@if ($user->cv) <a href="/files/{{$user->cv}}"><img src="{{asset('/assets/img/pdf.webp')}}" style="width: 20px"></a>@else {{'/'}}@endif</p>
+
                                             </td>
 
 

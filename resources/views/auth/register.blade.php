@@ -124,14 +124,14 @@
                             @csrf
                             @method('POST')
                             <div class="card card-body mt-4">
-                                <h6 class="mb-0">Regjistrohu</h6>
-                                <p class="text-sm mb-0">Krijo llogari tani </p>
+                                <h6 class="mb-0">Register</h6>
+                                <p class="text-sm mb-0">Create account now</p>
 
                                 <hr class="horizontal dark my-3">
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <label class="form-label">*Emri</label>
+                                        <label class="form-label">*Name</label>
                                         <div class="input-group">
                                             <input id="name" name="name" class="form-control" type="text" placeholder="Shkruani emrin" required="required" autocomplete="off" value="{{old('name')}}">
                                         </div>
@@ -141,7 +141,7 @@
 
                                     </div>
                                     <div class="col-6">
-                                        <label class="form-label">*Mbiemri</label>
+                                        <label class="form-label">*Surname</label>
                                         <div class="input-group">
                                             <input id="surname" name="surname" class="form-control" type="text" placeholder="" required="required" autocomplete="off" value="{{old('surname')}}">
                                         </div>
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <label class="form-label mt-4">Rreth</label>
+                                        <label class="form-label mt-4">About</label>
                                         <div class="input-group">
                                             <textarea id="about" name="about" class="form-control" rows="5">{{old('about')}}</textarea>
 
@@ -218,9 +218,9 @@
                                         @enderror
                                     </div>
                                     <div class="col-6">
-                                        <label class="form-label mt-4">*Kategoria</label>
+                                        <label class="form-label mt-4">*Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
-                                            <option value = "" selected>Zgjedhni kategorinë</option>
+                                            <option value = "" selected>Choose Category</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
                                             @endforeach
@@ -246,12 +246,12 @@
                                     <div class="col-6">
 
                                         <div class="form-group">
-                                            <label class="form-label">Zgjedh nëse je kompani</label>
+                                            <label class="form-label">Choose if you are a company</label>
 
                                             <div class="form-check form-switch ms-1">
                                                 <input type="hidden" name="is_business" value="0"/>
                                                 <input class="form-check-input" type="checkbox" name="is_business" {{ old('is_business') == 1 ? 'checked' : ''}} value="0"  id="businessFlexSwitchCheckDefault" onclick="notify(this)" >
-                                                <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Kompani</label>
+                                                <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Company</label>
                                             </div>
                                         </div>
                                         @error('remote')
@@ -262,7 +262,7 @@
                                 <div class="company-details hidden">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label class="form-label mt-4">*Emri</label>
+                                            <label class="form-label mt-4">*Name</label>
                                             <div class="input-group">
                                                 <input id="industry" name="business_name" class="form-control" type="text" placeholder="Shkruani emrin e biznesit" value="{{old('business_name')}}">
                                             </div>
@@ -271,7 +271,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-6">
-                                            <label class="form-label mt-4">Industria</label>
+                                            <label class="form-label mt-4">Industry</label>
                                             <div class="input-group">
                                                 <input id="industry" name="industry" class="form-control" type="text" placeholder="Shkruani industrine" value="{{old('industry')}}">
                                             </div>
@@ -283,7 +283,7 @@
 
                                     <div class="row">
                                         <div class="col-6">
-                                            <label class="form-label mt-4">Kapaciteti</label>
+                                            <label class="form-label mt-4">Capacity</label>
                                             <div class="input-group">
                                                 <input id="capacity" name="capacity" class="form-control" type="text" placeholder="Shkruani kapacitetin" value="{{old('capacity')}}">
                                             </div>
@@ -292,7 +292,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-6">
-                                            <label class="form-label mt-4">Adresa</label>
+                                            <label class="form-label mt-4">Address</label>
                                             <div class="input-group">
                                                 <input id="address" name="address" class="form-control" type="text" placeholder="Shkruani adresen" value="{{old('address')}}">
                                             </div>
@@ -304,7 +304,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <label class="form-label mt-4">Numri i telefonit</label>
+                                            <label class="form-label mt-4">Mobile Number</label>
                                             <div class="input-group">
                                                 <input id="tel" name="tel" class="form-control" type="text" placeholder="Shkruani numrin e telefonit" value="{{old('tel')}}">
                                             </div>

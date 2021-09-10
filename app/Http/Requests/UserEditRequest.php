@@ -33,19 +33,19 @@ class UserEditRequest extends FormRequest
     }
     public function messages(){
         return [
-            'name.required'=>'Emri duhet të plotesohet.',
-            'name.max'=>'Emri duhet të ketë maksimum 255 karaktere.',
-            'name.min'=>'Emri duhet të ketë minimum 2 karaktere.',
-            'surname.required'=>'Mbiemri duhet të plotësohet.',
-            'surname.max'=>'Mbiemri duhet të ketë maksimum 255 karaktere.',
-            'surname.min'=>'Mbiemri duhet të ketë minimum 2 karaktere.',
-            'email.required'=>'Emaili duhet të plotesohet.',
-            'email.max'=>'Emaili duhet të ketë maksimum 255 karaktere.',
-            'email.min'=>'Emaili duhet të ketë minimum 5 karaktere.',
-            'email.unique'=>'Ky email është në përdorim.',
-            'about.max'=>'Bio duhet të ketë maksimum 255 karaktere.',
-            'cv.mimes'=>'CV duhet të jetë në formatin PDF.',
-            'cv.max'=>'Madhësia e CV duhet të jetë maksimum 10MB.'
+            'name.required' => 'Name must be filled in.',
+            'name.max' => 'The name must have a maximum of 255 characters.',
+            'name.min' => 'Name must have at least 2 characters.',
+            'surname.required' => 'Surname must be filled in.',
+            'surname.max' => 'Last name must have a maximum of 255 characters.',
+            'surname.min' => 'Surname must have at least 2 characters.',
+            'email.required' => 'Email must be filled in.',
+            'email.max' => 'Email must have a maximum of 255 characters.',
+            'email.min' => 'Email must have a minimum of 5 characters.',
+            'email.unique' => 'This email is being used by another user.',
+            'about.max' => 'About must have a maximum of 255 characters.',
+            'cv.mimes' => 'CV must be in PDF format.',
+            'cv.max' => 'CV size must be a maximum of 10MB.'
 
         ];
     }

@@ -73,11 +73,11 @@ class UserChangeUsernameController extends Controller
     {
 
         if (auth()->user()->username_changed == 1){
-            session()->flash('username_exceeded','Username mund të ndryshohet vetëm një herë');
+            session()->flash('username_exceeded','Username can only be changed once.');
             return back();
         }
         if (auth()->user()->username == $request->username){
-            session()->flash('current_username','Username i ri nuk mund të jetë i njejtë me usernamin e vjetër');
+            session()->flash('current_username','The new username may not be the same as the old username.');
             return back();
         }
 
@@ -85,7 +85,7 @@ class UserChangeUsernameController extends Controller
 
         $user = auth()->user();
         $user->update($request->all());
-        session()->flash('username_changed','Username u ndryshua me sukses.');
+        session()->flash('username_changed','Username changed successfully.');
         return redirect()->back();
     }
 

@@ -42,7 +42,7 @@ class CategoriesController extends Controller
         $input = $request->all();
 
         Category::create($input);
-        session()->flash('added_category', 'Kategoria u shtua me sukses.');
+        session()->flash('added_category', 'Category added sucessfully');
         return back();
     }
 
@@ -81,7 +81,7 @@ class CategoriesController extends Controller
     {
         $category = Category::findBySlugOrFail($slug);
         $category->update($request->all());
-        session()->flash('updated_category', 'Kategoria u ndryshua me sukses.');
+        session()->flash('updated_category', 'Category updated sucessfully.');
         return redirect()->route('categories');
     }
 
@@ -95,7 +95,7 @@ class CategoriesController extends Controller
     {
         $category = Category::findBySlugOrFail($slug);
         $category->delete();
-        session()->flash('deleted_category', 'Kategoria u fshi me sukses.');
+        session()->flash('deleted_category', 'Category deleted sucessfully.');
         return back();
     }
 }

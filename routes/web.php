@@ -29,6 +29,10 @@ Route::middleware(['auth','admin'])->group(function() {
     Route::patch('/admin/categories/{category}/update', [App\Http\Controllers\CategoriesController::class, 'update'])->name('admin.category.update');
     Route::get('/admin/jobs', [App\Http\Controllers\AdminJobsController::class, 'index'])->name('admin.jobs');
 
+    Route::get('/admin/search/jobs', [App\Http\Controllers\SearchController::class, 'jobs'])->name('admin.search.jobs');
+    Route::get('/admin/search/users',  [App\Http\Controllers\SearchController::class, 'users'])->name('admin.search.users');
+    Route::get('/admin/search/companies',  [App\Http\Controllers\SearchController::class, 'companies'])->name('admin.search.companies');
+
 });
 
 Route::middleware(['auth','company'])->group(function() {

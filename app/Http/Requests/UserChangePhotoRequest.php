@@ -29,9 +29,9 @@ class UserChangePhotoRequest extends FormRequest
     }
     public function messages(){
         return [
-            'photo_id.required'=>'Ju lutem ngarkoni një foto.',
-            'photo_id.mimes'=>'Ju lutem ngarkoni foto të formatit: jpeg,png,jpg dhe svg.',
-            'username.max'=>'Foto duhet të jetë maksimum 10MB.',
+            'photo_id.required' => 'Please upload a photo.',
+            'photo_id.mimes' => 'Please upload photos in format: jpeg, png, jpg and svg.',
+            'username.max' => 'Image must be a maximum of 10MB.',
 
         ];
     }

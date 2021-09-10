@@ -15,7 +15,7 @@
                         {{$user->name. " ". $user->surname}}
                     @else
                         {{$user->company->name}}
-                        @endif
+                    @endif
 
                 </h5>
                 <p class="mb-0 font-weight-bold text-sm">

@@ -29,9 +29,9 @@ class AdminUpdateCategoriesRequest extends FormRequest
     }
     public function messages(){
         return [
-            'name.required'=>'Kategoria duhet të plotësohet.',
-            'name.min'=>'Kategoria duhet të ketë minimum 2 karaktere.',
-            'name.max'=>'Kategoria duhet të ketë maksimum 255 karaktere.',
+            'name.required'=>'Category must be filled',
+            'name.min'=>'The category must have a minimum of 2 characters.',
+            'name.max'=>'The category must have a maximum of 255 characters.',
         ];
     }
 }

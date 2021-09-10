@@ -7,7 +7,7 @@
         <!-- Card Basic Info -->
             <div class="card mt-4" id="basic-info">
                 <div class="card-header">
-                    <h5>Shto kategori</h5>
+                    <h5>Create Category</h5>
                     @if (session('added_category'))
                         <span style="color:green">{{session('added_category')}}</span>
                     @endif
@@ -22,14 +22,14 @@
                 <div class="card-body pt-0">
                     <div class="row d-flex justify-content-center">
                         <div class="col-6">
-                            <label class="form-label">Kategoria</label>
+                            <label class="form-label">Category</label>
                             <div class="input-group">
-                                <input id="name" name="name" class="form-control" type="text" placeholder="Shkruaj kategorinë" required="required" autofocus autocomplete="off">
+                                <input id="name" name="name" class="form-control" type="text" placeholder="Category" required="required" autofocus autocomplete="off">
                             </div>
                             @error('name')
                             <span style="color:red; ">{{ $message }}</span>
                             @enderror
-                            <button class="btn bg-gradient-dark btn-sm float-end mt-2 mb-0">Shto kategori</button>
+                            <button class="btn bg-gradient-dark btn-sm float-end mt-2 mb-0">Create</button>
                         </div>
 
 

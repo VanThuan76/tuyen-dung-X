@@ -31,11 +31,11 @@ class UserChangePasswordRequest extends FormRequest
     }
     public function messages(){
         return [
-            'current_password.required'=>'Ju lutem shënoni fjalëkalimin aktual.',
-            'password.required'=>'Ju lutem shënoni fjalëkalimin e ri.',
-            'password.min'=>'Fjalëkalimi i ri duhet të jetë së paku 8 karaktere i gjatë.',
-            'password_confirmation.required'=>'Ju lutem ri-shënoni fjalëkalimin e ri.',
-            'password_confirmation.same'=>'Fjalëkalimet nuk përshtaten.',
+            'current_password.required' => 'Please enter the current password.',
+            'password.required' => 'Please enter a new password.',
+            'password.min' => 'New password must be at least 8 characters long.',
+            'password_confirmation.required' => 'Please re-enter the new password.',
+            'password_confirmation.same' => 'Passwords do not match.',
 
         ];
     }

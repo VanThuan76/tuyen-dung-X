@@ -15,7 +15,7 @@
             <!-- Card Change Password -->
                 <div class="card mt-4" id="password">
                     <div class="card-header">
-                        <h5>Ndrysho fjalëkalimin</h5>
+                        <h5>Change Password</h5>
                         @if(session('password_changed'))
                             <span style="color:green; ">{{session('password_changed')}}</span>
                         @endif
@@ -25,9 +25,9 @@
 
 
                     <div class="card-body pt-0">
-                        <label class="form-label">Fjalëkalimi aktual</label>
+                        <label class="form-label">Current password</label>
                         <div class="form-group">
-                            <input class="form-control" type="password" name="current_password" placeholder="Fjalëkalimi aktual">
+                            <input class="form-control" type="password" name="current_password" placeholder="Current password">
                             @if(session('invalid-current-password'))
                                 <span style="color:red; ">{{session('invalid-current-password')}}</span>
                             @endif
@@ -36,36 +36,36 @@
                             @enderror
                         </div>
 
-                        <label class="form-label">Fjalëkalimi i ri</label>
+                        <label class="form-label">New password</label>
                         <div class="form-group">
-                            <input class="form-control" type="password" name="password"  placeholder="Fjalëkalimi i ri">
+                            <input class="form-control" type="password" name="password"  placeholder="New Password">
                             @error('password')
                             <span style="color:red; ">{{ $message }}</span>
                             @enderror
                         </div>
-                        <label class="form-label">Ri-shkruaj fjalëkalimin e ri</label>
+                        <label class="form-label">Confirm new password</label>
                         <div class="form-group">
-                            <input class="form-control" type="password" name="password_confirmation" placeholder="Ri-shkruaj fjalëkalimin e ri">
+                            <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm new password">
                             @error('password_confirmation')
                             <span style="color:red; ">{{ $message }}</span>
                             @enderror
                         </div>
-                        <h5 class="mt-5">Kërkesat për fjalëkalim</h5>
+                        <h5 class="mt-5">Password requirements</h5>
                         <p class="text-muted mb-2">
-                            Ndiqni këtë udhëzues për një fjalëkalim të fortë:
+                            Please follow this guide for a strong password:
                         </p>
                         <ul class="text-muted ps-4 mb-0 float-start">
                             <li>
-                                <span class="text-sm">Një karakter special</span>
+                                <span class="text-sm">One special characters</span>
                             </li>
                             <li>
-                                <span class="text-sm">Minimum 8 karaktere</span>
+                                <span class="text-sm">Min 8 characters</span>
                             </li>
                             <li>
-                                <span class="text-sm">Një numër (2 rekomandohen)</span>
+                                <span class="text-sm">One number (2 are recommended)</span>
                             </li>
                             <li>
-                                <span class="text-sm">Ndërroni shpesh</span>
+                                <span class="text-sm">Change it often</span>
                             </li>
                         </ul>
                         <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update password</button>

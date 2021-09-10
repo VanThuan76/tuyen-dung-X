@@ -20,7 +20,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="text-sm">Profili</span>
+                    <span class="text-sm">Profile</span>
                 </a>
             </li>
             <li class="nav-item pt-2">
@@ -40,7 +40,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="text-sm">Informatat Bazike</span>
+                    <span class="text-sm">Basic Information</span>
                 </a>
             </li>
             <li class="nav-item pt-2">
@@ -61,7 +61,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="text-sm">Ndrysho fjalëkalimin</span>
+                    <span class="text-sm">Change Password</span>
                 </a>
             </li>
             <li class="nav-item pt-2">
@@ -81,7 +81,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="text-sm">Ndrysho foton e profilit</span>
+                    <span class="text-sm">Change Profile Picture</span>
                 </a>
             </li>
             <li class="nav-item pt-2">
@@ -102,7 +102,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="text-sm">Ndrysho username</span>
+                    <span class="text-sm">Change Username</span>
                 </a>
             </li>
             <li class="nav-item pt-2">

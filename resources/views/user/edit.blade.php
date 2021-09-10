@@ -2,8 +2,6 @@
         @section('content')
             <div class="container-fluid my-3 py-3">
 
-
-
                 <div class="row mb-5">
                     @include('includes.accountSidebar')
                     <div class="col-lg-9 mt-lg-0 mt-4">
@@ -15,7 +13,7 @@
                         <!-- Card Basic Info -->
                             <div class="card mt-4" id="basic-info">
                                 <div class="card-header">
-                                    <h5>Të dhënat bazike</h5>
+                                    <h5>Basic Information</h5>
                                     @if (session('profile_updated'))
                                         <span style="color:green">{{session('profile_updated')}}</span>
                                     @endif
@@ -23,7 +21,7 @@
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label class="form-label">Emri</label>
+                                            <label class="form-label">Name</label>
                                             <div class="input-group">
                                                 <input id="name" name="name" class="form-control" type="text" placeholder="{{$user->name}}" required="required" autocomplete="off" value="{{$user->name}}">
                                             </div>
@@ -33,7 +31,7 @@
 
                                         </div>
                                         <div class="col-6">
-                                            <label class="form-label">Mbiemri</label>
+                                            <label class="form-label">Surname</label>
                                             <div class="input-group">
                                                 <input id="surname" name="surname" class="form-control" type="text" placeholder="{{$user->surname}}" required="required" autocomplete="off" value="{{$user->surname}}">
                                             </div>
@@ -44,7 +42,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <label class="form-label mt-4">Rreth teje</label>
+                                            <label class="form-label mt-4">About</label>
                                             <div class="input-group">
                                                 <textarea id="about" name="about" class="form-control" rows="5">{{$user->about}}</textarea>
 
@@ -66,10 +64,10 @@
                                             @enderror
                                         </div>
                                         <div class="col-6">
-                                            <label class="form-label mt-4">Kategoria</label>
+                                            <label class="form-label mt-4">Category</label>
                                             <div class="input-group">
                                                 <select class="form-select" name="category_id" aria-label="Default select example">
-                                                    <option value="" selected>Kategoritë</option>
+                                                    <option value="" selected>Choose Category</option>
                                                     @foreach($categories as $category)
                                                         <option value="{{$category->id}}" {{ $user->category->id == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
                                                     @endforeach
@@ -96,7 +94,7 @@
                                         </div>
 
                                     </div>
-                                    <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Ndrysho profilin</button>
+                                    <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update Profile</button>
                                 </div>
                             </div>
                         </form>

@@ -84,7 +84,7 @@ class UserProfileController extends Controller
     $user = auth()->user();
         $category = Category::find($request->category_id);
         if (!$category){
-            session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
+            session()->flash('category_error', 'Oops ... Category not found.');
             return back();
         }
     $input = $request->all();
@@ -100,7 +100,7 @@ class UserProfileController extends Controller
             $input['cv'] = $file_name;
         }
         $user->update($input);
-        session()->flash('profile_updated','Profili u ndryshua me sukses.');
+        session()->flash('profile_updated','Profile changed successfully.');
         return redirect()->back();
         }
 

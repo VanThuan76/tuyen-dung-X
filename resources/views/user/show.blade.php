@@ -94,11 +94,11 @@
             <div class="col-12 col-md-6 col-xl-4">
                 <div class="card h-100">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">Përshkrimi</h6>
+                        <h6 class="mb-0">Description</h6>
                     </div>
                     <div class="card-body p-3">
                         @if ($user->about)
-                        <h6 class="text-uppercase text-body text-xs font-weight-bolder">Rreth teje</h6>
+                        <h6 class="text-uppercase text-body text-xs font-weight-bolder">About You</h6>
                     <p class="text-sm">
                         {{$user->about}}
                     </p>
@@ -111,7 +111,7 @@
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                                <h6 class="mb-0">Të dhënat e profilit</h6>
+                                <h6 class="mb-0">Profile Information</h6>
                             </div>
                             <div class="col-md-4 text-end">
                                 <a href="{{route('user.edit')}}">
@@ -124,12 +124,12 @@
 
                         <hr class="horizontal gray-light my-1">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Emri i plotë:</strong> &nbsp;{{$user->name. " " . $user->surname}}</li>
+                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp;{{$user->name. " " . $user->surname}}</li>
                             <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> {{$user->email}}</li>
                            @if ($user->category)
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Kategoria:</strong> &nbsp;{{$user->category->name}}</li>@endif
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Category:</strong> &nbsp;{{$user->category->name}}</li>@endif
                             @if ($user->cv)
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">CV:</strong> &nbsp; <a href="/files/{{$user->cv}}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png" style="width: 20px"></a> </li>@endif
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">CV:</strong> &nbsp; <a href="/files/{{$user->cv}}"><img src="{{asset('/assets/img/pdf.webp')}}" style="width: 20px"></a> </li>@endif
                             <li class="list-group-item border-0 ps-0 pb-0">
                                 <strong class="text-dark text-sm">Social:</strong> &nbsp;
                                 <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">

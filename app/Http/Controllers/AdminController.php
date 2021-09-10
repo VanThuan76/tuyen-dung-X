@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -20,8 +21,9 @@ class AdminController extends Controller
 
     public function users(){
         $user = auth()->user();
+        $categories = Category::all();
         $users = User::Where('role_id',1)->paginate(20);
-        return view('admin.users',compact('user','users'));
+        return view('admin.users',compact('user','users', 'categories'));
     }
     public function companies(){
         $user = auth()->user();
