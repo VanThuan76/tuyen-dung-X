@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('cv')->nullable();
             $table->string('photo_id')->default(1);
             $table->string('role_id')->default(1);
+            $table->string('category_id')->default(1)->nullable();
             $table->string('investigation_id')->nullable();
             $table->string('username_changed')->default(0);
             $table->rememberToken();

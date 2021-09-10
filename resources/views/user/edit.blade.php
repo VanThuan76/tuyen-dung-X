@@ -66,6 +66,26 @@
                                             @enderror
                                         </div>
                                         <div class="col-6">
+                                            <label class="form-label mt-4">Kategoria</label>
+                                            <div class="input-group">
+                                                <select class="form-select" name="category_id" aria-label="Default select example">
+                                                    <option value="" selected>Kategoritë</option>
+                                                    @foreach($categories as $category)
+                                                        <option value="{{$category->id}}" {{ $user->category->id == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>                                            </div>
+                                            @error('category')
+                                            <span style="color:red;">{{ $message }}</span>
+                                            @enderror
+                                            @if (session('category_error'))
+                                                <span style="color:red;">{{ session('category_error')  }}</span>
+                                            @endif
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
                                             <label class="form-label mt-4">CV</label>
                                             <div class="input-group">
                                                 <input id="cv" name="cv" class="form-control" type="file">
@@ -74,6 +94,7 @@
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
+
                                     </div>
                                     <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Ndrysho profilin</button>
                                 </div>

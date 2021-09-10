@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CompanyEditRequest;
-use App\Models\User;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
-class CompanyProfileController extends Controller
+class AdminJobsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class CompanyProfileController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+        $jobs = Job::paginate(15);
+        return view ('admin.jobs.index',compact('user','jobs'));
     }
 
     /**
@@ -45,14 +46,9 @@ class CompanyProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $user = User::findBySlugOrFail($slug);
-        if ($user->role->name == 'administrator' || $user->role->name == 'user'){
-            return redirect()->route('home');//redirekto nese nuk eshte kompani
-        }
-        $jobs = $user->job()->orderBy('id','desc')->paginate(10);
-        return view('company.show',compact('user','jobs'));
+        //
     }
 
     /**
@@ -61,13 +57,9 @@ class CompanyProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        $user = auth()->user();
-        if ($user->role->name == 'administrator' || $user->role->name == 'user'){
-            return redirect()->route('home');//redirekto nese nuk eshte kompani
-        }
-        return view('company.edit',compact('user'));
+        //
     }
 
     /**
@@ -77,18 +69,9 @@ class CompanyProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CompanyEditRequest $request)
+    public function update(Request $request, $id)
     {
-        $user = auth()->user();
-        $user->update($request->all());
-        $input['industry'] = $request['industry'];
-        $input['capacity']=$request['capacity'];
-        $input['address']=$request['address'];
-        $input['tel']=$request['tel'];
-        $input['website']=$request['website'];
-        $user->company()->update($input);
-        session()->flash('profile_updated','Profili u ndryshua me sukses.');
-        return redirect()->back();
+        //
     }
 
     /**

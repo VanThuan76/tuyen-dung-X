@@ -13,4 +13,5 @@
 <script src="{{asset('assets/js/plugins/dragula/dragula.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/jkanban/jkanban.js')}}"></script>
 
+<script src="{{asset('assets/js/plugins/flatpickr.min.js')}}"></script>
 @yield('scripts')

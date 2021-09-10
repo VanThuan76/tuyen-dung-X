@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserChangeProfileRequest;
 use App\Http\Requests\UserEditRequest;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,7 @@ class UserProfileController extends Controller
     public function show($slug)
     {
         $user = User::findBySlugOrFail($slug);
-        if ($user->role_id == 2){
+        if ($user->role->name == 'company'){
             return redirect()->route('home');//redirekto nese nuk eshte perdorues
         }
         return view('user.show',compact('user'));
@@ -64,10 +65,11 @@ class UserProfileController extends Controller
     public function edit()
     {
         $user = auth()->user();
+        $categories = Category::all();
         if ($user->role->name == 'company'){
             return redirect()->route('home');//redirekto nese nuk eshte perdorues
         }
-        return view('user.edit',compact('user'));
+        return view('user.edit',compact('user', 'categories'));
     }
 
     /**
@@ -80,6 +82,11 @@ class UserProfileController extends Controller
     public function update(UserEditRequest $request)
     {
     $user = auth()->user();
+        $category = Category::find($request->category_id);
+        if (!$category){
+            session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
+            return back();
+        }
     $input = $request->all();
         if($file = $request->file('cv')) {
 

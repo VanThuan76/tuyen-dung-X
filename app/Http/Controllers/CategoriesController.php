@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\AdminStoreCategoriesRequest;
+use App\Http\Requests\AdminUpdateCategoriesRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,25 +17,10 @@ class AdminController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('admin.index',compact('user'));
+        $categories = Category::paginate(10);
+        return view('categories.index',compact('categories', 'user'));
     }
 
-    public function users(){
-        $user = auth()->user();
-        $users = User::Where('role_id',1)->paginate(20);
-        return view('admin.users',compact('user','users'));
-    }
-    public function companies(){
-        $user = auth()->user();
-
-        $users = User::Where('role_id',2)->paginate(20);
-        return view('admin.companies',compact('user','users'));
-    }
-    public function admins(){
-        $user = auth()->user();
-        $users = User::Where('role_id',3)->paginate(20);
-        return view('admin.admins',compact('user','users'));
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,9 +37,13 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminStoreCategoriesRequest $request)
     {
-        //
+        $input = $request->all();
+
+        Category::create($input);
+        session()->flash('added_category', 'Kategoria u shtua me sukses.');
+        return back();
     }
 
     /**
@@ -72,9 +63,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $user = auth()->user();
+        $category = Category::findBySlugOrFail($slug);
+        return view('categories.edit',compact('user','category'));
     }
 
     /**
@@ -84,9 +77,12 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUpdateCategoriesRequest $request, $slug)
     {
-        //
+        $category = Category::findBySlugOrFail($slug);
+        $category->update($request->all());
+        session()->flash('updated_category', 'Kategoria u ndryshua me sukses.');
+        return redirect()->route('categories');
     }
 
     /**
@@ -95,8 +91,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $category = Category::findBySlugOrFail($slug);
+        $category->delete();
+        session()->flash('deleted_category', 'Kategoria u fshi me sukses.');
+        return back();
     }
 }

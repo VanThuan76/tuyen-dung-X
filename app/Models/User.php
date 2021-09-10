@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'surname', 'gender', 'username', 'slug', 'about', 'email', 'password', 'cv', 'photo_id', 'role_id', 'investigation_id', 'username_changed'
+        'name', 'surname', 'gender', 'username', 'slug', 'about', 'email', 'password', 'cv', 'photo_id', 'role_id','category_id', 'investigation_id', 'username_changed'
     ];
     public function photo(){
         return $this->belongsTo(Photo::class);
@@ -44,6 +44,12 @@ class User extends Authenticatable
     }
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+    public function job(){
+        return $this->hasMany(Job::class);
     }
     public function isAdmin(){
         if ($this->role->name == "administrator"){
@@ -58,7 +64,7 @@ class User extends Authenticatable
         return false;
     }
     public function isCompany(){
-        if ($this->role->name == "company"){
+        if ($this->role->name == "company" || $this->role->name == 'administrator'){
             return true;
         }
         return false;

@@ -22,6 +22,13 @@ Route::middleware(['auth','admin'])->group(function() {
     Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/companies', [App\Http\Controllers\AdminController::class, 'companies'])->name('admin.companies');
     Route::get('/admin/admins', [App\Http\Controllers\AdminController::class, 'admins'])->name('admin.admins');
+    Route::get('/admin/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('categories');
+    Route::POST('/admin/categories/store', [App\Http\Controllers\CategoriesController::class, 'store'])->name('admin.category.store');
+    Route::get('/admin/categories/{category}/edit', [App\Http\Controllers\CategoriesController::class, 'edit'])->name('admin.category.edit');
+    Route::delete('/admin/categories/{category}/destroy', [App\Http\Controllers\CategoriesController::class, 'destroy'])->name('admin.category.destroy');
+    Route::patch('/admin/categories/{category}/update', [App\Http\Controllers\CategoriesController::class, 'update'])->name('admin.category.update');
+    Route::get('/admin/jobs', [App\Http\Controllers\AdminJobsController::class, 'index'])->name('admin.jobs');
+
 });
 
 Route::middleware(['auth','company'])->group(function() {
@@ -31,6 +38,12 @@ Route::middleware(['auth','company'])->group(function() {
     Route::get('/company/changeUsername', 'App\Http\Controllers\CompanyChangeUsernameController@edit')->name('company.username.edit');
     Route::get('/company/{company}', [App\Http\Controllers\CompanyProfileController::class, 'show'])->name('company.show');
     Route::patch('/company/update', [App\Http\Controllers\CompanyProfileController::class, 'update'])->name('company.update');
+    Route::get('/job/create', [App\Http\Controllers\JobsController::class, 'create'])->name('job.create');
+    Route::POST('/job/store', [App\Http\Controllers\JobsController::class, 'store'])->name('job.store');
+    Route::get('/job/{job}/edit', [App\Http\Controllers\JobsController::class, 'edit'])->name('job.edit');
+    Route::patch('/job/{job}/update', [App\Http\Controllers\JobsController::class, 'update'])->name('job.update');
+    Route::delete('/job/{job}/destroy', [App\Http\Controllers\JobsController::class, 'destroy'])->name('job.destroy');
+
 });
 Route::middleware(['auth','user'])->group(function() {
     Route::get('/user/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('user.edit');
@@ -56,3 +69,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/prova',function (){
+    return view('prova');
+});

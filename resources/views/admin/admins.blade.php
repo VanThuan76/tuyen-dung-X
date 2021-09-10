@@ -9,6 +9,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
+                            @if (count($users)>0)
                             <table class="table align-items-center mb-0">
                                 <thead>
                                 <tr>
@@ -24,6 +25,7 @@
 
                                     <tr>
                                         <td>
+                                            <a href="{{route('user.show',$user->slug)}}">
                                             <div class="d-flex px-2 py-1">
                                                 <div>
                                                     <img src="/images/{{$user->photo->name}}" class="avatar avatar-sm me-3" alt="user1">
@@ -33,7 +35,9 @@
                                                     <p class="text-xs text-secondary mb-0">{{$user->email}}</p>
                                                 </div>
                                             </div>
+
                                         </td>
+                                        </a>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0">Manager</p>
                                             <p class="text-xs text-secondary mb-0">Organization</p>
@@ -55,6 +59,9 @@
                                 </tbody>
 
                             </table>
+                            @else
+                                <span style="color:red; margin-left: 25px;">Nuk u gjetën përdorues.</span>
+                            @endif
                             <div class="d-flex justify-content-center mt-3">
                                 {{$users->links()}}
 
