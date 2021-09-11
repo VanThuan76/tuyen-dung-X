@@ -32,7 +32,7 @@
 
                                 </div>
                                 <div class="col-6">
-                                    <label class="form-label">Mbiemri</label>
+                                    <label class="form-label">Surname</label>
                                     <div class="input-group">
                                         <input id="surname" name="surname" class="form-control" type="text" placeholder="{{$user->surname}}" required="required" autocomplete="off" value="{{$user->surname}}">
                                     </div>

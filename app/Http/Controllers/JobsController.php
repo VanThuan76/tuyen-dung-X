@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\JobStoreRequest;
 use App\Models\Category;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobsController extends Controller
@@ -46,18 +47,6 @@ class JobsController extends Controller
             session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
             return back()->withInput();
         }
-        if ($request->has_endDate == 'on'){
-            $request->request->remove('endDate');
-        }
-        if ($request->remote == 'on'){
-            $request->request->remove('address');
-        }
-        if ($request->price_type == 1){
-            $request['price_type'] = 'Fixed';
-        }
-        else{
-            $request['price_type'] = 'Hourly';
-        }
         if (!$request->has_endDate && empty($request->endingDate)){
             session()->flash('error_endDate', 'Please fill in the date.');
             return back()->withInput();
@@ -66,6 +55,37 @@ class JobsController extends Controller
             session()->flash('error_address', 'Please fill in the address.');
             return back()->withInput();
         }
+        if ($request->has_endDate == 'on'){
+            $request->request->remove('endDate');
+        }
+        if ($request->remote == 'on'){
+           $request['remote'] = 1;
+        }
+        else{
+            $request['remote'] = 0;
+        }
+        if ($request->price_type == 1){
+            $request['price_type'] = 'Fixed';
+        }
+        else{
+            $request['price_type'] = 'Hourly';
+        }
+        if ($request->experience == 1){
+            $request['experience'] = '1-3';
+        }
+        else if ($request->experience == 2){
+            $request['experience'] = '4-7';
+        }
+        else if ($request->experience == 3){
+            $request['experience'] = '+7';
+        }
+        if ($request->job_type == 1){
+            $request['job_type'] = 'Part Time';
+        }
+        else{
+            $request['job_type'] = 'Full Time';
+        }
+
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
 
@@ -81,9 +101,15 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $user = auth()->user();
+        $job = Job::findBySlugOrFail($slug);
+
+        //other jobs by same company
+        $company = User::find($job->user_id);
+        $jobs = $company->job->where('id','<>',$job->id);
+        return view('job.show',compact('user','job', 'jobs'));
     }
 
     /**
@@ -107,26 +133,16 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(JobStoreRequest $request, $slug)
     {
+
         $user = auth()->user();
         $job = Job::findBySlugOrFail($slug);
+
         $category = Category::find($request->category_id);
         if (!$category){
-            session()->flash('category_error', 'Oops ... Category not found.');
+            session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
             return back()->withInput();
-        }
-        if ($request->has_endDate == 'on'){
-            $request->request->remove('endDate');
-        }
-        if ($request->remote == 'on'){
-            $request->request->remove('address');
-        }
-        if ($request->price_type == 1){
-            $request['price_type'] = 'Fixed';
-        }
-        else{
-            $request['price_type'] = 'Hourly';
         }
         if (!$request->has_endDate && empty($request->endingDate)){
             session()->flash('error_endDate', 'Please fill in the date.');
@@ -136,6 +152,37 @@ class JobsController extends Controller
             session()->flash('error_address', 'Please fill in the address.');
             return back()->withInput();
         }
+        if ($request->has_endDate == 'on'){
+            $request->request->remove('endDate');
+        }
+        if ($request->remote == 'on'){
+            $request['remote'] = 1;
+        }
+        else{
+            $request['remote'] = 0;
+        }
+        if ($request->price_type == 1){
+            $request['price_type'] = 'Fixed';
+        }
+        else{
+            $request['price_type'] = 'Hourly';
+        }
+        if ($request->experience == 1){
+            $request['experience'] = '1-3';
+        }
+        else if ($request->experience == 2){
+            $request['experience'] = '4-7';
+        }
+        else if ($request->experience == 3){
+            $request['experience'] = '+7';
+        }
+        if ($request->job_type == 1){
+            $request['job_type'] = 'Part Time';
+        }
+        else{
+            $request['job_type'] = 'Full Time';
+        }
+
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
         $job->update($input);

@@ -22,6 +22,10 @@
                     @if (session('min_length_input'))
                         <span style="color:red">{{session('min_length_input')}}</span>
                     @endif
+                    @if (isset($_GET['q']))
+                        <span style="color:grey; margin-left: 25px;">Search results for <span style="color:red">{{$_GET['q']}}</span></span>
+                        <span style="color:grey; margin-left: 25px;">{{$users_count}} users found</span>
+                    @endif
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             @if (count($users)>0)

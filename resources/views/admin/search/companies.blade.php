@@ -22,6 +22,10 @@
                     @if (session('min_length_input'))
                         <span style="color:red">{{session('min_length_input')}}</span>
                     @endif
+                    @if (isset($_GET['q']))
+                        <span style="color:grey; margin-left: 25px;">Search results for <span style="color:red">{{$_GET['q']}}</span></span>
+                        <span style="color:grey; margin-left: 25px;">{{$users_count}} users found</span>
+                        @endif
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             @if (count($users)>0)
@@ -47,7 +51,7 @@
                                                             <img src="/images/{{$user->user->photo->name}}" class="avatar avatar-sm me-3" alt="user1">
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{$user->user->name. " ". $user->user->surname}}</h6>
+                                                            <h6 class="mb-0 text-sm">{{$user->name}}</h6>
                                                             <p class="text-xs text-secondary mb-0">{{$user->user->email}}</p>
                                                         </div>
                                                     </div>
@@ -74,7 +78,7 @@
 
                                 </table>
                             @else
-                                <span style="color:red; margin-left: 25px;">Users not found.</span>
+                                <span style="color:red; margin-left: 25px;">Companies not found.</span>
                             @endif
                             <div class="d-flex justify-content-center mt-3">
                                 {{$users->links()}}

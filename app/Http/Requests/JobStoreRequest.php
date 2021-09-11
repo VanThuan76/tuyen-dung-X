@@ -26,10 +26,13 @@ class JobStoreRequest extends FormRequest
         return [
             'title'=>'required|max:255|min:2',
             'body'=>'required|max:2000|min:2',
+            'address'=>'required|max:255|min:2',
+            'job_type'=>'required|numeric|max:2|min:1',
+            'experience'=>'required|numeric|min:0|max:3',
             'category_id' => 'required|numeric',
-            'duties'=>'required|max:255|min:2',
+            'duties'=>'required|max:2000|min:2',
             'startingDate'=>'required|max:255|min:2',
-            'price_type'=>'required|max:255|min:0',
+            'price_type'=>'required|numeric|max:2|min:1',
             'price'=>'required|max:255|min:2'
         ];
     }

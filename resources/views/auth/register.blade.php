@@ -330,8 +330,8 @@
 
 
                                 <div class="d-flex justify-content-end mt-4">
-                                    <button type="button" name="button" class="btn btn-light m-0">Anulo</button>
-                                    <button type="submit" class="btn bg-gradient-primary m-0 ms-2">Krijo shpalljen e punës</button>
+                                    <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
+                                    <button type="submit" class="btn bg-gradient-primary m-0 ms-2">Create Account</button>
                                 </div>
                             </div>
                         </form>

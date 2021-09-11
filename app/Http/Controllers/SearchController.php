@@ -52,6 +52,8 @@ class SearchController extends Controller
                         ->orWhere('duties', 'like', "%{$input}%")
                         ->orWhere('address', 'like', "%{$input}%")
                         ->orWhere('price_type', 'like', "%{$input}%")
+                        ->orWhere('experience', 'like', "%{$input}%")
+                        ->orWhere('job_type', 'like', "%{$input}%")
                         ->orWhere('price', 'like', "%{$input}%")->orderBy('title', 'ASC');
                 }
             });

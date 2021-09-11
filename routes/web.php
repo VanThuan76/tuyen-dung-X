@@ -44,6 +44,8 @@ Route::middleware(['auth','company'])->group(function() {
     Route::patch('/company/update', [App\Http\Controllers\CompanyProfileController::class, 'update'])->name('company.update');
     Route::get('/job/create', [App\Http\Controllers\JobsController::class, 'create'])->name('job.create');
     Route::POST('/job/store', [App\Http\Controllers\JobsController::class, 'store'])->name('job.store');
+    Route::get('/job/{job}', [App\Http\Controllers\JobsController::class, 'show'])->name('job.show');
+
     Route::get('/job/{job}/edit', [App\Http\Controllers\JobsController::class, 'edit'])->name('job.edit');
     Route::patch('/job/{job}/update', [App\Http\Controllers\JobsController::class, 'update'])->name('job.update');
     Route::delete('/job/{job}/destroy', [App\Http\Controllers\JobsController::class, 'destroy'])->name('job.destroy');
@@ -74,5 +76,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/prova',function (){
-    return view('prova');
+    $user = auth()->user();
+    return view('job.show', compact('user'));
 });

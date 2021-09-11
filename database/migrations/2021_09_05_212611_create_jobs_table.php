@@ -22,8 +22,11 @@ class CreateJobsTable extends Migration
             $table->text('duties')->nullable()->index();
             $table->string('slug')->unique()->index();
             $table->string('address')->nullable();
+            $table->string('remote')->nullable();
+            $table->string('experience')->nullable();
             $table->string('startingDate')->nullable();
             $table->string('endingDate')->nullable();
+            $table->string('job_type')->nullable();
             $table->text('price_type')->nullable();
             $table->text('price')->nullable();
             $table->timestamps();

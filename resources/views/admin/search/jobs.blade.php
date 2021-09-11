@@ -18,10 +18,10 @@
         <form action="{{route('admin.search.jobs')}}" method="GET">
             <div class="row g-0">
                 <div class="col-lg-4 col-6">
-                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search jobs">
+                    <input id="q" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search jobs">
                 </div>
                 <div class="col-lg-4 col-6">
-                    <select class="form-select" name="category" style="border-radius: 0px;" aria-label="Default select example">
+                    <select class="form-select" name="category" id="category" style="border-radius: 0px;" aria-label="Default select example">
                         <option value ="" selected>Categories</option>
                         @foreach($categories as $category)
                             <option value="{{$category->slug}}">{{$category->name}}</option>
@@ -29,7 +29,7 @@
 
                     </select>
                 </div>
-                <div class="col-lg-4 col-12"><button type="submit" class="btn btn-primary" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
+                <div class="col-lg-4 col-12"><button type="submit" class="btn btn-primary search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
             </div>
         </form>
 
@@ -45,8 +45,12 @@
                         @if (session('min_length_input'))
                             <span style="color:red">{{session('min_length_input')}}</span>
                         @endif
-                    </div>
 
+                    </div>
+                    @if (isset($_GET['q']))
+                        <span style="color:grey; margin-left: 25px;">Search results for <span style="color:red">{{$_GET['q']}}</span></span>
+                        <span style="color:grey; margin-left: 25px;">{{$jobs_count}} job found</span>
+                    @endif
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             @if (count($jobs)>0)
@@ -69,7 +73,7 @@
 
                                         <tr>
                                             <td>
-                                                <a href="{{route('company.show',$job->user->slug)}}">
+                                                <a href="{{route('job.show',$job->slug)}}">
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
                                                             <img src="/images/{{$job->user->photo->name}}" class="avatar avatar-sm me-3" alt="user1">
@@ -125,5 +129,24 @@
                 </div>
             </div>
         </div>
+
+@endsection
+@section('scripts')
+            <script>
+                const searchBtn = document.querySelector('.search');
+                searchBtn.addEventListener('click',function(){
+
+                    const searchField = document.querySelector('#q');
+                    const categoriesBtn = document.getElementById('category');
+                    const categoryValue = categoriesBtn.options[categoriesBtn.selectedIndex].text;
+                    if (searchField.value == ''){
+                        searchField.disabled = true;
+                    }
+                    if (categoryValue == 'Categories'){
+                        categoriesBtn.disabled = true;
+                    }
+
+                });
+            </script>
 
 @endsection

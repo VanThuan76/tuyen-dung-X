@@ -51,7 +51,7 @@
                         <label class="form-label">Remote</label>
 
                         <div class="form-check form-switch ms-1">
-                            <input class="form-check-input" type="checkbox" name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >
+                            <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >
                             <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Work is remote</label>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
             </div>
             <div class="row mt-2">
                 <div class="col-6">
-                    <label class="form-label">Experience</label>
+                    <label class="form-label">Category</label>
                     <select class="form-select" name="category_id" aria-label="Default select example">
                         <option value="" selected>Choose Category</option>
                         @foreach($categories as $category)
@@ -79,14 +79,32 @@
                     @endif
                 </div>
                 <div class="col-6">
+                    <label class="form-label">Experience</label>
+                    <select class="form-select" name="experience" aria-label="Default select example">
+                        <option value="" selected>Choose Experience</option>
+                            <option value="0" @if (old('experience')==0) selected @endif>0 years</option>
+                        <option value="1" @if (old('experience')==1) selected @endif >1 - 3 years</option>
+                        <option value="2" @if (old('experience')==2) selected @endif>4 - 7 years</option>
+                        <option value="3" @if (old('experience')==3) selected @endif>+7 years</option>
+                    </select>
+
+                    @error('experience')
+                    <span style="color:red;">{{ $message }}</span>
+                    @enderror
+
+                </div>
+
+            </div>
+            <div class="row mt-2">
+
+                <div class="col-12">
                     <label class="form-label">Responsibilities</label>
-                    <input class="form-control" type="text" name="duties" autocomplete="off" placeholder="Responsibilities of worker" value="{{old('duties')}}">
+                <textarea id="duties" name="duties" class="form-control" rows="5">{{old('duties')}}</textarea>
                     @error('duties')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-
             <div class="row mt-2">
                 <div class="col-6">
                     <label class="form-label">Starting Date</label>
@@ -108,7 +126,7 @@
             </div>
 
                 <div class="row mt-2">
-                    <div class="col-12 col-md-6">
+                    <div class="col-6">
                         <div class="form-group">
                             <label>
                                 Long-term
@@ -117,9 +135,22 @@
                                 This position is long-term.
                             </p>
                             <div class="form-check form-switch ms-1">
-                                <input class="form-check-input" type="checkbox" name="has_endDate" id="flexSwitchCheckDefault" onclick="notify(this)" >
+                                <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault" onclick="notify(this)" >
                                 <label class="form-check-label" for="flexSwitchCheckDefault">Work is long-term</label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">Job Type</label>
+                            <select class="form-select" name="job_type" aria-label="Default select example">
+                                <option value="" selected>Select Payment</option>
+                                <option value="1" @if (old('job_type')==1) selected @endif>Part Time</option>
+                                <option value="2" @if (old('job_type')==2) selected @endif>Full Time</option>
+                            </select>
+                            @error('job_type')
+                            <span style="color:red;">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -139,7 +170,13 @@
                 </div>
                 <div class="col-6">
                     <label class="form-label">Price</label>
-                    <input class="form-control" type="number" name="price" autocomplete="off" placeholder="Price" value="{{old('price')}}">
+                    <div class="input-group mb-3">
+
+                            <span class="input-group-text">€</span>
+
+                        <input type="number" name="price" value="{{old('price')}}" style="outline: none !important;" class="form-control" aria-label="Amount (to the nearest dollar)">
+
+                    </div>
                     @error('price')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
@@ -179,15 +216,22 @@
 
         }
     });
-    remoteSwitch.addEventListener('click',function(){
-        if (this.checked == true){
-           address.disabled = true;
-        }
-        else{
-            address.disabled = false;
+    if (dateSwitch.checked == true){
+        document.querySelector('.endingDate').disabled = true;
+    }
+    else{
+        document.querySelector('.endingDate').disabled = false;
 
-        }
-    });
+    }
+    // remoteSwitch.addEventListener('click',function(){
+    //     if (this.checked == true){
+    //        address.disabled = true;
+    //     }
+    //     else{
+    //         address.disabled = false;
+    //
+    //     }
+    // });
 
 </script>
     @endsection
