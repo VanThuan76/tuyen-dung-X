@@ -36,4 +36,15 @@ class JobStoreRequest extends FormRequest
             'price'=>'required|max:255|min:2'
         ];
     }
+    public function messages(){
+        return [
+            'job_type.max' => 'Job type must be selected.',
+            'job_type.min' => 'Job type must be selected.',
+            'experience.max' => 'Experience must be selected.',
+            'experience.min' => 'Experience must be selected.',
+            'website.max' => 'Website must have a maximum of 255 characters.',
+            'website.min' => 'Website must have at least 2 characters.',
+
+        ];
+    }
 }

@@ -27,13 +27,13 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="{{asset('/assets/css/nucleo-icons.css')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="{{asset('/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+    <link id="pagestyle" href="{{asset('/assets/css/soft-ui-dashboard.css?v=1.0.3')}}" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -44,7 +44,7 @@
             <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                 <div class="container-fluid">
                     <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
-                        Soft UI Dashboard
+                        EmployingX
                     </a>
                     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon mt-2">
@@ -56,33 +56,34 @@
                     <div class="collapse navbar-collapse" id="navigation">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../pages/dashboard.html">
-                                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-                                    Dashboard
+                                <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="{{route('index')}}">
+                                    <i class="fa fa-home opacity-6 text-dark me-1"></i>
+
+                                    Home
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="../pages/profile.html">
+                                <a class="nav-link me-2" href="{{route('about')}}">
                                     <i class="fa fa-user opacity-6 text-dark me-1"></i>
-                                    Profile
+                                    About
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="../pages/sign-up.html">
+                                <a class="nav-link me-2" href="#">
                                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                                    Sign Up
+                                   How this works
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="../pages/sign-in.html">
-                                    <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                                    Sign In
+                                <a class="nav-link me-2" href="{{route('contact')}}">
+                                    <i class="fab fa-telegram opacity-6 text-dark me-1"></i>
+                                    Contact
                                 </a>
                             </li>
                         </ul>
                         <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/product/soft-ui-dashboard" class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download</a>
+                                <a href="{{route('register')}}" class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Create account</a>
                             </li>
                         </ul>
                     </div>
@@ -110,7 +111,7 @@
                                     <form role="form">
                                         <label>Email</label>
                                         <div class="mb-3">
-                                            <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" name="email">
+                                            <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" name="email" autocomplete="off">
                                             @error('email')
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
@@ -135,7 +136,7 @@
                             <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                 <p class="mb-4 text-sm mx-auto">
                                     Don't have an account?
-                                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Sign up</a>
+                                    <a href="{{route('register')}}" class="text-info text-gradient font-weight-bold">Sign up</a>
                                 </p>
                             </div>
                         </div>
@@ -205,10 +206,10 @@
 </footer>
 <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
 <!--   Core JS Files   -->
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="{{asset('/assets/assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('/assets/assets/js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('/assets/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('/assets/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

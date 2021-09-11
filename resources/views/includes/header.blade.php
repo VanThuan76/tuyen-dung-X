@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Soft UI Dashboard by Creative Tim
+       @yield('title')
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -45,6 +45,7 @@
         <div class="container-fluid py-1 px-3">
 
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <b>EmployingX</b>
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
                 </div>

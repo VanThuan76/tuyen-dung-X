@@ -21,7 +21,7 @@
                             <div class="card-body pt-0">
                                 <label class="form-label">Username</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="username" placeholder="New username">
+                                    <input class="form-control" type="text" name="username" autocomplete="off" placeholder="New username">
                                     @if(session('username_exceeded'))
                                         <span style="color:red; ">{{session('username_exceeded')}}</span>
                                     @endif

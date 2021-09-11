@@ -28,11 +28,11 @@ class CompanyEditRequest extends FormRequest
             'surname'=>'required|max:255|min:2',
             'email' => 'required|max:255|min:5|unique:users,email,' . auth()->user()->id,
             'about' => 'max:2000',
-            'industry'=>'required|max:255|min:2',
-            'capacity'=>'required|max:255|min:2',
-            'address'=>'required|max:255|min:2',
-            'tel'=>'required|numeric|digits_between:7,12',
-            'website'=>'required|max:255|min:2',
+            'industry'=>'nullable|max:255|min:2',
+            'capacity'=>'nullable|max:255|min:2',
+            'address'=>'nullable|max:255|min:2',
+            'tel'=>'nullable|numeric|digits_between:7,12',
+            'website'=>'nullable|max:255|min:2',
 
         ];
     }

@@ -46,7 +46,7 @@
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent mt-4">
     <div class="container">
         <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../pages/dashboards/default.html">
-            Soft UI Dashboard
+            EmployingX
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -58,38 +58,26 @@
         <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
             <ul class="navbar-nav navbar-nav-hover mx-auto">
                 <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a role="button" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center " id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
-                        Pages
-                        <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow" class="arrow ms-1 d-lg-block d-none">
-                        <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1 d-lg-none d-block">
+                    <a href="{{route('index')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">
+                        Home
+                    </a>
+
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                    <a href="{{route('about')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">
+                        About
+
                     </a>
                 </li>
                 <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a role="button" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center " id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false">
-                        Authentication
-                        <img src=" ../assets/img/down-arrow-dark.svg " alt="down-arrow" class="arrow ms-1 d-lg-block d-none">
-                        <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1 d-lg-none d-block">
+                    <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">
+                        How this works
+
                     </a>
                 </li>
                 <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a role="button" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center " id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
-                        Applications
-                        <img src=" ../assets/img/down-arrow-dark.svg " alt="down-arrow" class="arrow ms-1 d-lg-block d-none">
-                        <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1 d-lg-none d-block">
-                    </a>
-                </li>
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a role="button" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center " id="dropdownMenuEcommerce" data-bs-toggle="dropdown" aria-expanded="false">
-                        Ecommerce
-                        <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow" class="arrow ms-1 d-lg-block d-none">
-                        <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1 d-lg-none d-block">
-                    </a>
-                </li>
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a role="button" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center " id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
-                        Docs
-                        <img src=" ../assets/img/down-arrow-dark.svg " alt="down-arrow" class="arrow ms-1 d-lg-block d-none">
-                        <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1 d-lg-none d-block">
+                    <a href="{{route('contact')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">
+                        Contact
+
                     </a>
                 </li>
             </ul>
@@ -133,7 +121,7 @@
                                     <div class="col-6">
                                         <label class="form-label">*Name</label>
                                         <div class="input-group">
-                                            <input id="name" name="name" class="form-control" type="text" placeholder="Shkruani emrin" required="required" autocomplete="off" value="{{old('name')}}">
+                                            <input id="name" name="name" class="form-control" type="text" placeholder="Name" required="required" autocomplete="off" value="{{old('name')}}">
                                         </div>
                                         @error('name')
                                         <span style="color:red; ">{{ $message }}</span>
@@ -143,7 +131,7 @@
                                     <div class="col-6">
                                         <label class="form-label">*Surname</label>
                                         <div class="input-group">
-                                            <input id="surname" name="surname" class="form-control" type="text" placeholder="" required="required" autocomplete="off" value="{{old('surname')}}">
+                                            <input id="surname" name="surname" class="form-control" type="text" placeholder="Surname" required="required" autocomplete="off" value="{{old('surname')}}">
                                         </div>
                                         @error('surname')
                                         <span style="color:red">{{ $message }}</span>
@@ -167,7 +155,7 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">*Email</label>
                                         <div class="input-group">
-                                            <input id="email" name="email" class="form-control" type="email" placeholder="Shkruani emailin" value="{{old('email')}}">
+                                            <input id="email" name="email" class="form-control" type="email" autocomplete="off" placeholder="Email" value="{{old('email')}}" required>
                                         </div>
                                         @error('email')
                                         <span style="color:red;">{{ $message }}</span>
@@ -176,7 +164,7 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">*Username</label>
                                         <div class="input-group">
-                                            <input id="industry" name="username" class="form-control" type="text" placeholder="Shkruani username" value="{{old('username')}}">
+                                            <input id="industry" name="username" class="form-control" type="text" autocomplete="off" placeholder="Username" value="{{old('username')}}" required>
                                         </div>
                                         @error('username')
                                         <span style="color:red;">{{ $message }}</span>
@@ -189,7 +177,7 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">*Password</label>
                                         <div class="input-group">
-                                            <input id="password" name="password" class="form-control" type="password" placeholder="Shkruani fjalekalimin" value="{{old('password')}}">
+                                            <input id="password" name="password" class="form-control" type="password" placeholder="Password" value="{{old('password')}}" required>
                                         </div>
                                         @error('password')
                                         <span style="color:red;">{{ $message }}</span>
@@ -198,7 +186,7 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">*Password Confirmation</label>
                                         <div class="input-group">
-                                            <input id="password" name="password_confirmation" class="form-control" type="password" placeholder="Ri-shkruani fjalekalimin" value="{{old('password_confirmation')}}">
+                                            <input id="password" name="password_confirmation" class="form-control" type="password" placeholder="Password Confirmation" value="{{old('password_confirmation')}}" required>
                                         </div>
                                         @error('password_confirmation')
                                         <span style="color:red;">{{ $message }}</span>
@@ -211,7 +199,7 @@
                                     <div class="col-6">
                                         <label class="form-label mt-4">CV</label>
                                         <div class="input-group">
-                                            <input id="cv" name="cv" class="form-control" type="file" placeholder="Ngarkoni CV">
+                                            <input id="cv" name="cv" class="form-control" type="file" placeholder="Attach CV">
                                         </div>
                                         @error('cv')
                                         <span style="color:red;">{{ $message }}</span>
@@ -226,9 +214,7 @@
                                             @endforeach
                                         </select>
                                         @error('category_id')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span style="color:red;">{{ $message }}</span>
                                         @enderror
                                         @if (session('category_error'))
                                             <span class="invalid-feedback" role="alert">
@@ -237,9 +223,7 @@
                                         @endif
                                     </div>
 
-                                    @error('category_id')
-                                    <span style="color:red;">{{ $message }}</span>
-                                    @enderror
+
 
                                 </div>
                                 <div class="row mt-2">
@@ -264,7 +248,7 @@
                                         <div class="col-6">
                                             <label class="form-label mt-4">*Name</label>
                                             <div class="input-group">
-                                                <input id="industry" name="business_name" class="form-control" type="text" placeholder="Shkruani emrin e biznesit" value="{{old('business_name')}}">
+                                                <input id="industry" name="business_name" class="form-control" autocomplete="off" type="text" placeholder="Business name" value="{{old('business_name')}}">
                                             </div>
                                             @error('business_name')
                                             <span style="color:red;">{{ $message }}</span>
@@ -273,7 +257,7 @@
                                         <div class="col-6">
                                             <label class="form-label mt-4">Industry</label>
                                             <div class="input-group">
-                                                <input id="industry" name="industry" class="form-control" type="text" placeholder="Shkruani industrine" value="{{old('industry')}}">
+                                                <input id="industry" name="industry" class="form-control" autocomplete="off" type="text" placeholder="Industry" value="{{old('industry')}}">
                                             </div>
                                             @error('industry')
                                             <span style="color:red;">{{ $message }}</span>
@@ -285,7 +269,7 @@
                                         <div class="col-6">
                                             <label class="form-label mt-4">Capacity</label>
                                             <div class="input-group">
-                                                <input id="capacity" name="capacity" class="form-control" type="text" placeholder="Shkruani kapacitetin" value="{{old('capacity')}}">
+                                                <input id="capacity" name="capacity" class="form-control" autocomplete="off" type="text" placeholder="Capacity" value="{{old('capacity')}}">
                                             </div>
                                             @error('capacity')
                                             <span style="color:red;">{{ $message }}</span>
@@ -294,7 +278,7 @@
                                         <div class="col-6">
                                             <label class="form-label mt-4">Address</label>
                                             <div class="input-group">
-                                                <input id="address" name="address" class="form-control" type="text" placeholder="Shkruani adresen" value="{{old('address')}}">
+                                                <input id="address" name="address" class="form-control" autocomplete="off" type="text" placeholder="Address" value="{{old('address')}}">
                                             </div>
                                             @error('address')
                                             <span style="color:red;">{{ $message }}</span>
@@ -306,7 +290,7 @@
                                         <div class="col-6">
                                             <label class="form-label mt-4">Mobile Number</label>
                                             <div class="input-group">
-                                                <input id="tel" name="tel" class="form-control" type="text" placeholder="Shkruani numrin e telefonit" value="{{old('tel')}}">
+                                                <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" placeholder="Mobile Number" value="{{old('tel')}}">
                                             </div>
                                             @error('tel')
                                             <span style="color:red;">{{ $message }}</span>
@@ -315,7 +299,7 @@
                                         <div class="col-6">
                                             <label class="form-label mt-4">Website</label>
                                             <div class="input-group">
-                                                <input id="website" name="website" class="form-control" type="text" placeholder="Shkruani websiten" value="{{old('website')}}">
+                                                <input id="website" name="website" class="form-control" autocomplete="off" type="text" placeholder="Website" value="{{old('website')}}">
                                             </div>
                                             @error('website')
                                             <span style="color:red;">{{ $message }}</span>

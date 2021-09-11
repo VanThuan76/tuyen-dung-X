@@ -13,15 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\StaticPageController::class, 'index'])->name('index');
+Route::get('/index', [App\Http\Controllers\StaticPageController::class, 'index']);
+Route::get('/about', [App\Http\Controllers\StaticPageController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\StaticPageController::class, 'contact'])->name('contact');
+Route::POST('/contact/store', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::middleware(['auth','admin'])->group(function() {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
     Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/companies', [App\Http\Controllers\AdminController::class, 'companies'])->name('admin.companies');
     Route::get('/admin/admins', [App\Http\Controllers\AdminController::class, 'admins'])->name('admin.admins');
+    Route::get('/admin/contacts', [App\Http\Controllers\AdminContactsController::class, 'index'])->name('admin.contacts');
+    Route::delete('/admin/contacts/{contact}/destroy', [App\Http\Controllers\AdminContactsController::class, 'destroy'])->name('admin.contacts.destroy');
+
     Route::get('/admin/categories', [App\Http\Controllers\CategoriesController::class, 'index'])->name('categories');
     Route::POST('/admin/categories/store', [App\Http\Controllers\CategoriesController::class, 'store'])->name('admin.category.store');
     Route::get('/admin/categories/{category}/edit', [App\Http\Controllers\CategoriesController::class, 'edit'])->name('admin.category.edit');
@@ -66,16 +71,9 @@ Route::middleware(['auth'])->group(function(){
     Route::patch('/user/changePhoto/destroy', 'App\Http\Controllers\UserChangePhotoController@destroy')->name('user.photo.destroy');
     Route::patch('/user/changeUsername/update', 'App\Http\Controllers\UserChangeUsernameController@update')->name('user.username.update');
     Route::patch('/user/changePassword/update', 'App\Http\Controllers\UserChangePasswordController@update')->name('user.password.update');
-
 });
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/prova',function (){
-    $user = auth()->user();
-    return view('job.show', compact('user'));
-});
+

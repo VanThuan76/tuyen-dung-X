@@ -7,7 +7,7 @@
         <form action="{{route('admin.search.users')}}" method="GET">
             <div class="row g-0">
                 <div class="col-6">
-                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search users">
+                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search users" autocomplete="off">
                 </div>
 
                 <div class="col-6"><button type="submit" class="btn btn-primary" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
