@@ -18,6 +18,9 @@ Route::get('/index', [App\Http\Controllers\StaticPageController::class, 'index']
 Route::get('/about', [App\Http\Controllers\StaticPageController::class, 'about'])->name('about');
 Route::get('/contact', [App\Http\Controllers\StaticPageController::class, 'contact'])->name('contact');
 Route::POST('/contact/store', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+Route::get('/employees', [App\Http\Controllers\StaticPageController::class, 'employee'])->name('employee');
+Route::get('/companies', [App\Http\Controllers\StaticPageController::class, 'company'])->name('company');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::middleware(['auth','admin'])->group(function() {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);

@@ -84,7 +84,15 @@ class SearchController extends Controller
     }
     public function users(Request $request)
     {
+
         $categories = Category::all();
+        $category = $request->category;
+        if ($category != ''){
+            $category = Category::findBySlugOrFail($category);
+            $category = $category->id;
+        }
+
+
         $user = auth()->user();
         $input = $request->q;
         $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
@@ -110,17 +118,29 @@ class SearchController extends Controller
                 }
             });
 
-
-            $users = $users_by_sentence->union($users_by_word)->paginate(10)->appends(request()->query());
-            $users_count = $users->count();
-
+            if ($category != null){
+                $users = $users_by_sentence->where('category_id', $category)->union($users_by_word->where('category_id', $category))->paginate(10)->appends(request()->query());
+                $users_count = $users->count();
+            }
+            else{
+                $users = $users_by_sentence->union($users_by_word)->paginate(10)->appends(request()->query());
+                $users_count = $users->count();
+            }
             //Kjo appends per te marrur edhe get requestat tjere ne get metoden
             return view('admin.search.users', compact('users','user', 'categories', 'users_count'));
         }
         else{
+            if ($category != ''){
+                $users = User::where('category_id',$category)->paginate(10);
+                $users_count = $users->count();
+                return view('admin.search.users', compact('users', 'users_count', 'user', 'categories'));
 
-            return redirect()->route('admin.users');
+            }
+            else{
+                return redirect()->route('admin.users');
+            }
         }
+
     }
     public function companies(Request $request){
         $categories = Category::all();

@@ -1,16 +1,39 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{ 'Users - EmployingX'}}
+    </title>
+@endsection
 @section('styles')
+    <style>
+        @media screen and (max-width: 1000px) {
+            .btn {
+                border-radius: 0.5rem !important;
 
+
+                margin-top: 20px;
+                width: 100%;
+            }
+        }
+    </style>
 @endsection
 @section('content')
     <div class="container-fluid py-4">
         <form action="{{route('admin.search.users')}}" method="GET">
             <div class="row g-0">
-                <div class="col-6">
-                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search users" autocomplete="off">
+                <div class="col-lg-4 col-6">
+                    <input id="q" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search Users" autocomplete="off">
                 </div>
+                <div class="col-lg-4 col-6">
+                    <select class="form-select" name="category" id="category" style="border-radius: 0px;" aria-label="Default select example">
+                        <option value ="" selected>Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->slug}}">{{$category->name}}</option>
+                        @endforeach
 
-                <div class="col-6"><button type="submit" class="btn btn-primary" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-12"><button type="submit" class="btn btn-primary search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
             </div>
         </form>
         <div class="row">

@@ -12,6 +12,11 @@
         }
     </style>
 @endsection
+@section('title')
+    <title>
+        {{ 'Jobs - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid py-4">
 

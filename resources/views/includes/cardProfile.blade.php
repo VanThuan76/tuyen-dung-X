@@ -19,7 +19,7 @@
 
                 </h5>
                 <p class="mb-0 font-weight-bold text-sm">
-                    CEO / Co-Founder
+                    @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{$user->category->name}} @else {{$user->company->industry}}  @endif
                 </p>
             </div>
         </div>

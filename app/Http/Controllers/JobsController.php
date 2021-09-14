@@ -137,8 +137,11 @@ class JobsController extends Controller
     {
 
         $user = auth()->user();
-        $job = Job::findBySlugOrFail($slug);
 
+        $job = Job::findBySlugOrFail($slug);
+        if (auth()->user()->id != $job->user_id){
+            abort(403, 'Unauthorized action.');
+        }
         $category = Category::find($request->category_id);
         if (!$category){
             session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
@@ -153,7 +156,7 @@ class JobsController extends Controller
             return back()->withInput();
         }
         if ($request->has_endDate == 'on'){
-            $request->request->remove('endDate');
+            $request['endingDate'] = '';
         }
         if ($request->remote == 'on'){
             $request['remote'] = 1;
@@ -199,8 +202,17 @@ class JobsController extends Controller
     public function destroy($slug)
     {
         $job = Job::findBySlugOrFail($slug);
+
+        if (auth()->user()->id != $job->user_id && auth()->user()->role->name != 'administrator'){
+            abort(403, 'Unauthorized action.');
+        }
         $job->delete();
         session()->flash('deleted_job', 'Job offer deleted sucessfully');
-        return back();
+        if (auth()->user()->role->name == 'administrator') {
+            return back();
+        }
+        else{
+            return redirect()->route('home');
+        }
     }
 }

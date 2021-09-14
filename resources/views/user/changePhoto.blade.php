@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{$user->name . " " .  $user->surname . ' - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid my-3 py-3">
 
@@ -75,6 +80,7 @@
             </div>
 
 
-</div></div></div>
+</div></div>
+
 
 @endsection

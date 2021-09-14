@@ -1,6 +1,10 @@
 @extends('layouts.staticIndex')
 <!-- end Header -->
-
+@section('title')
+    <title>
+        {{'Contact - EmployingX'}}
+    </title>
+@endsection
 <!-- Hero section -->
 @section('content')
 
@@ -18,7 +22,7 @@
             <div class="row text-center">
                 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <h2 class="font-weight-light">Say Hello!</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                    <p>For all enquiries, please email us using the form below.</p>
                 </div>
             </div>
         </div>

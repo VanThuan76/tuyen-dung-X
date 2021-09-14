@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Mono - Corporate 1</title>
+   @yield('title')
     <!-- Favicon -->
     <link href="{{asset('/static/assets/images/favicon.png')}}" rel="shortcut icon">
     <!-- CSS -->
@@ -35,7 +35,7 @@
     <div class="container">
         <!-- Logo -->
         <div class="header-logo">
-            <h3><a href="#">employingx</a></h3>
+            <h3><a href="{{route('index')}}">employingx</a></h3>
             <!--
             <img class="logo-dark" src="../assets/images/your-logo-dark.png" alt="">
             <img class="logo-light" src="../assets/images/your-logo-light.png" alt="">
@@ -44,14 +44,15 @@
         <!-- Menu -->
         <div class="header-menu">
             <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('index')}}">Home</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('about')}}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">How this works</a>
+                    <a class="nav-link" href="{{route('employee')}}">For Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('company')}}">For Companies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('contact')}}">Contact</a>

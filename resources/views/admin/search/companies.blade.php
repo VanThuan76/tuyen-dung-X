@@ -2,12 +2,17 @@
 @section('styles')
 
 @endsection
+@section('title')
+    <title>
+        {{ 'Search Companies - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid py-4">
         <form action="{{route('admin.search.companies')}}" method="GET">
             <div class="row g-0">
                 <div class="col-6">
-                    <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search companies" autocomplete="off">
+                    <input id="s" name="q" class="form-control" value="@if(isset($_GET['q'])) {{$_GET['q']}} @endif" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search companies" autocomplete="off">
                 </div>
 
                 <div class="col-6"><button type="submit" class="btn btn-primary" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
@@ -24,7 +29,7 @@
                     @endif
                     @if (isset($_GET['q']))
                         <span style="color:grey; margin-left: 25px;">Search results for <span style="color:red">{{$_GET['q']}}</span></span>
-                        <span style="color:grey; margin-left: 25px;">{{$users_count}} users found</span>
+                        <span style="color:grey; margin-left: 25px;">{{$users_count}} companies found</span>
                         @endif
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">

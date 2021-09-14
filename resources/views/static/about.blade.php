@@ -1,8 +1,23 @@
 @extends('layouts.staticIndex')
 <!-- end Header -->
-
+@section('title')
+    <title>
+        {{'About - EmployingX'}}
+    </title>
+@endsection
 <!-- Hero section -->
 @section('content')
+    <div class="section-xl bg-image parallax" data-bg-src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+        <div class="bg-black-06">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                        <h1 class="display-4 margin-0">About us</h1>
+                    </div>
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end bg-black-* -->
+    </div>
 
     <!-- About section -->
     <div class="section">
@@ -38,27 +53,64 @@
     </div>
     <!-- end About section -->
 
+    <!-- Features section -->
+    <div class="section">
+        <div class="container">
+            <div class="row icon-5xl">
+                <div class="col-12 col-md-4">
+                    <i class="ti-briefcase text-dark"></i>
+                    <h5 class="font-weight-normal margin-top-20">Mission</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <i class="ti-settings text-dark"></i>
+                    <h5 class="font-weight-normal margin-top-20">Vision</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <i class="ti-face-smile text-dark"></i>
+                    <h5 class="font-weight-normal margin-top-20">Values</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div>
+    <!-- end Features section -->
+
+
+
+
     <!-- Services section -->
     <div class="container">
+        <div class="row text-center">
+            <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <h2 class="font-weight-normal">Our team</h2>
+            </div>
+        </div>
         <div class="row col-spacing-30 icon-5xl text-center margin-bottom-70">
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="border-all border-radius padding-30">
-                    <i class="margin-top-10 ti-ruler-pencil text-dark"></i>
-                    <h5 class="font-weight-normal margin-top-20">Graphic Design</h5>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" style="width:150px; height: 150px" class="rounded-circle" alt="Cinque Terre">
+{{--                    <i class="margin-top-10 ti-ruler-pencil text-dark"></i>--}}
+                    <h5 class="font-weight-normal margin-top-20">Atdhe Lila</h5>
                     <p class="margin-bottom-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="border-all border-radius padding-30">
-                    <i class="margin-top-10 ti-camera text-dark"></i>
-                    <h5 class="font-weight-normal margin-top-20">Photography</h5>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" style="width:150px; height: 150px" class="rounded-circle" alt="Cinque Terre">
+
+                    {{--                    <i class="margin-top-10 ti-camera text-dark"></i>--}}
+                    <h5 class="font-weight-normal margin-top-20">Albi Kusari</h5>
                     <p class="margin-bottom-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="border-all border-radius padding-30">
-                    <i class="margin-top-10 ti-star text-dark"></i>
-                    <h5 class="font-weight-normal margin-top-20">Social Marketing</h5>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" style="width:150px; height: 150px" class="rounded-circle" alt="Cinque Terre">
+
+                    {{--                    <i class="margin-top-10 ti-star text-dark"></i>--}}
+                    <h5 class="font-weight-normal margin-top-20">Ilir Perolli</h5>
                     <p class="margin-bottom-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
                 </div>
             </div>
@@ -66,9 +118,10 @@
     </div><!-- end container -->
     <!-- end Services section -->
 
-
-
-
+    <!-- Clients Section -->
+    @include('staticIncludes.clients')
+    <!-- End of Clients Section -->
+    <!-- End of Clients Section -->
     <!-- Scroll to top button -->
     <div class="scrolltotop">
         <a class="button-circle button-circle-sm button-circle-dark" href="#"><i class="ti-arrow-up"></i></a>

@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{$job->title.' - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
@@ -192,9 +197,10 @@
                     </div>
                 </form>
             </div>
-        </div>    </div>
+        </div>
 
-    </div>
+
+
 @endsection
 @section('scripts')
     <script>

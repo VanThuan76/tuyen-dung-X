@@ -23,7 +23,9 @@
                     </a>
                 </li>
             </ul>
-            <p>&copy; 2021 FlaTheme, All Rights Reserved.</p>
+            <p>&copy; <script>
+                    document.write(new Date().getFullYear())
+                </script> EmployingX, All Rights Reserved.</p>
         </div><!-- end container -->
     </div>
 </footer>

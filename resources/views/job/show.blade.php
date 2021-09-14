@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+    {{$job->title .' - EmployingX'}}
+    </title>
+@endsection
 @section('content')
 <div class="container-fluid py-4">
     <div class="row">
@@ -26,12 +31,12 @@
                             <label>Description</label>
                             <br>
                             <span>
-                                {{$job->body}}
+                              {!! nl2br($job->body) !!}
                             </span>
                             <br>
                             <label class="mt-1">Responsibilities</label><br>
                             <span>
-                                {{$job->duties}}
+                               {!! nl2br($job->duties) !!}
                             </span>
                             <br>
                             <label class="mt-1">Address</label><br>
@@ -49,8 +54,21 @@
                             <span>
                                 {{$job->job_type}}
                               </span>
+                            @if (auth()->user()->id == $job->user_id)
+                            <div class="row mt-4">
+                                <div class="col-lg-5">
+                                    <a href="{{route('job.edit',$job->slug)}}" class="btn bg-gradient-primary mb-0 mt-lg-auto mt-2 w-100" type="button">Edit job</a>
+                                </div>
 
-
+                                @endif
+                            @if (auth()->user()->id == $job->user_id)
+                                    <div class="col-lg-5">
+                                        <form action="{{route('job.destroy',$job->slug)}}" method="POST">@csrf @method('DELETE')
+                                        <button class="btn bg-gradient-danger mb-0 mt-lg-auto mt-2 w-100" type="submit">Delete job</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
                     </div>
                     <div class="row mt-5">
                         <div class="col-12">

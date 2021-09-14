@@ -21,7 +21,12 @@ class StaticPageController extends Controller
     public function contact(){
         return view('static.contact');
     }
-
+    public function employee(){
+        return view('static.employees');
+    }
+    public function company(){
+        return view('static.companies');
+    }
     /**
      * Show the form for creating a new resource.
      *

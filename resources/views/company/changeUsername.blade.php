@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{$user->company->name . ' - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid my-3 py-3">
 

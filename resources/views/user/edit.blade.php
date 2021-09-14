@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{$user->name . " " .  $user->surname . ' - EmployingX'}}
+    </title>
+@endsection
         @section('content')
             <div class="container-fluid my-3 py-3">
 
@@ -92,6 +97,13 @@
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <div class="col-6">
+                                            <label class="form-label mt-4">CV Template</label>
+                                            <div class="input-group">
+                                                <a href="{{asset('/assets/files/Europass-CV.docx')}}" download> Click here to download CV template </a>
+                                            </div>
+
+                                        </div>
 
                                     </div>
                                     <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update Profile</button>
@@ -103,5 +115,5 @@
 
 
                 </div>
-            </div>
+
 @endsection

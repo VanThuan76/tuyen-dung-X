@@ -12,19 +12,24 @@
         }
     </style>
 @endsection
+@section('title')
+    <title>
+        {{ 'Search Jobs - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid py-4">
 
         <form action="{{route('admin.search.jobs')}}" method="GET">
             <div class="row g-0">
                 <div class="col-lg-4 col-6">
-                    <input id="q" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search jobs" autocomplete="off">
+                    <input id="q" name="q" class="form-control" value="@if(isset($_GET['q'])) {{$_GET['q']}} @endif" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search jobs" autocomplete="off">
                 </div>
                 <div class="col-lg-4 col-6">
                     <select class="form-select" name="category" id="category" style="border-radius: 0px;" aria-label="Default select example">
                         <option value ="" selected>Categories</option>
                         @foreach($categories as $category)
-                            <option value="{{$category->slug}}">{{$category->name}}</option>
+                            <option value="{{$category->slug}}" @if(isset($_GET['category'])) @if($_GET['category'] == $category->slug) {{'selected'}} @endif @endif>{{$category->name}}</option>
                         @endforeach
 
                     </select>

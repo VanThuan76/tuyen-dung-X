@@ -1,6 +1,8 @@
 @extends('layouts.index')
-@section('styles')
-
+@section('title')
+    <title>
+        {{ 'Admins - EmployingX'}}
+    </title>
 @endsection
 @section('content')
     <div class="container-fluid py-4">

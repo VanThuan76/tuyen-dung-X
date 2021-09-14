@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{$user->company->name . ' - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('{{asset('/assets/img/curved-images/curved0.jpg')}}'); background-position-y: 50%;">
@@ -47,7 +52,7 @@
                         <ul class="list-group">
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; {{$user->name . " ". $user->surname}}</li>
                             @if ($user->email)
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp;{{$user->email}}</li>@endif
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong><a href="mailto:{{$user->email}}"> {{$user->email}}</a> </li>@endif
                             @if($user->company->name)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Company Name:</strong> &nbsp;{{$user->company->name}}</li>@endif
                             @if($user->company->industry)   <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Industry:</strong> &nbsp;{{$user->company->industry}}</li>@endif
                             @if($user->company->capacity)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Capacity:</strong> &nbsp;{{$user->company->capacity}}</li>@endif
@@ -55,18 +60,6 @@
                             @if($user->company->tel)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile Number:</strong> &nbsp;&nbsp;{{$user->company->tel}}</li>@endif
                             @if($user->company->website)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Website:</strong> &nbsp;{{$user->company->website}}</li>@endif
 
-                            <li class="list-group-item border-0 ps-0 pb-0">
-                                <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                                <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                    <i class="fab fa-facebook fa-lg"></i>
-                                </a>
-                                <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                    <i class="fab fa-twitter fa-lg"></i>
-                                </a>
-                                <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                    <i class="fab fa-instagram fa-lg"></i>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -120,14 +113,14 @@
                                         <p class="text-gradient text-dark mb-2 text-sm">{{$job->category->name}}</p>
                                         <a href="{{route('job.show',$job->slug)}}">
                                             <h5>
-                                                {{Str::limit($job->title,20)}}
+                                                {{Str::limit($job->title,50)}}
                                             </h5>
                                         </a>
                                         <p class="mb-4 text-sm">
-                                            {{Str::limit($job->body,20)}}
+                                            {{Str::limit($job->body,100)}}
                                         </p>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <button type="button" class="btn btn-outline-primary btn-sm mb-0">Shikoni shpalljen</button>
+                                            <a href="{{route('job.show',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">Shikoni shpalljen</a>
 
                                         </div>
                                     </div>
@@ -145,4 +138,5 @@
                 </div>
             </div>
         </div>
+
 @endsection

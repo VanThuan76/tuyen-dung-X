@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{$user->name . " " .  $user->surname . ' - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('../../../assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
@@ -17,7 +22,7 @@
                            {{$user->name. " ". $user->surname}}
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm">
-                            CEO / Co-Founder
+                          {{$user->category->name}}
                         </p>
                     </div>
                 </div>
@@ -46,7 +51,7 @@
                         <hr class="horizontal gray-light my-1">
                         <ul class="list-group">
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp;{{$user->name. " " . $user->surname}}</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> {{$user->email}}</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> <a href="mailto:{{$user->email}}"> {{$user->email}}</a> </li>
                             @if ($user->category)
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Category:</strong> &nbsp;{{$user->category->name}}</li>@endif
                             @if ($user->cv)
@@ -86,5 +91,5 @@
 
         </div>
 
-    </div>
+
 @endsection

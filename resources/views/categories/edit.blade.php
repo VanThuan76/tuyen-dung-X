@@ -1,4 +1,9 @@
 @extends('layouts.index')
+@section('title')
+    <title>
+        {{ $category->name.' - EmployingX'}}
+    </title>
+@endsection
 @section('content')
     <div class="container-fluid py-4">
         <form action="{{route('admin.category.update',$category->slug)}}" method="POST">

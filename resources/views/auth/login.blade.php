@@ -19,10 +19,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('/assets/img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('/assets/img/favicon.png')}}">
     <title>
-        Soft UI Dashboard by Creative Tim
+        Login - EmployingX
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -43,7 +43,7 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                 <div class="container-fluid">
-                    <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
+                    <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{{route('index')}}">
                         EmployingX
                     </a>
                     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,9 +69,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="#">
+                                <a class="nav-link me-2" href="{{route('employee')}}">
                                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                                   How this works
+                                   For employees
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-2" href="{{route('company')}}">
+                                    <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                                    For companies
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -124,7 +130,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} >
+                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" checked {{ old('remember') ? 'checked' : '' }} >
                                             <label class="form-check-label" for="rememberMe">Remember me</label>
                                         </div>
                                         <div class="text-center">
@@ -154,51 +160,13 @@
 <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
 <footer class="footer py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mb-4 mx-auto text-center">
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                    Company
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                    About Us
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                    Team
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                    Products
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                    Blog
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                    Pricing
-                </a>
-            </div>
-            <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-                    <span class="text-lg fab fa-dribbble"></span>
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-                    <span class="text-lg fab fa-twitter"></span>
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-                    <span class="text-lg fab fa-instagram"></span>
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-                    <span class="text-lg fab fa-pinterest"></span>
-                </a>
-                <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-                    <span class="text-lg fab fa-github"></span>
-                </a>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col-8 mx-auto text-center mt-1">
                 <p class="mb-0 text-secondary">
-                    Copyright © <script>
+                    <script>
                         document.write(new Date().getFullYear())
-                    </script> Soft by Creative Tim.
+                    </script>, EmployingX, All Rights Reserved.
                 </p>
             </div>
         </div>
@@ -222,7 +190,7 @@
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+<script src="{{asset('/assets/js/soft-ui-dashboard.min.js?v=1.0.3')}}"></script>
 </body>
 
 </html>
