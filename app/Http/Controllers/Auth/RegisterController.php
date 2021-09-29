@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'address' => ['nullable','string', 'min:2', 'max:255'],
             'tel' => ['nullable','string', 'min:2','numeric','digits_between:7,12'],
             'website' => ['nullable','string', 'min:2', 'max:255'],
-            'cv'=>['required','mimes:pdf','max:10240']
+            'cv'=>['required_if:is_business,0','mimes:pdf','max:10240']
 
         ]);
     }

@@ -53,7 +53,7 @@
                     <li class="nav-item d-flex align-items-center">
                         <a @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.show',auth()->user()->slug)}}" @else href="{{route('company.show',auth()->user()->slug)}}"  @endif class="nav-link text-body font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">@if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{$user->name. " " . $user->surname}} @else {{$user->company->name}} @endif</span>
+                            <span class="d-sm-inline d-none">@if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{auth()->user()->name. " " . auth()->user()->surname}} @else {{auth()->user()->company->name}} @endif</span>
                         </a>
                     </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

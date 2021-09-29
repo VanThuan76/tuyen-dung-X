@@ -63,7 +63,7 @@
                                                     <form action="{{route('admin.contacts.destroy',$contact->id)}}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                         <button type="submit" name="remove_contact" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Fshij</button>
+                                                         <button type="submit" name="remove_contact" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button>
                                                     </form>
 
                                             </td>

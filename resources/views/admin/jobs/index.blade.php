@@ -58,7 +58,7 @@
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Titulli</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category/Address</th>
                                         <th class="text-uppercase text-secondary text-xxs text-center font-weight-bolder opacity-7 ps-2">Price type</th>
                                         <th class="text-uppercase text-secondary text-xxs text-center font-weight-bolder opacity-7 ps-2">Price</th>
@@ -106,7 +106,7 @@
                                                 <form action="{{route('job.destroy',$job->slug)}}" method="POST" style="display: inline; ">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" name="remove_job" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Fshij</button> </form>
+                                                    <button type="submit" name="remove_job" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form>
                                             </span>
                                             </td>
                                         </tr>
