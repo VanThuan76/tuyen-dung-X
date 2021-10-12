@@ -44,7 +44,8 @@
             <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                 <div class="container-fluid">
                     <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{{route('index')}}">
-                        EmployingX
+                        <img class="logo-dark" style="height: 30px" src="{{asset('/assets/img/logos/logo.png')}}" alt="">
+{{--                    EmployingX--}}
                     </a>
                     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon mt-2">
@@ -174,10 +175,10 @@
 </footer>
 <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
 <!--   Core JS Files   -->
-<script src="{{asset('/assets/assets/js/core/popper.min.js')}}"></script>
-<script src="{{asset('/assets/assets/js/core/bootstrap.min.js')}}"></script>
-<script src="{{asset('/assets/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
-<script src="{{asset('/assets/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+<script src="{{asset('/assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('/assets/js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

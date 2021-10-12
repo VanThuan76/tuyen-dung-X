@@ -35,7 +35,8 @@
     <div class="container">
         <!-- Logo -->
         <div class="header-logo">
-            <h3><a href="{{route('index')}}">employingx</a></h3>
+            <a href="{{route('index')}}"> <img class="logo-dark" style="height: 30px" src="{{asset('/assets/img/logos/logo.png')}}" alt=""></a>
+{{--            <h3><a href="{{route('index')}}">employingx</a></h3>--}}
             <!--
             <img class="logo-dark" src="../assets/images/your-logo-dark.png" alt="">
             <img class="logo-light" src="../assets/images/your-logo-light.png" alt="">

@@ -14,7 +14,7 @@ class Category extends Model
     use HasFactory;
     use Sluggable;
     use SluggableScopeHelpers;
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

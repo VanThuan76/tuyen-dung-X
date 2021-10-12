@@ -12,7 +12,7 @@
                     <input id="s" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search users" autocomplete="off">
                 </div>
 
-                <div class="col-6"><button type="submit" class="btn btn-primary" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
+                <div class="col-6"><button type="submit" class="btn btn-dark" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
             </div>
         </form>
         <div class="row">

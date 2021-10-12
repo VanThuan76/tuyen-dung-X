@@ -10,8 +10,8 @@
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('assets/js/soft-ui-dashboard.min.js?v=1.0.3')}}"></script>
 
-<script src="{{asset('assets/js/plugins/dragula/dragula.min.js')}}"></script>
-<script src="{{asset('assets/js/plugins/jkanban/jkanban.js')}}"></script>
+{{--<script src="{{asset('assets/js/plugins/dragula/dragula.min.js')}}"></script>--}}
+{{--<script src="{{asset('assets/js/plugins/jkanban/jkanban.js')}}"></script>--}}
 
 <script src="{{asset('assets/js/plugins/flatpickr.min.js')}}"></script>
 @yield('scripts')

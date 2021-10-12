@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-md-4 text-end">
                                 <a href="{{route('company.edit')}}">
-                                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Ndrysho profilin"></i>
+                                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Change profile"></i>
                                 </a>
                             </div>
                         </div>
@@ -92,21 +92,23 @@
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-5" style="margin-bottom: 50px;">
+                                <a href="{{route('job.create')}}">
                                 <div class="card h-100 card-plain border">
                                     <div class="card-body d-flex flex-column justify-content-center text-center">
-                                        <a href="{{route('job.create')}}">
+
                                             <i class="fa fa-plus text-secondary mb-3"></i>
-                                            <h5 class=" text-secondary"> Krijo punë </h5>
-                                        </a>
+                                            <h5 class=" text-secondary"> Create job </h5>
+
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         @foreach($jobs as $job)
                             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-5">
                                 <div class="card card-blog card-plain">
                                     <div class="position-relative">
                                         <a class="d-block shadow-xl border-radius-xl">
-                                            <img src="/images/{{$user->photo->name}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+                                            <a href="{{route('job.show',$job->slug)}}">  <img src="/images/{{$user->photo->name}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl"></a>
                                         </a>
                                     </div>
                                     <div class="card-body px-1 pb-0">

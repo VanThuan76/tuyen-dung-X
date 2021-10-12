@@ -57,7 +57,7 @@
                             @if (auth()->user()->id == $job->user_id)
                             <div class="row mt-4">
                                 <div class="col-lg-5">
-                                    <a href="{{route('job.edit',$job->slug)}}" class="btn bg-gradient-primary mb-0 mt-lg-auto mt-2 w-100" type="button">Edit job</a>
+                                    <a href="{{route('job.edit',$job->slug)}}" class="btn bg-gradient-dark mb-0 mt-lg-auto mt-2 w-100" type="button">Edit job</a>
                                 </div>
 
                                 @endif

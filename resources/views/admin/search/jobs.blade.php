@@ -34,7 +34,7 @@
 
                     </select>
                 </div>
-                <div class="col-lg-4 col-12"><button type="submit" class="btn btn-primary search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
+                <div class="col-lg-4 col-12"><button type="submit" class="btn btn-dark search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
             </div>
         </form>
 

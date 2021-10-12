@@ -49,7 +49,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Kategoritë</h6>
+                        <h6>Categories</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -57,9 +57,9 @@
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Emri</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Krijuar</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Opsionet</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Options</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                                 </thead>
@@ -86,11 +86,11 @@
                                             <h6 class="mb-0 text-sm">{{$category->created_at->diffForHumans()}}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold"><a href="{{route('admin.category.edit',$category->slug)}}">Ndrysho</a>/
+                                            <span class="text-secondary text-xs font-weight-bold"><a href="{{route('admin.category.edit',$category->slug)}}">Change</a>/
                                                 <form action="{{route('admin.category.destroy',$category->slug)}}" method="POST" style="display: inline; ">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" name="remove_category" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Fshij kategorinë</button> </form>
+                                                    <button type="submit" name="remove_category" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form>
                                             </span>
                                         </td>
 

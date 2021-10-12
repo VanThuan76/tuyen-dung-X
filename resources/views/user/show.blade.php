@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-md-4 text-end">
                                 <a href="{{route('user.edit')}}">
-                                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Ndrysho profilin"></i>
+                                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Change profile"></i>
                                 </a>
                             </div>
                         </div>
