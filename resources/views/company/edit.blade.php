@@ -26,7 +26,7 @@
 
                         <div class="card-body pt-0">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label">Name</label>
                                     <div class="input-group">
                                         <input id="name" name="name" class="form-control" type="text" placeholder="{{$user->name}}" required="required" autocomplete="off" value="{{$user->name}}">
@@ -36,7 +36,7 @@
                                     @enderror
 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label">Surname</label>
                                     <div class="input-group">
                                         <input id="surname" name="surname" class="form-control" type="text" placeholder="{{$user->surname}}" required="required" autocomplete="off" value="{{$user->surname}}">
@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label mt-4">Email</label>
                                     <div class="input-group">
                                         <input id="email" name="email" class="form-control" autocomplete="off" type="email" placeholder="{{$user->email}}" value="{{$user->email}}">
@@ -69,7 +69,7 @@
                                     <span style="color:red;">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label mt-4">Industry</label>
                                     <div class="input-group">
                                         <input id="industry" name="industry" class="form-control" autocomplete="off" type="text" placeholder="{{$user->company->industry}}" value="{{$user->company->industry}}">
@@ -81,7 +81,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label mt-4">Capacity</label>
                                     <div class="input-group">
                                         <input id="capacity" name="capacity" class="form-control" type="text" autocomplete="off" placeholder="{{$user->company->capacity}}" value="{{$user->company->capacity}}">
@@ -90,7 +90,7 @@
                                     <span style="color:red;">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label mt-4">Address</label>
                                     <div class="input-group">
                                         <input id="address" name="address" class="form-control" type="text" autocomplete="off" placeholder="{{$user->company->address}}" value="{{$user->company->address}}">
@@ -102,7 +102,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label mt-4">Mobile Number</label>
                                     <div class="input-group">
                                         <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" placeholder="{{$user->company->tel}}" value="{{$user->company->tel}}">
@@ -111,7 +111,7 @@
                                     <span style="color:red;">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-sm-6 col-12">
                                     <label class="form-label mt-4">Website</label>
                                     <div class="input-group">
                                         <input id="website" name="website" class="form-control" autocomplete="off" type="text" placeholder="{{$user->company->website}}" value="{{$user->company->website}}">

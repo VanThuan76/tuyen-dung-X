@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Mono - 404 3</title>
+    <title>Oops... Page not found</title>
     <!-- Favicon -->
-    <link href="{{asset('/static/assets/images/favicon.png" rel="shortcut icon')}}">
+
     <!-- CSS -->
     <link href="{{asset('/static/assets/plugins/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/static/assets/plugins/owl-carousel/owl.carousel.min.css')}}" rel="stylesheet">
@@ -20,6 +20,9 @@
     <link href="{{asset('/static/assets/plugins/font-awesome/css/all.css')}}" rel="stylesheet">
     <link href="{{asset('/static/assets/plugins/themify/themify-icons.min.css')}}" rel="stylesheet">
     <link href="{{asset('/static/assets/plugins/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet">
+
+    <link rel="icon" href="{{asset('/assets/img/logos/logo-meta.jpg')}}" type="image/gif"/>
+    <meta property="og:image" content="{{asset('/assets/img/logos/logo-meta.jpg')}}">
 </head>
 <body data-preloader="1">
 

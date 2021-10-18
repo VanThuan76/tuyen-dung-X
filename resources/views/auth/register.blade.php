@@ -19,21 +19,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="icon" href="{{asset('/assets/img/logos/logo-meta.jpg')}}" type="image/gif"/>
+    <meta property="og:image" content="{{asset('/assets/img/logos/logo-meta.jpg')}}"/>
     <title>
         Register - EmployingX
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="{{asset('/assets/css/nucleo-icons.css')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="{{asset('/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+    <link id="pagestyle" href="{{asset('/assets/css/soft-ui-dashboard.css?v=1.0.3')}}" rel="stylesheet" />
+    <meta name="description" content="EmployingX - Online Recruitment Platform" />
+
     <style>
         .hidden{
             display: none;
@@ -126,7 +128,7 @@
                                 <hr class="horizontal dark my-3">
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
                                         <label class="form-label">*Name</label>
                                         <div class="input-group">
                                             <input id="name" name="name" class="form-control" type="text" placeholder="Name" required="required" autocomplete="off" value="{{old('name')}}">
@@ -136,8 +138,8 @@
                                         @enderror
 
                                     </div>
-                                    <div class="col-6">
-                                        <label class="form-label">*Surname</label>
+                                    <div class="col-sm-6 col-12">
+                                        <label class="form-label mt-4">*Surname</label>
                                         <div class="input-group">
                                             <input id="surname" name="surname" class="form-control" type="text" placeholder="Surname" required="required" autocomplete="off" value="{{old('surname')}}">
                                         </div>
@@ -160,7 +162,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Email</label>
                                         <div class="input-group">
                                             <input id="email" name="email" class="form-control" type="email" autocomplete="off" placeholder="Email" value="{{old('email')}}" required>
@@ -169,7 +171,7 @@
                                         <span style="color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Username</label>
                                         <div class="input-group">
                                             <input id="industry" name="username" class="form-control" type="text" autocomplete="off" placeholder="Username" value="{{old('username')}}" required>
@@ -182,7 +184,7 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Password</label>
                                         <div class="input-group">
                                             <input id="password" name="password" class="form-control" type="password" placeholder="Password" value="{{old('password')}}" required>
@@ -191,7 +193,7 @@
                                         <span style="color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Password Confirmation</label>
                                         <div class="input-group">
                                             <input id="password" name="password_confirmation" class="form-control" type="password" placeholder="Password Confirmation" value="{{old('password_confirmation')}}" required>
@@ -204,7 +206,7 @@
 
                                 </div>
                                 <div class="row cv-row">
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">CV</label>
                                         <div class="input-group">
                                             <input id="cv" name="cv" class="form-control" type="file" placeholder="Attach CV">
@@ -213,7 +215,7 @@
                                         <span style="color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
                                             <option value = "" selected>Choose Category</option>
@@ -235,7 +237,7 @@
 
                                 </div>
                                 <div class="row mt-2">
-                                    <div class="col-6">
+                                    <div class="col-sm-6 col-12">
 
                                         <div class="form-group">
                                             <label class="form-label">Choose if you are a company</label>
@@ -253,8 +255,8 @@
                                 </div>
                                 <div class="company-details hidden">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label class="form-label mt-4">*Name</label>
+                                        <div class="col-sm-6 col-12">
+                                            <label class="form-label">*Name</label>
                                             <div class="input-group">
                                                 <input id="industry" name="business_name" class="form-control" autocomplete="off" type="text" placeholder="Business name" value="{{old('business_name')}}">
                                             </div>
@@ -262,7 +264,7 @@
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Industry</label>
                                             <div class="input-group">
                                                 <input id="industry" name="industry" class="form-control" autocomplete="off" type="text" placeholder="Industry" value="{{old('industry')}}">
@@ -274,7 +276,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Capacity</label>
                                             <div class="input-group">
                                                 <input id="capacity" name="capacity" class="form-control" autocomplete="off" type="text" placeholder="Capacity" value="{{old('capacity')}}">
@@ -283,7 +285,7 @@
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Address</label>
                                             <div class="input-group">
                                                 <input id="address" name="address" class="form-control" autocomplete="off" type="text" placeholder="Address" value="{{old('address')}}">
@@ -295,7 +297,7 @@
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Mobile Number</label>
                                             <div class="input-group">
                                                 <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" placeholder="Mobile Number" value="{{old('tel')}}">
@@ -304,7 +306,7 @@
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Website</label>
                                             <div class="input-group">
                                                 <input id="website" name="website" class="form-control" autocomplete="off" type="text" placeholder="Website" value="{{old('website')}}">

@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-body pt-0">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-6">
+                        <div class="col-sm-6 col-12">
                             <label class="form-label">Category</label>
                             <div class="input-group">
                                 <input id="name" name="name" class="form-control" type="text" placeholder="Write Category" required="required" value="{{$category->name}}" autocomplete="off">

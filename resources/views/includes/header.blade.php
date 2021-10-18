@@ -19,9 +19,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-
+    <link rel="icon" href="{{asset('/assets/img/logos/logo-meta.jpg')}}" type="image/gif"/>
+    <meta property="og:image" content="{{asset('/assets/img/logos/logo-meta.jpg')}}"/>
        @yield('title')
 
     <!--     Fonts and icons     -->
@@ -34,6 +33,7 @@
     <link href="{{asset('assets/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('assets/css/soft-ui-dashboard.css?v=1.0.3')}}" rel="stylesheet" />
+    <meta name="description" content="EmployingX - Online Recruitment Platform" />
     @yield('styles')
 </head>
 

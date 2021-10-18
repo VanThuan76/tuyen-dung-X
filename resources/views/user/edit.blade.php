@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label">Name</label>
                                             <div class="input-group">
                                                 <input id="name" name="name" class="form-control" type="text" placeholder="{{$user->name}}" required="required" autocomplete="off" value="{{$user->name}}">
@@ -35,7 +35,7 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label">Surname</label>
                                             <div class="input-group">
                                                 <input id="surname" name="surname" class="form-control" type="text" placeholder="{{$user->surname}}" required="required" autocomplete="off" value="{{$user->surname}}">
@@ -59,7 +59,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Email</label>
                                             <div class="input-group">
                                                 <input id="email" name="email" class="form-control" type="email" placeholder="{{$user->email}}" value="{{$user->email}}">
@@ -68,7 +68,7 @@
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Category</label>
                                             <div class="input-group">
                                                 <select class="form-select" name="category_id" aria-label="Default select example">
@@ -88,7 +88,7 @@
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">CV</label>
                                             <div class="input-group">
                                                 <input id="cv" name="cv" class="form-control" type="file">
@@ -97,7 +97,7 @@
                                             <span style="color:red;">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">CV Template</label>
                                             <div class="input-group">
                                                 <a href="{{asset('/assets/files/Europass-CV.docx')}}" download> Click here to download CV template </a>

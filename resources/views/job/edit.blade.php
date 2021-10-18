@@ -38,8 +38,8 @@
                         <span style="color:red;">{{ $message }}</span>
                         @enderror
                         <div class="row mt-2">
-                            <div class="col-6">
-                                <label class="form-label">Address</label>
+                            <div class="col-sm-6 col-12">
+                                <label class="form-label mt-4">Address</label>
                                 <input class="form-control address" type="text" name="address" autocomplete="off" placeholder="Address" value="{{$job->address}}">
 
                                 @if (session('error_address'))
@@ -50,10 +50,10 @@
                                 @enderror
 
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6 col-12">
 
                                 <div class="form-group">
-                                    <label class="form-label">Remote</label>
+                                    <label class="form-label mt-4">Remote</label>
 
                                     <div class="form-check form-switch ms-1">
                                         <input class="form-check-input" type="checkbox" {{ $job->remote == 1 ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >
@@ -65,7 +65,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        <div class="row">
                             <div class="col-6">
                                 <label class="form-label">Category</label>
                                 <select class="form-select" name="category_id" aria-label="Default select example">
@@ -103,7 +103,7 @@
                         <div class="row mt-2">
 
                             <div class="col-12">
-                                <label class="form-label">Responsibilities</label>
+                                <label class="form-label mt-4">Responsibilities</label>
                                 <textarea id="duties" name="duties" class="form-control" rows="5">{{$job->duties}}</textarea>
                                 @error('duties')
                                 <span style="color:red;">{{ $message }}</span>
@@ -112,14 +112,14 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <label class="form-label">Starting Date</label>
+                                <label class="form-label mt-4">Starting Date</label>
                                 <input class="form-control datetimepicker startingDate" type="text" style="cursor: pointer" name="startingDate" placeholder="Start date of the work" autocomplete="off" data-input value="{{$job->startingDate}}">
                                 @error('startingDate')
                                 <span style="color:red;">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-6">
-                                <label class="form-label">Ending Date</label>
+                                <label class="form-label mt-4">Ending Date</label>
                                 <input class="form-control datetimepicker endingDate" type="text" style="cursor: pointer" name="endingDate" placeholder="End date of the work" autocomplete="off" data-input value="{{$job->endingDate}}">
                                 @error('endingDate')
                                 <span style="color:red;">{{ $message }}</span>
@@ -131,8 +131,8 @@
                         </div>
 
                         <div class="row mt-2">
-                            <div class="col-6">
-                                <div class="form-group">
+                            <div class="col-sm-6 col-12">
+                                <div class="form-group mt-4">
                                     <label>
                                         Long-term
                                     </label>
@@ -145,9 +145,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label class="form-label">Job Type</label>
+                                    <label class="form-label mt-4">Job Type</label>
                                     <select class="form-select" name="job_type" aria-label="Default select example">
                                         <option value="" selected>Select Payment</option>
                                         <option value="1" @if ($job->job_type=='Part Time') selected @endif>Part Time</option>
@@ -211,7 +211,8 @@
         const address = document.querySelector('.address');
         if (document.querySelector('.datetimepicker')) {
             flatpickr('.datetimepicker', {
-                allowInput: true
+                allowInput: true,
+                disableMobile: true
             }); // flatpickr
         }
 
