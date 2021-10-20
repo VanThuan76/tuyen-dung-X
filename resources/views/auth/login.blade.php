@@ -142,7 +142,11 @@
                                     </form>
                                 </div>
                             </form>
+
                             <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                <p class="mb-4 text-sm mx-auto">
+                                    <a href="{{route('password.request')}}" class="text-info text-gradient font-weight-bold">Forgot Password?</a>
+                                </p>
                                 <p class="mb-4 text-sm mx-auto">
                                     Don't have an account?
                                     <a href="{{route('register')}}" class="text-info text-gradient font-weight-bold">Sign up</a>

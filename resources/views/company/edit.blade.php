@@ -37,7 +37,7 @@
 
                                 </div>
                                 <div class="col-sm-6 col-12">
-                                    <label class="form-label">Surname</label>
+                                    <label class="form-label mt-4">Surname</label>
                                     <div class="input-group">
                                         <input id="surname" name="surname" class="form-control" type="text" placeholder="{{$user->surname}}" required="required" autocomplete="off" value="{{$user->surname}}">
                                     </div>

@@ -122,7 +122,7 @@
                                             {{Str::limit($job->body,100)}}
                                         </p>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <a href="{{route('job.show',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">Shikoni shpalljen</a>
+                                            <a href="{{route('job.show',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">See job</a>
 
                                         </div>
                                     </div>
