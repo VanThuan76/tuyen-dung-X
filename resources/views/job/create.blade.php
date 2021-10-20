@@ -56,7 +56,9 @@
                         <label class="form-label mt-4">Remote</label>
 
                         <div class="form-check form-switch ms-1">
-                            <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >
+                            <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault">
+{{--                            <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >--}}
+
                             <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Work is remote</label>
                         </div>
                     </div>
@@ -66,8 +68,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
-                    <label class="form-label">Category</label>
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Category</label>
                     <select class="form-select" name="category_id" aria-label="Default select example">
                         <option value="" selected>Choose Category</option>
                         @foreach($categories as $category)
@@ -83,8 +85,8 @@
                         <span style="color:red;">{{ session('category_error') }}</span>
                     @endif
                 </div>
-                <div class="col-6">
-                    <label class="form-label">Experience</label>
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Experience</label>
                     <select class="form-select" name="experience" aria-label="Default select example">
                         <option value="" selected>Choose Experience</option>
                             <option value="0" @if (old('experience')==0) selected @endif>0 years</option>
@@ -140,7 +142,8 @@
                                 This position is long-term.
                             </p>
                             <div class="form-check form-switch ms-1">
-                                <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault" onclick="notify(this)" >
+                                <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault">
+{{--                                <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault" onclick="notify(this)" >--}}
                                 <label class="form-check-label" for="flexSwitchCheckDefault">Work is long-term</label>
                             </div>
                         </div>
@@ -191,8 +194,8 @@
 
 
             <div class="d-flex justify-content-end mt-4">
-                <button type="button" name="button" class="btn btn-light m-0">Cancel</button>
-                <button type="submit" class="btn bg-gradient-primary m-0 ms-2">Create Job offer</button>
+                <a href="{{route('company.show',auth()->user()->slug)}}" class="btn btn-light m-0">Cancel</a>
+                <button type="submit" class="btn bg-gradient-dark m-0 ms-2">Create Job offer</button>
             </div>
         </div>
     </form>

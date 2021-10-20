@@ -81,6 +81,7 @@ class CompanyProfileController extends Controller
     {
         $user = auth()->user();
         $user->update($request->all());
+        $input['name'] = $request['business_name'];
         $input['industry'] = $request['industry'];
         $input['capacity']=$request['capacity'];
         $input['address']=$request['address'];

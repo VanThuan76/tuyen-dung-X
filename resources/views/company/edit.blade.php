@@ -48,6 +48,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
+                                    <label class="form-label mt-4">Company Name</label>
+                                    <div class="input-group">
+                                        <input id="business_name" name="business_name" class="form-control" type="text" placeholder="{{$user->company->name}}" required="required" autocomplete="off" value="{{$user->company->name}}">
+                                    </div>
+                                    @error('business_name')
+                                    <span style="color:red">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                     <label class="form-label mt-4">About</label>
                                     <div class="input-group">
                                         <textarea id="about" name="about" class="form-control" rows="5">{{$user->about}}</textarea>

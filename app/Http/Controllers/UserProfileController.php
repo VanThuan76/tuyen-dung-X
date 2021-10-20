@@ -93,7 +93,7 @@ class UserProfileController extends Controller
             $file_name = time() . $file->getClientOriginalName();
             $file->move('files',$file_name);
             if ($user->cv) {
-                if (file_exists(public_path() . '/files/' . $user->cv)) {//kontrollo nese ekziston foto ne storage para se te fshihet
+                if (file_exists(public_path() . '/files/' . $user->cv)) {//kontrollo nese ekziston cv ne storage para se te fshihet
                     unlink(public_path() . '/files/' . $user->cv);
                 }
             }
