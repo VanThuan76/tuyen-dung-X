@@ -12,7 +12,7 @@
         <form action="{{route('admin.search.companies')}}" method="GET">
             <div class="row g-0">
                 <div class="col-6">
-                    <input id="s" name="q" class="form-control" value="@if(isset($_GET['q'])) {{$_GET['q']}} @endif" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search companies" autocomplete="off">
+                    <input id="s" name="q" class="form-control" value="@if(isset($_GET['q'])){{$_GET['q']}}@endif" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search companies" autocomplete="off">
                 </div>
 
                 <div class="col-6"><button type="submit" class="btn btn-dark" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>

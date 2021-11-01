@@ -16,6 +16,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
     use Sluggable;
     use SluggableScopeHelpers;
+
     public function sluggable(): array
     {
         return [

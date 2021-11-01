@@ -66,7 +66,7 @@
         <!-- Menu Extra -->
         <div class="header-menu-extra">
             <ul class="list-inline">
-                <li><a href="{{route('login')}}">Log in</a></li>
+                <li><a href="{{route('login')}}">@if (!auth()->guest()) @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{auth()->user()->name. " " . auth()->user()->surname}} @else {{auth()->user()->company->name}} @endif @else Log in @endif </a></li>
 
             </ul>
         </div>

@@ -23,7 +23,7 @@
         <form action="{{route('admin.search.jobs')}}" method="GET">
             <div class="row g-0">
                 <div class="col-lg-4 col-6">
-                    <input id="q" name="q" class="form-control" value="@if(isset($_GET['q'])) {{$_GET['q']}} @endif" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search jobs" autocomplete="off">
+                    <input id="q" name="q" class="form-control" value="@if(isset($_GET['q'])){{$_GET['q']}}@endif" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search jobs" autocomplete="off">
                 </div>
                 <div class="col-lg-4 col-6">
                     <select class="form-select" name="category" id="category" style="border-radius: 0px;" aria-label="Default select example">

@@ -139,7 +139,7 @@
 
                                     </div>
                                     <div class="col-sm-6 col-12">
-                                        <label class="form-label mt-4">*Surname</label>
+                                        <label class="form-label">*Surname</label>
                                         <div class="input-group">
                                             <input id="surname" name="surname" class="form-control" type="text" placeholder="Surname" required="required" autocomplete="off" value="{{old('surname')}}">
                                         </div>
@@ -265,7 +265,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-sm-6 col-12">
-                                            <label class="form-label mt-4">Industry</label>
+                                            <label class="form-label">Industry</label>
                                             <div class="input-group">
                                                 <input id="industry" name="industry" class="form-control" autocomplete="off" type="text" placeholder="Industry" value="{{old('industry')}}">
                                             </div>

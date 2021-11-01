@@ -11,27 +11,28 @@
         <div class="owl-carousel" data-owl-dots="false" data-owl-margin="50" data-owl-autoplay="true" data-owl-xs="1" data-owl-sm="2" data-owl-md="3" data-owl-lg="4" data-owl-xl="5">
             <!-- Client box 1 -->
             <div class="client-box">
-                <a href="#"><img src="https://www.seekpng.com/png/detail/280-2809430_dell-black-logo-png.png" alt=""></a>
+                <a href="#"><img src="https://www.new-perspektiva.com/wp-content/uploads/2016/11/telegrafi.jpg" alt=""></a>
             </div>
-            <!-- Client box 2 -->
+
             <div class="client-box">
-                <a href="#"><img src="https://www.seekpng.com/png/detail/280-2809430_dell-black-logo-png.png" alt=""></a>
-            </div>
-            <div class="client-box">
-                <a href="#"><img src="https://www.seekpng.com/png/detail/280-2809430_dell-black-logo-png.png" alt=""></a>
+                <a href="#"><img src="https://www.new-perspektiva.com/wp-content/uploads/2016/11/telegrafi.jpg" alt=""></a>
             </div>
             <div class="client-box">
-                <a href="#"><img src="https://www.seekpng.com/png/detail/280-2809430_dell-black-logo-png.png" alt=""></a>
+                <a href="#"><img src="https://www.new-perspektiva.com/wp-content/uploads/2016/11/telegrafi.jpg" alt=""></a>
             </div>
             <div class="client-box">
-                <a href="#"><img src="https://www.seekpng.com/png/detail/280-2809430_dell-black-logo-png.png" alt=""></a>
+                <a href="#"><img src="https://www.new-perspektiva.com/wp-content/uploads/2016/11/telegrafi.jpg" alt=""></a>
             </div>
             <div class="client-box">
-                <a href="#"><img src="https://www.seekpng.com/png/detail/280-2809430_dell-black-logo-png.png" alt=""></a>
+                <a href="#"><img src="https://www.new-perspektiva.com/wp-content/uploads/2016/11/telegrafi.jpg" alt=""></a>
             </div>
             <div class="client-box">
-                <a href="#"><img src="https://www.seekpng.com/png/detail/280-2809430_dell-black-logo-png.png" alt=""></a>
+                <a href="#"><img src="https://www.new-perspektiva.com/wp-content/uploads/2016/11/telegrafi.jpg" alt=""></a>
             </div>
+            <div class="client-box">
+                <a href="#"><img src="https://www.new-perspektiva.com/wp-content/uploads/2016/11/telegrafi.jpg" alt=""></a>
+            </div>
+
 
 
         </div><!-- end owl-carousel -->

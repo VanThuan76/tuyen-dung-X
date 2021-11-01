@@ -79,4 +79,4 @@ Auth::routes();
 Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-
+Route::get('/send-test', [App\Http\Controllers\TestEnrollmentController::class, 'sendTestNotification']);
