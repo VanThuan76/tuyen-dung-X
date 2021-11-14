@@ -27,7 +27,7 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-sm-6 col-12">
-                                    <label class="form-label">Name</label>
+                                    <label class="form-label mt-4">Name</label>
                                     <div class="input-group">
                                         <input id="name" name="name" class="form-control" type="text" placeholder="{{$user->name}}" required="required" autocomplete="off" value="{{$user->name}}">
                                     </div>

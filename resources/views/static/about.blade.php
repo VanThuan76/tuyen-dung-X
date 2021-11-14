@@ -25,7 +25,8 @@
             <div class="row align-items-center col-spacing-50">
                 <div class="col-12 col-lg-5">
                     <h3 class="font-weight-light">We're a team of professionals who loves what they do</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                    <p>We are a team of professionals who have worked with numerous international companies and offered tailored solutions to their staffing needs.
+                        Our niche is in renting out remote entry level employees which we will manage entirely. You no longer need to waste time with a full recruitment process and spend resources on medical insurance, vacation days and so on, we will take care of all of this, so you can concentrate on getting the work done and developing your company. </p>
                     <a class="button button-lg button-rounded button-reveal-right-dark margin-top-30" href="#"><span>Get In Touch</span><i class="ti-arrow-right"></i></a>
                 </div>
                 <div class="col-12 col-lg-7">
@@ -60,20 +61,22 @@
                 <div class="col-12 col-md-4">
                     <i class="ti-briefcase text-dark"></i>
                     <h5 class="font-weight-normal margin-top-20">Mission</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                    <p>Our mission is to find the ideal candidate for companies from all over the world. </p>
                 </div>
                 <div class="col-12 col-md-4">
                     <i class="ti-settings text-dark"></i>
                     <h5 class="font-weight-normal margin-top-20">Vision</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                    <p>To become a trusted long term partner for our clients and build the best matchmaking database.</p>
                 </div>
                 <div class="col-12 col-md-4">
                     <i class="ti-face-smile text-dark"></i>
                     <h5 class="font-weight-normal margin-top-20">Values</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                    <p>Our work at EmployingX is focused on three key values: Transparency, Reasonability and Efficiency. </p>
                 </div>
             </div><!-- end row -->
+
         </div><!-- end container -->
+
     </div>
     <!-- end Features section -->
 

@@ -9,7 +9,7 @@
 @section('content')
 <div class="owl-carousel owl-nav-overlay owl-dots-overlay" data-owl-nav="false" data-owl-dots="true" data-owl-items="1" data-owl-autoPlay="true">
     <!-- Slider Item 1 -->
-    <div class="bg-image" data-bg-src="{{asset('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')}}">
+    <div class="bg-image" data-bg-src="{{asset('/static/assets/images/photo-1486406146926-c627a92ad1ab.jpg')}}">
         <div class="section-xl bg-black-03">
             <div class="container">
                 <div class="row">
@@ -24,7 +24,7 @@
         </div>
     </div>
     <!-- Slider Item 2 -->
-    <div class="bg-image" data-bg-src="{{asset('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')}}">
+    <div class="bg-image" data-bg-src="{{asset('/static/assets/images/photo-1522071820081-009f0129c71c.jpg')}}">
         <div class="section-xl bg-black-03">
             <div class="container">
                 <div class="row">
@@ -47,7 +47,7 @@
         <div class="row align-items-center margin-top-70 col-spacing-50">
             <!-- About Image -->
             <div class="col-12 col-lg-6">
-                <img src="{{asset('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')}}" alt="">
+                <img src="{{asset('/static/assets/images/photo-1454165804606-c3d57bc86b40.jpg')}}" alt="">
             </div>
             <!-- About Content -->
             <div class="col-12 col-lg-6">
@@ -75,21 +75,22 @@
         <div class="row col-spacing-40 icon-5xl">
             <!-- Icon text box 1 -->
             <div class="col-12 col-lg-4">
-                <i class="ti-comment-alt text-dark margin-top-10"></i>
-                <h5 class="font-weight-normal margin-top-20">Consulting</h5>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+            <img src="{{asset('/static/assets/images/number1.png')}}">
+                <h5 class="font-weight-normal margin-top-20">Find the Ideal Candidate</h5>
+                <p>We help you find the ideal candidate. We host a large database of candidates, we use your job description to pinpoint the most ideal candidates for the position, using our metrics and filters.
+                    </p>
             </div>
             <!-- Icon text box 2 -->
             <div class="col-12 col-lg-4">
-                <i class="ti-announcement text-dark margin-top-10"></i>
-                <h5 class="font-weight-normal margin-top-20">Social Marketing</h5>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <img src="{{asset('/static/assets/images/number2.png')}}">
+                <h5 class="font-weight-normal margin-top-20">Assist in the Recruiting Process</h5>
+                <p>We also assist companies during the recruiting process, once we have identified the ideal potential candidates we assist with providing the necessary documentation, setting up the interviews and more. </p>
             </div>
             <!-- Icon text box 3 -->
             <div class="col-12 col-lg-4">
-                <i class="ti-star text-dark margin-top-10"></i>
-                <h5 class="font-weight-normal margin-top-20">Branding</h5>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <img src="{{asset('/static/assets/images/number3.png')}}">
+                <h5 class="font-weight-normal margin-top-20">Manage Employees</h5>
+                <p>The successful candidate will work remotely for your company, however we will take care of everything, starting from the employment contract, health insurance, vacation days and more. </p>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
@@ -100,7 +101,7 @@
 
 
 <!-- Facts section -->
-<div class="section-lg bg-image parallax" data-bg-src="{{asset('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')}}">
+<div class="section-lg bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1542744173-8e7e53415bb0.jpg')}}">
     <div class="bg-dark-grey-07">
         <div class="container text-center">
             <div class="row">
@@ -137,12 +138,15 @@
         <div class="row col-spacing-50 align-items-center">
             <div class="col-12 col-lg-6">
                 <div class="box-shadow-with-hover">
-                    <img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
+                    <img src="{{asset('/static/assets/images/256708521_637153220617671_3082657883725688017_n.jpg')}}" alt="">
                 </div>
             </div>
             <div class="col-12 col-lg-6">
                 <h2 class="font-weight-light">How it works</h2>
-                <p style="  text-align: justify;text-justify: inter-word;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                <p style="  text-align: justify;text-justify: inter-word;">Our job is to find you the most suitable candidate to fill your vacancy. Whether you need a short term candidate to work on an assignment; to replace one of your employees on short notice or if you need a candidate for long term we can provide you with them. You can also chose the form of payment whether you wish to pay a fixed salary, per hour or per project.
+                    All you have to do is contact us and let us know what kind of job position you need filled, when you need them filled and for how long.
+                   <br><br> We will use our vast database to find you the best suitable candidates for you and send you their profiles which we can then review together.  We will also assist you during the recruitment process starting from setting up interviews and providing the necessary documentation.
+                    The successful candidates will work for you however will not be employed by you, this way we take care of everything: health insurance, vacation days, medical leave and more.  You will only be preoccupied with the candidates work performance, should you not be happy we will help you find a suitable replacement. </p>
                 <a class="button button-lg button-rounded button-reveal-right-outline-grey margin-top-30" href="{{route('about')}}">
                     <i class="ti-arrow-right"></i>
                     <span>Learn more</span>
@@ -154,7 +158,7 @@
 <!-- end About section -->
 <!-- end Blog section -->
 
-<div class="section-xl bg-image parallax" data-bg-src="{{asset('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80')}}">
+<div class="section-xl bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1527689368864-3a821dbccc34.jpg')}}">
     <div class="bg-black-06">
         <div class="container">
             <div class="row align-items-center">
@@ -175,7 +179,7 @@
 <!-- end Clients section -->
 
 <!-- Parallax section -->
-<div class="section-xl bg-image parallax" data-bg-src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80">
+<div class="section-xl bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1587560699334-cc4ff634909a.jpg')}}">
     <div class="bg-black-06">
         <div class="container text-center">
             <div class="row">

@@ -107,7 +107,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-5 text-center mx-auto">
                     <h1 class="text-white mb-2 mt-5">Welcome!</h1>
-                    <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+                    <p class="text-lead text-white">Create account on EmployingX as a company or employee for free.</p>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-6 col-12">
-                                        <label class="form-label">*Name</label>
+                                        <label class="form-label mt-4">*Name</label>
                                         <div class="input-group">
                                             <input id="name" name="name" class="form-control" type="text" placeholder="Name" required="required" autocomplete="off" value="{{old('name')}}">
                                         </div>
@@ -139,7 +139,7 @@
 
                                     </div>
                                     <div class="col-sm-6 col-12">
-                                        <label class="form-label">*Surname</label>
+                                        <label class="form-label mt-4">*Surname</label>
                                         <div class="input-group">
                                             <input id="surname" name="surname" class="form-control" type="text" placeholder="Surname" required="required" autocomplete="off" value="{{old('surname')}}">
                                         </div>
@@ -174,7 +174,7 @@
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Username</label>
                                         <div class="input-group">
-                                            <input id="industry" name="username" class="form-control" type="text" autocomplete="off" placeholder="Username" value="{{old('username')}}" required>
+                                            <input id="username" name="username" class="form-control" type="text" autocomplete="off" placeholder="Username" value="{{old('username')}}" required>
                                         </div>
                                         @error('username')
                                         <span style="color:red;">{{ $message }}</span>
@@ -196,7 +196,7 @@
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Password Confirmation</label>
                                         <div class="input-group">
-                                            <input id="password" name="password_confirmation" class="form-control" type="password" placeholder="Password Confirmation" value="{{old('password_confirmation')}}" required>
+                                            <input id="password_confirmation" name="password_confirmation" class="form-control" type="password" placeholder="Password Confirmation" value="{{old('password_confirmation')}}" required>
                                         </div>
                                         @error('password_confirmation')
                                         <span style="color:red;">{{ $message }}</span>
@@ -244,7 +244,7 @@
 
                                             <div class="form-check form-switch ms-1">
                                                 <input type="hidden" name="is_business" value="0"/>
-                                                <input class="form-check-input" type="checkbox" name="is_business" {{ old('is_business') == 1 ? 'checked' : ''}} value="0"  id="businessFlexSwitchCheckDefault" onclick="notify(this)" >
+                                                <input class="form-check-input" type="checkbox" name="is_business" {{ old('is_business') == 1 ? 'checked' : ''}} value="0"  id="businessFlexSwitchCheckDefault" >
                                                 <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Company</label>
                                             </div>
                                         </div>
@@ -258,7 +258,7 @@
                                         <div class="col-sm-6 col-12">
                                             <label class="form-label">*Name</label>
                                             <div class="input-group">
-                                                <input id="industry" name="business_name" class="form-control" autocomplete="off" type="text" placeholder="Business name" value="{{old('business_name')}}">
+                                                <input id="business_name" name="business_name" class="form-control" autocomplete="off" type="text" placeholder="Business name" value="{{old('business_name')}}">
                                             </div>
                                             @error('business_name')
                                             <span style="color:red;">{{ $message }}</span>

@@ -8,7 +8,7 @@
 <!-- Hero section -->
 @section('content')
 
-<div class="section-xl bg-image parallax" data-bg-src="https://images.unsplash.com/photo-1587560699334-bea93391dcef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+<div class="section-xl bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1587560699334-bea93391dcef.jpg')}}">
     <div class="bg-black-06">
         <div class="container text-center">
             <h1 class="font-weight-normal margin-0">Contact Us</h1>
