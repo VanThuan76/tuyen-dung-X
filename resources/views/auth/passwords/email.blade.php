@@ -19,7 +19,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="{{asset('/assets/img/logos/logo-meta.jpg')}}" type="image/gif"/>
+    <link rel="icon" href="{{asset('/assets/img/logos/logoEmp.jpg')}}" type="image/gif"/>
     <meta property="og:image" content="{{asset('/assets/img/logos/logo-meta.jpg')}}"/>
 
     <title>
