@@ -18,6 +18,7 @@ class AdminJobsController extends Controller
         $user = auth()->user();
         $jobs = Job::paginate(15);
         $categories = Category::all();
+
         return view ('admin.jobs.index',compact('user','jobs','categories'));
     }
 

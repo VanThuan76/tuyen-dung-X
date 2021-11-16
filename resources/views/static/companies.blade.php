@@ -7,7 +7,7 @@
 @endsection
 <!-- Hero section -->
 @section('content')
-    <div class="section-xl bg-image parallax" data-bg-src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+    <div class="section-xl bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1486406146926-c627a92ad1ab.jpg')}}">
         <div class="bg-black-06">
             <div class="container text-center">
                 <div class="row">

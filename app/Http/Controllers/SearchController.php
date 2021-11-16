@@ -24,24 +24,24 @@ class SearchController extends Controller
     }
     public function jobs(Request $request)
     {
-
         $categories = Category::all();
         $input = $request->q;
         $user = auth()->user();
         $category = $request->category;
+        $job_type = $request->job_type;
+        $price_type = $request->price_type;
         $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
+        $jobs = Job::query();
         if ($category != ''){
             $category = Category::findBySlugOrFail($category);
             $category = $category->id;
         }
         if ($input != '') {
             if (strlen($input) <= 2) {
-                session()->flash('min_length_input', "Ju lutem jepni nje fjale me te gjate");
+                session()->flash('min_length_input', "Please give a longer word");
                 return redirect()->route('admin.jobs');
             }
 
-            //Metoda tani duke i ndare fjalet e fjalise edhe duke kerkuar bazuar ne ato fjale
-            $jobs_from_sentence = Job::Where(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');//kerko me fjali
             $jobs_by_word = Job::where(function ($q) use ($separated_input) {
                 foreach ($separated_input as $input) {
                     if (strlen($input) < 2) {
@@ -51,18 +51,31 @@ class SearchController extends Controller
                         ->orWhere('body', 'like', "%{$input}%")
                         ->orWhere('duties', 'like', "%{$input}%")
                         ->orWhere('address', 'like', "%{$input}%")
-                        ->orWhere('price_type', 'like', "%{$input}%")
                         ->orWhere('experience', 'like', "%{$input}%")
-                        ->orWhere('job_type', 'like', "%{$input}%")
                         ->orWhere('price', 'like', "%{$input}%")->orderBy('title', 'ASC');
                 }
             });
+
+            //Metoda tani duke i ndare fjalet e fjalise edhe duke kerkuar bazuar ne ato fjale
+            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');//kerko me fjali
             if ($category != ''){
-                $jobs = $jobs_from_sentence->where('category_id', $category)->union($jobs_by_word->where('category_id', $category))->paginate(10)->appends(request()->query());
+                $jobs->where('category_id', $category);
+                $jobs_by_word->where('category_id', $category);
             }
-            else {
-                $jobs = $jobs_from_sentence->union($jobs_by_word)->paginate(10)->appends(request()->query());
+            if ($job_type != ''){
+                $jobs->where('job_type', $job_type);
+                $jobs_by_word->where('job_type', $job_type);
+
             }
+            if ($price_type != ''){
+                $jobs->where('price_type', $price_type);
+                $jobs_by_word->where('price_type', $price_type);
+            }
+
+            $jobs->union($jobs_by_word);
+
+
+            $jobs = $jobs->paginate(10)->appends(request()->query());
             $jobs_count = $jobs->count();
 
             //Kjo appends per te marrur edhe get requestat tjere ne get metoden
@@ -70,16 +83,29 @@ class SearchController extends Controller
 
         }
         else{
-            if ($category != ''){
-                $jobs = Job::where('category_id',$category)->paginate(10);
+
+
+            if ($category == '' && $job_type == '' && $price_type == ''){
+                return redirect()->route('admin.jobs');
+            }
+
+
+            if ($category != '') {
+
+                $jobs->where('category_id', $category)->toSql();
+            }
+            if ($job_type != '') {
+                $jobs->where('job_type', $job_type);
+            }
+            if ($price_type != '') {
+                $jobs->where('price_type', $price_type);
+            }
+            $jobs = $jobs->paginate(10)->appends(request()->query());
                 $jobs_count = $jobs->count();
                 return view('admin.search.jobs', compact('jobs', 'jobs_count', 'user', 'categories'));
 
-            }
-            else{
-                return redirect()->route('admin.jobs');
-            }
         }
+
 
     }
     public function users(Request $request)
@@ -99,7 +125,7 @@ class SearchController extends Controller
 
         if ($input != '') {
             if (strlen($input) <= 2) {
-                session()->flash('min_length_input', "Ju lutem jepni nje fjale me te gjate");
+                session()->flash('min_length_input', "Please give a longer word");
                 return redirect()->route('admin.users');
             }
 
@@ -150,7 +176,7 @@ class SearchController extends Controller
 
         if ($input != '') {
             if (strlen($input) <= 2) {
-                session()->flash('min_length_input', "Ju lutem jepni nje fjale me te gjate");
+                session()->flash('min_length_input', "Please give a longer word");
                 return redirect()->route('admin.users');
             }
 
