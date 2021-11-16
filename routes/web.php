@@ -41,6 +41,10 @@ Route::middleware(['auth','admin'])->group(function() {
     Route::get('/admin/search/users',  [App\Http\Controllers\SearchController::class, 'users'])->name('admin.search.users');
     Route::get('/admin/search/companies',  [App\Http\Controllers\SearchController::class, 'companies'])->name('admin.search.companies');
 
+    Route::post('/admin/successfulUser/{user}/store',[App\Http\Controllers\SucessfulUsersController::class, 'store'])->name('admin.sucessful.users.store');
+    Route::get('/admin/successfulUsers',[App\Http\Controllers\SucessfulUsersController::class, 'index'])->name('admin.sucessful.users');
+    Route::delete('/admin/successfulUsers/{user}/destroy',[App\Http\Controllers\SucessfulUsersController::class, 'destroy'])->name('admin.sucessful.users.destroy');
+
 });
 
 Route::middleware(['auth','company'])->group(function() {

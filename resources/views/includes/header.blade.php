@@ -33,6 +33,7 @@
     <link href="{{asset('assets/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('assets/css/soft-ui-dashboard.css?v=1.0.3')}}" rel="stylesheet" />
+
     <meta name="description" content="EmployingX - Online Recruitment Platform" />
 
     @yield('styles')
