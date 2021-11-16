@@ -59,7 +59,25 @@
                             @if($user->company->address)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address:</strong> &nbsp;{{$user->company->address}}</li>@endif
                             @if($user->company->tel)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile Number:</strong> &nbsp;&nbsp;{{$user->company->tel}}</li>@endif
                             @if($user->company->website)  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Website:</strong> &nbsp;{{$user->company->website}}</li>@endif
+                            @if ($user->facebook || $user->linkedin)
+                                <li class="list-group-item border-0 ps-0 pb-0">
+                                    <strong class="text-dark text-sm">Social:</strong> &nbsp;
+                                    @if ($user->facebook)
+                                        <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="https://facebook.com/{{$user->facebook}}">
+                                            <i class="fab fa-facebook fa-lg"></i>
+                                        </a>
+                                    @endif
+                                    @if ($user->linkedin)
+                                        <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="https://www.linkedin.com/in/{{$user->linkedin}}">
+                                            <i class="fab fa-linkedin fa-lg"></i>
+                                        </a>
+                                    @endif
 
+                                    {{--                   <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">--}}
+                                    {{--                       <i class="fab fa-instagram fa-lg"></i>--}}
+                                    {{--                   </a>--}}
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

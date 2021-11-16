@@ -28,6 +28,8 @@ class UserEditRequest extends FormRequest
             'surname'=>'required|max:255|min:2',
             'email' => 'required|max:255|min:5|unique:users,email,' . auth()->user()->id,
             'about' => 'max:2000',
+            'linkedin' => 'nullable|max:255|min:2',
+            'facebook' => 'nullable|max:255|min:2',
             'cv'=>'mimes:pdf|max:10240'
         ];
     }
@@ -45,7 +47,11 @@ class UserEditRequest extends FormRequest
             'email.unique' => 'This email is being used by another user.',
             'about.max' => 'About must have a maximum of 255 characters.',
             'cv.mimes' => 'CV must be in PDF format.',
-            'cv.max' => 'CV size must be a maximum of 10MB.'
+            'cv.max' => 'CV size must be a maximum of 10MB.',
+            'linkedin.max' => 'LinkedIn must have a maximum of 255 characters.',
+            'linkedin.min' => 'LinkedIn must have a minimum of 2 characters.',
+            'facebook.max' => 'Facebook must have a maximum of 255 characters.',
+            'facebook.min' => 'Facebook must have a minimum of 2 characters.',
 
         ];
     }

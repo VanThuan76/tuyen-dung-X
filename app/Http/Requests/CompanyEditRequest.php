@@ -34,6 +34,9 @@ class CompanyEditRequest extends FormRequest
             'address'=>'nullable|max:255|min:2',
             'tel'=>'nullable|numeric|digits_between:7,12',
             'website'=>'nullable|max:255|min:2',
+            'linkedin' => 'nullable|max:255|min:2',
+            'facebook' => 'nullable|max:255|min:2',
+
 
         ];
     }
@@ -69,6 +72,10 @@ class CompanyEditRequest extends FormRequest
             'website.required' => 'Website must be filled in.',
             'website.max' => 'Website must have a maximum of 255 characters.',
             'website.min' => 'Website must have at least 2 characters.',
+            'linkedin.max' => 'LinkedIn must have a maximum of 255 characters.',
+            'linkedin.min' => 'LinkedIn must have a minimum of 2 characters.',
+            'facebook.max' => 'Facebook must have a maximum of 255 characters.',
+            'facebook.min' => 'Facebook must have a minimum of 2 characters.',
 
         ];
     }

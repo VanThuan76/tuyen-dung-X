@@ -133,6 +133,27 @@
                                 </div>
 
                             </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-12">
+                                    <label class="form-label mt-4">LinkedIn</label>
+                                    <div class="input-group">
+                                        <input id="linkedin" name="linkedin" class="form-control" type="text" placeholder="Write LinkedIn username" value="{{$user->linkedin}}" autocomplete="off">
+                                    </div>
+                                    @error('linkedin')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <label class="form-label mt-4">Facebook</label>
+                                    <div class="input-group">
+                                        <input id="facebook" name="facebook" class="form-control" type="text" placeholder="Write Facebook username" value="{{$user->facebook}}" autocomplete="off">
+                                    </div>
+                                    @error('facebook')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                            </div>
                             <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update Profile</button>
                         </div>
                     </div>
