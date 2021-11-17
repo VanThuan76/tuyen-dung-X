@@ -52,6 +52,10 @@ class User extends Authenticatable
     public function job(){
         return $this->hasMany(Job::class);
     }
+    public function language()
+    {
+        return $this->belongsToMany(Language::class, )->withTimestamps()->withPivot('level');
+    }
     public function isAdmin(){
         if ($this->role->name == "administrator"){
             return true;

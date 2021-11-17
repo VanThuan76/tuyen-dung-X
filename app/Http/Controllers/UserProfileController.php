@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserChangeProfileRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\Category;
+use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -66,10 +67,11 @@ class UserProfileController extends Controller
     {
         $user = auth()->user();
         $categories = Category::all();
+        $languages = Language::all();
         if ($user->role->name == 'company'){
             return redirect()->route('home');//redirekto nese nuk eshte perdorues
         }
-        return view('user.edit',compact('user', 'categories'));
+        return view('user.edit',compact('user', 'categories','languages'));
     }
 
     /**
@@ -79,6 +81,27 @@ class UserProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    protected function addLanguages(array $data,$user){
+
+       foreach ($user->language as $language){
+
+               $user->language()->detach($language);
+
+
+           }
+
+        $count = count($data['language_id']);
+        $added_languages = [];
+        for($i=0;$i<$count;$i++) {
+            if (!in_array($data['language_id'][$i], $added_languages)) {
+                $user->language()->attach($data['language_id'][$i], array('level' => $data['level'][$i]));
+                array_push($added_languages, $data['language_id'][$i]);
+            }
+
+        }
+
+    }
+
     public function update(UserEditRequest $request)
     {
     $user = auth()->user();
@@ -99,6 +122,7 @@ class UserProfileController extends Controller
             }
             $input['cv'] = $file_name;
         }
+        $this->addLanguages($input, $user);
         $user->update($input);
         session()->flash('profile_updated','Profile changed successfully.');
         return redirect()->back();

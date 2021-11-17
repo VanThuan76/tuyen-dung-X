@@ -107,8 +107,13 @@
 {{--                   <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">--}}
 {{--                       <i class="fab fa-instagram fa-lg"></i>--}}
 {{--                   </a>--}}
+
                </li>
                @endif
+               <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Languages:</strong> <br>@foreach($user->language as $language)
+                       {{$language->name}} - <b>{{$language->pivot->level}}</b> <br>
+                   @endforeach</li>
+
            </ul>
        </div>
    </div>

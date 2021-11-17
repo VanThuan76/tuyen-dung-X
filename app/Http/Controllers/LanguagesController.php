@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AdminStoreCategoriesRequest;
-use App\Http\Requests\AdminUpdateCategoriesRequest;
-use App\Models\Category;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class LanguagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class CategoriesController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $categories = Category::paginate(10);
-        return view('categories.index',compact('categories', 'user'));
+        $languages = Language::paginate(10);
+        return view('admin.languages.index',compact('languages', 'user'));
     }
 
     /**
@@ -37,11 +35,12 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminStoreCategoriesRequest $request)
+    public function store(Request $request)
     {
         $input = $request->all();
-        Category::create($input);
-        session()->flash('added_category', 'Category added sucessfully');
+        $request->validate(['name'=>'required|max:255']);
+        Language::create($input);
+        session()->flash('added_language', 'Language added sucessfully');
         return back();
     }
 
@@ -65,8 +64,8 @@ class CategoriesController extends Controller
     public function edit($slug)
     {
         $user = auth()->user();
-        $category = Category::findBySlugOrFail($slug);
-        return view('categories.edit',compact('user','category'));
+        $language = Language::findBySlugOrFail($slug);
+        return view('admin.languages.edit',compact('user','language'));
     }
 
     /**
@@ -76,13 +75,13 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminUpdateCategoriesRequest $request, $slug)
+    public function update(Request $request, $slug)
     {
-
-        $category = Category::findBySlugOrFail($slug);
-        $category->update($request->all());
-        session()->flash('updated_category', 'Category updated sucessfully.');
-        return redirect()->route('categories');
+        $request->validate(['name'=>'required|max:255']);
+        $language = Language::findBySlugOrFail($slug);
+        $language->update($request->all());
+        session()->flash('updated_category', 'Language updated sucessfully.');
+        return redirect()->route('languages');
     }
 
     /**
@@ -93,9 +92,9 @@ class CategoriesController extends Controller
      */
     public function destroy($slug)
     {
-        $category = Category::findBySlugOrFail($slug);
-        $category->delete();
-        session()->flash('deleted_category', 'Category deleted sucessfully.');
+        $language = Language::findBySlugOrFail($slug);
+        $language->delete();
+        session()->flash('deleted_category', 'Language deleted sucessfully.');
         return back();
     }
 }

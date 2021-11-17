@@ -30,7 +30,10 @@ class UserEditRequest extends FormRequest
             'about' => 'max:2000',
             'linkedin' => 'nullable|max:255|min:2',
             'facebook' => 'nullable|max:255|min:2',
-            'cv'=>'mimes:pdf|max:10240'
+            'cv'=>'mimes:pdf|max:10240',
+            'language_id' => 'required','numeric',
+            'language_id.*' => 'required','numeric',
+            'level.*' => 'required'
         ];
     }
     public function messages(){

@@ -49,8 +49,10 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator(array $data)
     {
+
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -69,7 +71,11 @@ class RegisterController extends Controller
             'address' => ['nullable','string', 'min:2', 'max:255'],
             'tel' => ['nullable','string', 'min:2','numeric','digits_between:7,12'],
             'website' => ['nullable','string', 'min:2', 'max:255'],
-            'cv'=>['required_if:is_business,0','mimes:pdf','max:10240']
+            'cv'=>['required_if:is_business,0','mimes:pdf','max:10240'],
+            'language_id.*' => ['required_if:is_business,0','nullable','numeric'],
+            'level.*' => ['required_if:is_business,0','nullable'],
+            'language_id' => ['required_if:is_business,0','nullable','numeric'],
+            'level' => ['required_if:is_business,0','nullable']
 
         ]);
     }
@@ -80,6 +86,23 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+
+
+    protected function addLanguages(array $data,$user){
+
+        $count = count($data['language_id']);
+        $added_languages = [];
+        for($i=0;$i<$count;$i++) {
+            if (!in_array($data['language_id'][$i], $added_languages)) {
+                $user->language()->attach($data['language_id'][$i], array('level' => $data['level'][$i]));
+                array_push($added_languages, $data['language_id'][$i]);
+            }
+
+        }
+
+
+    }
+
     protected function create(array $data)
     {
         $role = 1;
@@ -122,6 +145,10 @@ class RegisterController extends Controller
             ,'capacity'=>$data['capacity'],'address'=>$data['address'],'tel'=>$data['tel'],'website'=>$data['website']]);
 
             }
+        if ($data['is_business']==0) {
+            $this->addLanguages($data, $user);
+        }
+
         return $user;
     }
 }

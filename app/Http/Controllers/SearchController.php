@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -84,11 +85,9 @@ class SearchController extends Controller
         }
         else{
 
-
             if ($category == '' && $job_type == '' && $price_type == ''){
                 return redirect()->route('admin.jobs');
             }
-
 
             if ($category != '') {
 
@@ -112,16 +111,22 @@ class SearchController extends Controller
     {
 
         $categories = Category::all();
+        $languages = Language::all();
+        $input = $request->q;
+        $user = auth()->user();
         $category = $request->category;
+        $language = $request->language;
+
+        $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
+        $users = User::query();
         if ($category != ''){
             $category = Category::findBySlugOrFail($category);
             $category = $category->id;
         }
-
-
-        $user = auth()->user();
-        $input = $request->q;
-        $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
+        if ($language != ''){
+            $language = Language::findBySlugOrFail($language);
+            $language = $language->id;
+        }
 
         if ($input != '') {
             if (strlen($input) <= 2) {
@@ -129,8 +134,6 @@ class SearchController extends Controller
                 return redirect()->route('admin.users');
             }
 
-            //Metoda tani duke i ndare fjalet e fjalise edhe duke kerkuar bazuar ne ato fjale
-            $users_by_sentence = User::Where(DB::raw('CONCAT(name, " ", surname)'), 'like', '%' . $input . '%')->orderBy('name', 'ASC');//kerko me fjali
             $users_by_word = User::where(function ($q) use ($separated_input) {
                 foreach ($separated_input as $input) {
                     if (strlen($input) < 2) {
@@ -144,28 +147,52 @@ class SearchController extends Controller
                 }
             });
 
-            if ($category != null){
-                $users = $users_by_sentence->where('category_id', $category)->union($users_by_word->where('category_id', $category))->paginate(10)->appends(request()->query());
-                $users_count = $users->count();
+            //Metoda tani duke i ndare fjalet e fjalise edhe duke kerkuar bazuar ne ato fjale
+            $users->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', '%' . $input . '%')->orderBy('name', 'ASC');//kerko me fjali
+            if ($category != ''){
+                $users->where('category_id', $category);
+                $users_by_word->where('category_id', $category);
             }
-            else{
-                $users = $users_by_sentence->union($users_by_word)->paginate(10)->appends(request()->query());
-                $users_count = $users->count();
+            if ($language != ''){
+               $language = Language::find($language);
+               $id = $language->user->pluck('id');
+                $users->whereIn('id', $id);
+                $users_by_word->whereIn('id', $id);
             }
+
+
+            $users->union($users_by_word);
+
+
+            $users = $users->paginate(10)->appends(request()->query());
+            $users_count = $users->count();
+
             //Kjo appends per te marrur edhe get requestat tjere ne get metoden
-            return view('admin.search.users', compact('users','user', 'categories', 'users_count'));
+            return view('admin.search.users', compact('users', 'users_count', 'user', 'categories','languages'));
+
         }
         else{
-            if ($category != ''){
-                $users = User::where('category_id',$category)->paginate(10);
-                $users_count = $users->count();
-                return view('admin.search.users', compact('users', 'users_count', 'user', 'categories'));
 
-            }
-            else{
+            if ($category == '' && $language == ''){
                 return redirect()->route('admin.users');
             }
+
+            if ($category != '') {
+
+                $users->where('category_id', $category)->toSql();
+            }
+            if ($language != ''){
+                $language = Language::find($language);
+                $id = $language->user->pluck('id');
+                $users->whereIn('id', $id);
+
+            }
+            $users = $users->paginate(10)->appends(request()->query());
+            $users_count = $users->count();
+            return view('admin.search.users', compact('users', 'users_count', 'user', 'categories','languages'));
+
         }
+
 
     }
     public function companies(Request $request){

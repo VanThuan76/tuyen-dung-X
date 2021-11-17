@@ -4,6 +4,9 @@
         {{$user->name . " " .  $user->surname . ' - EmployingX'}}
     </title>
 @endsection
+@section('scripts')
+    <script src="{{asset('/assets/js/script.js')}}"></script>
+@endsection
         @section('content')
             <div class="container-fluid my-3 py-3">
 
@@ -127,6 +130,93 @@
                                         </div>
 
                                     </div>
+                                    <br>
+
+                                    <div class="language-row">
+                                        @if (count($user->language) >0)
+                                        @foreach($user->language as $userLanguage)
+                                        <div class = "row">
+                                            <div class="col-sm-6 col-12">
+                                                <label class="form-label mt-2">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
+                                                <select class="form-select" name="language_id[]" aria-label="Default select example">
+                                                    <option value = "" selected>Choose Language</option>
+                                                    @foreach($languages as $language)
+                                                        <option value="{{$language->id}}" {{ $language->id == $userLanguage->id ? 'selected' : ''}}>{{$language->name}}</option>
+                                                    @endforeach
+                                                </select>
+
+
+                                            </div>
+
+                                            <div class="col-sm-6 col-12">
+                                                <label class="form-label mt-2">*Level of knowledge</label>
+                                                <select class="form-select" name="level[]" aria-label="Default select example">
+                                                    <option value = "" selected>Choose Level</option>
+
+                                                    <option value="A1" {{ $userLanguage->pivot->level == 'A1' ? 'selected' : ''}}>A1</option>
+                                                    <option value="A2" {{ $userLanguage->pivot->level == 'A2' ? 'selected' : ''}}>A2</option>
+                                                    <option value="B1" {{ $userLanguage->pivot->level == 'B1' ? 'selected' : ''}}>B1</option>
+                                                    <option value="B2" {{ $userLanguage->pivot->level == 'B2' ? 'selected' : ''}}>B2</option>
+                                                    <option value="C1" {{ $userLanguage->pivot->level == 'C1' ? 'selected' : ''}}>C1</option>
+                                                    <option value="C2" {{ $userLanguage->pivot->level == 'C2' ? 'selected' : ''}}>C2</option>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                            @endforeach
+                                        @else
+                                            <div class = "row">
+                                                <div class="col-sm-6 col-12">
+                                                    <label class="form-label mt-2">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
+                                                    <select class="form-select" name="language_id[]" aria-label="Default select example">
+                                                        <option value = "" selected>Choose Language</option>
+                                                        @foreach($languages as $language)
+                                                            <option value="{{$language->id}}">{{$language->name}}</option>
+                                                        @endforeach
+                                                    </select>
+
+
+                                                </div>
+
+                                                <div class="col-sm-6 col-12">
+                                                    <label class="form-label mt-2">*Level of knowledge</label>
+                                                    <select class="form-select" name="level[]" aria-label="Default select example">
+                                                        <option value = "" selected>Choose Category</option>
+
+                                                        <option value="A1">A1</option>
+                                                        <option value="A2">A2</option>
+                                                        <option value="B1">B1</option>
+                                                        <option value="B2">B2</option>
+                                                        <option value="C1">C1</option>
+                                                        <option value="C2">C2</option>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @error('language_id.*')
+                                        <span style="color:red;">{{ $message }}</span>
+                                        <br>
+                                        @enderror
+                                            @error('language_id')
+                                            <span style="color:red;">{{ $message }}</span>
+                                            <br>
+                                            @enderror
+
+                                        @error('level.*')
+                                        <span style="color:red;">{{ $message }}</span>
+                                        <br>
+                                        @enderror
+                                            @error('level')
+                                            <span style="color:red;">{{ $message }}</span>
+                                            <br>
+                                            @enderror
+
+                                    </div>
+                                    <button type="button" class="btn btn-secondary add-language mt-2">+ Add</button>
+
                                     <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update Profile</button>
                                 </div>
                             </div>
@@ -138,3 +228,4 @@
                 </div>
 
 @endsection
+

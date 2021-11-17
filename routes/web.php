@@ -35,6 +35,13 @@ Route::middleware(['auth','admin'])->group(function() {
     Route::get('/admin/categories/{category}/edit', [App\Http\Controllers\CategoriesController::class, 'edit'])->name('admin.category.edit');
     Route::delete('/admin/categories/{category}/destroy', [App\Http\Controllers\CategoriesController::class, 'destroy'])->name('admin.category.destroy');
     Route::patch('/admin/categories/{category}/update', [App\Http\Controllers\CategoriesController::class, 'update'])->name('admin.category.update');
+
+    Route::get('/admin/languages', [App\Http\Controllers\LanguagesController::class, 'index'])->name('languages');
+    Route::POST('/admin/languages/store', [App\Http\Controllers\LanguagesController::class, 'store'])->name('admin.language.store');
+    Route::get('/admin/languages/{language}/edit', [App\Http\Controllers\LanguagesController::class, 'edit'])->name('admin.language.edit');
+    Route::delete('/admin/languages/{language}/destroy', [App\Http\Controllers\LanguagesController::class, 'destroy'])->name('admin.language.destroy');
+    Route::patch('/admin/languages/{language}/update', [App\Http\Controllers\LanguagesController::class, 'update'])->name('admin.language.update');
+
     Route::get('/admin/jobs', [App\Http\Controllers\AdminJobsController::class, 'index'])->name('admin.jobs');
 
     Route::get('/admin/search/jobs', [App\Http\Controllers\SearchController::class, 'jobs'])->name('admin.search.jobs');

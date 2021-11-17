@@ -205,7 +205,8 @@
 
 
                                 </div>
-                                <div class="row cv-row">
+                                <div class="user-row">
+                                <div class="row">
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">CV</label>
                                         <div class="input-group">
@@ -229,11 +230,65 @@
                                         @if (session('category_error'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ session('category_error') }}</strong>
-                                    </span>
+                                         </span>
                                         @endif
                                     </div>
 
+                                </div>
 
+                            <br>
+
+                                <div class="language-row">
+
+                                    <div class = "row">
+                                <div class="col-sm-6 col-12">
+                                        <label class="form-label mt-2">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
+                                        <select class="form-select" name="language_id[]" aria-label="Default select example">
+                                            <option value = "" selected>Choose Language</option>
+                                            @foreach($languages as $language)
+                                                <option value="{{$language->id}}">{{$language->name}}</option>
+                                            @endforeach
+                                        </select>
+
+
+                                    </div>
+
+                                        <div class="col-sm-6 col-12">
+                                            <label class="form-label mt-2">*Level of knowledge</label>
+                                            <select class="form-select" name="level[]" aria-label="Default select example">
+                                                <option value = "" selected>Choose Category</option>
+
+                                                <option value="A1">A1</option>
+                                                <option value="A2">A2</option>
+                                                <option value="B1">B1</option>
+                                                <option value="B2">B2</option>
+                                                <option value="C1">C1</option>
+                                                <option value="C2">C2</option>
+
+                                            </select>
+
+                                        </div>
+                                     </div>
+                                    @error('language_id.*')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+                                    @error('language_id')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+
+                                    @error('level.*')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+                                    @error('level')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+
+                                </div>
+                                    <button type="button" class="btn btn-secondary add-language mt-2">+ Add</button>
 
                                 </div>
                                 <div class="row mt-2">
@@ -368,31 +423,32 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+<script src="{{asset('/assets/js/script.js')}}"></script>
 <script type="text/javascript">
     const companyDetails = document.querySelector('.company-details');
     const companyButton = document.querySelector('#businessFlexSwitchCheckDefault');
-    const cvRow = document.querySelector('.cv-row');
+    const userRow = document.querySelector('.user-row');
     companyButton.addEventListener('click',function(){
         if (this.checked == true){
             companyDetails.classList.remove('hidden');
             this.value = 1;//per kompani
-            cvRow.classList.add('hidden');
+            userRow.classList.add('hidden');
         }
         else{
             this.value = 0;
             companyDetails.classList.add('hidden');
-            cvRow.classList.remove('hidden');
+            userRow.classList.remove('hidden');
         }
     });
     if (companyButton.checked){
         companyDetails.classList.remove('hidden');
         this.value = 1;//per kompani
-        cvRow.classList.add('hidden');
+        userRow.classList.add('hidden');
     }
     else{
         companyDetails.classList.add('hidden');
         this.value = 0;//per kompani
-        cvRow.classList.remove('hidden');
+        userRow.classList.remove('hidden');
     }
 </script>
 </body>

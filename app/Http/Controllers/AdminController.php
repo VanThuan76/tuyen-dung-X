@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,9 @@ class AdminController extends Controller
     public function users(){
         $user = auth()->user();
         $categories = Category::all();
+        $languages = Language::all();
         $users = User::Where('role_id',1)->paginate(20);
-        return view('admin.users',compact('user','users', 'categories'));
+        return view('admin.users',compact('user','users', 'categories','languages'));
     }
     public function companies(){
         $user = auth()->user();

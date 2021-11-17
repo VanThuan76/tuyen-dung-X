@@ -24,7 +24,7 @@
                 <div class="col-lg-4 col-6">
                     <input id="q" name="q" class="form-control" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search Users" autocomplete="off">
                 </div>
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-2 col-6">
                     <select class="form-select" name="category" id="category" style="border-radius: 0px;" aria-label="Default select example">
                         <option value ="" selected>Categories</option>
                         @foreach($categories as $category)
@@ -33,7 +33,16 @@
 
                     </select>
                 </div>
-                <div class="col-lg-4 col-12"><button type="submit" class="btn btn-dark search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
+                <div class="col-lg-2 col-6">
+                    <select class="form-select" name="language" id="language" style="border-radius: 0px;" aria-label="Default select example">
+                        <option value ="" selected>Languages</option>
+                        @foreach($languages as $language)
+                            <option value="{{$language->slug}}">{{$language->name}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="col-lg-3 col-12"><button type="submit" class="btn btn-dark search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
             </div>
         </form>
         <div class="row">
@@ -43,7 +52,7 @@
                         <h6>Users</h6>
                     </div>
                     @if (session('min_length_input'))
-                        <span style="color:red">{{session('min_length_input')}}</span>
+                        <span style="color:red; margin-left: 25px">{{session('min_length_input')}}</span>
                     @endif
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -112,5 +121,29 @@
                 </div>
             </div>
         </div>
+
+@endsection
+        @section('scripts')
+            <script>
+                const searchBtn = document.querySelector('.search');
+                searchBtn.addEventListener('click',function(){
+
+                    const searchField = document.querySelector('#q');
+                    const categoriesBtn = document.getElementById('category');
+                    const categoryValue = categoriesBtn.options[categoriesBtn.selectedIndex].text;
+                    const languagesBtn = document.getElementById('language');
+                    const languageValue = languagesBtn.options[languagesBtn.selectedIndex].text;
+                    if (searchField.value == ''){
+                        searchField.disabled = true;
+                    }
+                    if (categoryValue == 'Categories'){
+                        categoriesBtn.disabled = true;
+                    }
+                    if (languageValue == 'Languages'){
+                        languagesBtn.disabled = true;
+                    }
+
+                });
+            </script>
 
 @endsection
