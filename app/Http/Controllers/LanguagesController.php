@@ -80,7 +80,7 @@ class LanguagesController extends Controller
         $request->validate(['name'=>'required|max:255']);
         $language = Language::findBySlugOrFail($slug);
         $language->update($request->all());
-        session()->flash('updated_category', 'Language updated sucessfully.');
+        session()->flash('updated_language', 'Language updated sucessfully.');
         return redirect()->route('languages');
     }
 
@@ -93,8 +93,14 @@ class LanguagesController extends Controller
     public function destroy($slug)
     {
         $language = Language::findBySlugOrFail($slug);
+        foreach ($language->user as $languageUser){
+            $user_id = $languageUser->id;
+            $language->user()->detach($user_id);
+
+        }
+
         $language->delete();
-        session()->flash('deleted_category', 'Language deleted sucessfully.');
+        session()->flash('deleted_language', 'Language deleted sucessfully.');
         return back();
     }
 }

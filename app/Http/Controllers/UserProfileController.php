@@ -82,18 +82,35 @@ class UserProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected function addLanguages(array $data,$user){
-
-       foreach ($user->language as $language){
-
-               $user->language()->detach($language);
-
-
-           }
-
         $count = count($data['language_id']);
         $added_languages = [];
+        //first check if the language exists
         for($i=0;$i<$count;$i++) {
+
+            $lang = Language::find($data['language_id'][$i]);
+
+            if (!$lang){
+                session()->flash('language_error', 'Oops ... Language not found.');
+                return;
+            }
+            if ($data['level'][$i] != 'A1' && $data['level'][$i] != 'A2' && $data['level'][$i] != 'B1' && $data['level'][$i] != 'B2' && $data['level'][$i] != 'C1' && $data['level'][$i] != 'C2'){
+                session()->flash('level_error', 'Oops ... Language Level not found.');
+                return;
+            }
+
+        }
+
+        //if success remove all user languages
+        foreach ($user->language as $language){
+            $user->language()->detach($language);
+        }
+
+        //insert new languages
+        for($i=0;$i<$count;$i++) {
+
             if (!in_array($data['language_id'][$i], $added_languages)) {
+
+
                 $user->language()->attach($data['language_id'][$i], array('level' => $data['level'][$i]));
                 array_push($added_languages, $data['language_id'][$i]);
             }
@@ -111,6 +128,7 @@ class UserProfileController extends Controller
             return back();
         }
     $input = $request->all();
+        $applyLanguage = $this->addLanguages($input, $user);
         if($file = $request->file('cv')) {
 
             $file_name = time() . $file->getClientOriginalName();
@@ -122,10 +140,12 @@ class UserProfileController extends Controller
             }
             $input['cv'] = $file_name;
         }
-        $this->addLanguages($input, $user);
-        $user->update($input);
-        session()->flash('profile_updated','Profile changed successfully.');
-        return redirect()->back();
+
+            $user->update($input);
+            session()->flash('profile_updated', 'Profile changed successfully.');
+
+            return redirect()->back();
+
         }
 
 

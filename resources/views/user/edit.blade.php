@@ -196,25 +196,35 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        @error('language_id.*')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        <br>
-                                        @enderror
-                                            @error('language_id')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            <br>
-                                            @enderror
-
-                                        @error('level.*')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        <br>
-                                        @enderror
-                                            @error('level')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            <br>
-                                            @enderror
 
                                     </div>
+                                    @if (session('language_error'))
+                                        <span style="color:red">{{session('language_error')}}</span>
+                                        <br>
+                                    @endif
+                                    @if (session('level_error'))
+                                        <span style="color:red">{{session('level_error')}}</span>
+                                        <br>
+                                    @endif
+
+                                    @error('language_id.*')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+                                    @error('language_id')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+
+                                    @error('level.*')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+                                    @error('level')
+                                    <span style="color:red;">{{ $message }}</span>
+                                    <br>
+                                    @enderror
+
                                     <button type="button" class="btn btn-secondary add-language mt-2">+ Add</button>
 
                                     <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update Profile</button>

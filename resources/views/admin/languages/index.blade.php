@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('title')
     <title>
-        {{ 'Categories - EmployingX'}}
+        {{ 'Languages - EmployingX'}}
     </title>
 @endsection
 @section('content')
@@ -12,15 +12,15 @@
         <!-- Card Basic Info -->
             <div class="card mt-4" id="basic-info">
                 <div class="card-header">
-                    <h5>Create Category</h5>
+                    <h5>Create Language</h5>
                     @if (session('added_language'))
                         <span style="color:green">{{session('added_language')}}</span>
                     @endif
                     @if (session('deleted_language'))
                         <span style="color:red">{{session('deleted_language')}}</span>
                     @endif
-                    @if (session('updated_category'))
-                        <span style="color:green">{{session('updated_category')}}</span>
+                    @if (session('updated_language'))
+                        <span style="color:green">{{session('updated_language')}}</span>
                     @endif
 
                 </div>

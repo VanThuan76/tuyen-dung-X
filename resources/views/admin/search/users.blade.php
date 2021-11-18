@@ -14,6 +14,9 @@
                 margin-top: 20px;
                 width: 100%;
             }
+            #q{
+                border-radius: 0px;
+            }
         }
     </style>
 @endsection
@@ -21,7 +24,7 @@
     <div class="container-fluid py-4">
         <form action="{{route('admin.search.users')}}" method="GET">
             <div class="row g-0">
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-4 col-12">
                     <input id="q" name="q" class="form-control" value="@if(isset($_GET['q'])){{$_GET['q']}}@endif"  type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search Users" autocomplete="off">
                 </div>
                 <div class="col-lg-2 col-6">
@@ -66,8 +69,10 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company name</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CV</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Registered</th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>
                                     </thead>
@@ -92,13 +97,18 @@
                                                 <p class="text-xs  font-weight-bold mb-0">{{$user->category ? $user->category->name : "/"}}</p>
                                             </td>
                                             <td>
+                                                <p class="text-xs text-center font-weight-bold mb-0">{{$user->username ? $user->username : "/"}}</p>
+                                            </td>
+                                            <td>
                                                 <p class="text-xs text-center font-weight-bold mb-0">{{$user->company ? $user->company->name : "/"}}</p>
                                             </td>
                                             <td>
                                                 <p class="text-xs text-center font-weight-bold mb-0">@if ($user->cv) <a href="/files/{{$user->cv}}"><img src="{{asset('/assets/img/pdf.webp')}}" style="width: 20px"></a>@else {{'/'}}@endif</p>
 
                                             </td>
-
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">{{$user->created_at->diffForHumans()}}</span>
+                                            </td>
 
                                         </tr>
                                     @endforeach
