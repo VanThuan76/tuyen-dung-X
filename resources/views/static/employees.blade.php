@@ -7,7 +7,7 @@
 @endsection
 <!-- Hero section -->
 @section('content')
-    <div class="section-xl bg-image parallax" data-bg-src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+    <div class="section-xl bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1522071820081-009f0129c71c.jpg')}}">
         <div class="bg-black-06">
             <div class="container text-center">
                 <div class="row">
@@ -44,7 +44,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                          <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -54,7 +54,8 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+{{--                            <i class="fas fa-heart"></i>--}}
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -64,7 +65,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -74,7 +75,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -84,7 +85,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -94,7 +95,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>

@@ -44,7 +44,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -54,7 +54,8 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            {{--                            <i class="fas fa-heart"></i>--}}
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -64,7 +65,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -74,7 +75,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -84,7 +85,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -94,7 +95,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="feature-box dark">
                         <div class="feature-box-icon">
-                            <i class="fas fa-heart"></i>
+                            <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
                         <h5 class="font-weight-normal">Service title</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>

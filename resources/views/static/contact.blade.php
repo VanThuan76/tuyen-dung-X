@@ -82,12 +82,12 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <i class="ti ti-mobile text-dark margin-bottom-20"></i>
                 <h6 class="font-weight-normal margin-0">Phone</h6>
-                <p>+(987) 654 321 01</p>
+                <p>+(383) 49 321 101</p>
             </div>
             <div class="col-12 col-sm-6 col-md-4">
                 <i class="ti ti-location-pin text-dark margin-bottom-20"></i>
                 <h6 class="font-weight-normal margin-0">Address</h6>
-                <p>121 King St, Melbourne VIC 3000</p>
+                <p>9 Nentori, Prishtina</p>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->

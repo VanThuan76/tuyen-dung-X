@@ -74,8 +74,7 @@ class RegisterController extends Controller
             'cv'=>['required_if:is_business,0','mimes:pdf','max:10240'],
             'language_id.*' => ['required_if:is_business,0','nullable','numeric'],
             'level.*' => ['required_if:is_business,0','nullable'],
-            'language_id' => ['required_if:is_business,0','nullable','numeric'],
-            'level' => ['required_if:is_business,0','nullable']
+
 
         ]);
     }

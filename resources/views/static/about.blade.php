@@ -7,7 +7,7 @@
 @endsection
 <!-- Hero section -->
 @section('content')
-    <div class="section-xl bg-image parallax" data-bg-src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+    <div class="section-xl bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1517048676732-d65bc937f952.jpg')}}">
         <div class="bg-black-06">
             <div class="container text-center">
                 <div class="row">
@@ -54,30 +54,85 @@
     </div>
     <!-- end About section -->
 
-    <!-- Features section -->
-    <div class="section">
+    <!-- section 1 -->
+    <div class="section-lg" style="padding: 0; padding-bottom: 100px ">
         <div class="container">
-            <div class="row icon-5xl">
+            <div class="row align-items-center">
                 <div class="col-12 col-md-4">
-                    <i class="ti-briefcase text-dark"></i>
-                    <h5 class="font-weight-normal margin-top-20">Mission</h5>
-                    <p>Our mission is to find the ideal candidate for companies from all over the world. </p>
+                    <h1 class="display-4 font-weight-thin margin-0">01.</h1>
                 </div>
+                <div class="col-12 col-md-8">
+                    <h3 class="font-weight-normal">Mission</h3>
+                    <div class="divider-width-40px margin-bottom-20">
+                        <hr class="bg-black-09">
+                    </div>
+                    <p>Our mission is to find the ideal candidate for companies from all over the world.</p>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+        <div class="container" style="margin-top: 70px;">
+            <div class="row align-items-center">
                 <div class="col-12 col-md-4">
-                    <i class="ti-settings text-dark"></i>
-                    <h5 class="font-weight-normal margin-top-20">Vision</h5>
+                    <h1 class="display-4 font-weight-thin margin-0">02.</h1>
+                </div>
+                <div class="col-12 col-md-8">
+                    <h3 class="font-weight-normal">Vision</h3>
+                    <div class="divider-width-40px margin-bottom-20">
+                        <hr class="bg-black-09">
+                    </div>
                     <p>To become a trusted long term partner for our clients and build the best matchmaking database.</p>
                 </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+        <div class="container" style="margin-top: 70px;">
+            <div class="row align-items-center">
                 <div class="col-12 col-md-4">
-                    <i class="ti-face-smile text-dark"></i>
-                    <h5 class="font-weight-normal margin-top-20">Values</h5>
-                    <p>Our work at EmployingX is focused on three key values: Transparency, Reasonability and Efficiency. </p>
+                    <h1 class="display-4 font-weight-thin margin-0">03.</h1>
+                </div>
+                <div class="col-12 col-md-8">
+                    <h3 class="font-weight-normal">Values</h3>
+                    <div class="divider-width-40px margin-bottom-20">
+                        <hr class="bg-black-09">
+                    </div>
+                    <p>Our work at EmployingX is focused on three key values: Transparency, Reasonability and Efficiency.</p>
                 </div>
             </div><!-- end row -->
 
         </div><!-- end container -->
 
     </div>
+    <!-- end section 1 -->
+    <div class="container" style="margin-top: 10px; margin-bottom:60px; text-align:center">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <p style="font-size:18px;">Finding the missing variable to your success </p>
+            </div>
+        </div>
+    </div>
+    <!-- Features section -->
+{{--    <div class="section">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row icon-5xl">--}}
+{{--                <div class="col-12 col-md-4">--}}
+{{--                    <i class="ti-briefcase text-dark"></i>--}}
+{{--                    <h5 class="font-weight-normal margin-top-20">Mission</h5>--}}
+{{--                    <p>Our mission is to find the ideal candidate for companies from all over the world. </p>--}}
+{{--                </div>--}}
+{{--                <div class="col-12 col-md-4">--}}
+{{--                    <i class="ti-settings text-dark"></i>--}}
+{{--                    <h5 class="font-weight-normal margin-top-20">Vision</h5>--}}
+{{--                    <p>To become a trusted long term partner for our clients and build the best matchmaking database.</p>--}}
+{{--                </div>--}}
+{{--                <div class="col-12 col-md-4">--}}
+{{--                    <i class="ti-face-smile text-dark"></i>--}}
+{{--                    <h5 class="font-weight-normal margin-top-20">Values</h5>--}}
+{{--                    <p>Our work at EmployingX is focused on three key values: Transparency, Reasonability and Efficiency. </p>--}}
+{{--                </div>--}}
+{{--            </div><!-- end row -->--}}
+
+{{--        </div><!-- end container -->--}}
+
+{{--    </div>--}}
     <!-- end Features section -->
 
 
@@ -90,34 +145,60 @@
                 <h2 class="font-weight-normal">Our team</h2>
             </div>
         </div>
-        <div class="row col-spacing-30 icon-5xl text-center margin-bottom-70">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="border-all border-radius padding-30">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" style="width:150px; height: 150px" class="rounded-circle" alt="Cinque Terre">
-{{--                    <i class="margin-top-10 ti-ruler-pencil text-dark"></i>--}}
-                    <h5 class="font-weight-normal margin-top-20">Atdhe Lila</h5>
-                    <p class="margin-bottom-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="border-all border-radius padding-30">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" style="width:150px; height: 150px" class="rounded-circle" alt="Cinque Terre">
+        <!-- Team section -->
+        <div class="section padding-top-0 mt-2">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="border-all border-radius padding-30">
+                            <img class="img-circle-md" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                            <div class="margin-top-30">
+                                <h6 class="font-weight-normal margin-0 line-height-140">Ilir Perolli</h6>
+                                <span class="font-small font-weight-normal">Founder</span>
+                                <p class="margin-top-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                            </div>
+                            <ul class="list-inline margin-top-20">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="border-all border-radius padding-30">
+                            <img class="img-circle-md" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                            <div class="margin-top-30">
+                                <h6 class="font-weight-normal margin-0 line-height-140">Atdhe Lila</h6>
+                                <span class="font-small font-weight-normal">Co-Founder</span>
+                                <p class="margin-top-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                            </div>
+                            <ul class="list-inline margin-top-20">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="border-all border-radius padding-30">
+                            <img class="img-circle-md" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+                            <div class="margin-top-30">
+                                <h6 class="font-weight-normal margin-0 line-height-140">Albi Kusari</h6>
+                                <span class="font-small font-weight-normal">Manager</span>
+                                <p class="margin-top-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                            </div>
+                            <ul class="list-inline margin-top-20">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-                    {{--                    <i class="margin-top-10 ti-camera text-dark"></i>--}}
-                    <h5 class="font-weight-normal margin-top-20">Albi Kusari</h5>
-                    <p class="margin-bottom-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="border-all border-radius padding-30">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" style="width:150px; height: 150px" class="rounded-circle" alt="Cinque Terre">
-
-                    {{--                    <i class="margin-top-10 ti-star text-dark"></i>--}}
-                    <h5 class="font-weight-normal margin-top-20">Ilir Perolli</h5>
-                    <p class="margin-bottom-10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                </div>
-            </div>
-        </div><!-- end row -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div>
+        <!-- end Team section -->
     </div><!-- end container -->
     <!-- end Services section -->
 

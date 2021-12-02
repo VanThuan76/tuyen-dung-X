@@ -255,7 +255,7 @@
 
                                         <div class="col-sm-6 col-12">
                                             <label class="form-label mt-2">*Level of knowledge</label>
-                                            <select class="form-select" name="level" aria-label="Default select example">
+                                            <select class="form-select" name="level[]" aria-label="Default select example">
                                                 <option value = "" selected>Choose Level</option>
 
                                                 <option value="A1">A1</option>
