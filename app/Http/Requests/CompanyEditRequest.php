@@ -24,8 +24,8 @@ class CompanyEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:255|min:2',
-            'surname'=>'required|max:255|min:2',
+            'name'=>'required|max:255|min:2|regex:/^[a-zA-Z]+$/u',
+            'surname'=>'required|max:255|min:2|regex:/^[a-zA-Z]+$/u',
             'email' => 'required|max:255|min:5|unique:users,email,' . auth()->user()->id,
             'about' => 'max:2000',
             'business_name'=>'required|max:255|min:2',
