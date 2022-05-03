@@ -14,9 +14,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-10 col-lg-8 col-xl-6">
-                        <h1>Welcome to EmployingX</h1>
-                        <h6 class="uppercase font-weight-light letter-spacing-1 margin-bottom-20 text-white">Are you looking for the missing variable to your companies growth? Get in touch!
-                        </h6>
+                        <h1 style="background: -webkit-linear-gradient(#F8C506, #CDA305);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;">Welcome to EmployingX</h1>
+                        <h4 class="font-weight-light letter-spacing-1 margin-bottom-20 text-white">Are you looking for the missing variable to your companies growth? Get in touch!
+                        </h4>
                         <a class="button button-lg button-radius button-white-3 margin-top-20" href="{{route('company')}}">Learn more</a>
                     </div>
                 </div><!-- end row -->
@@ -29,9 +31,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-10 col-lg-8 col-xl-6">
-                        <h1>Welcome to EmployingX</h1>
-                        <h6 class="uppercase font-weight-light letter-spacing-1 margin-bottom-20 text-white">Join our team and work with the largest companies from the comfort of your own home.
-                        </h6>
+                        <h1 style="background: -webkit-linear-gradient(#F8C506, #CDA305);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;">Welcome to EmployingX</h1>
+                        <h4 class="font-weight-light letter-spacing-1 margin-bottom-20 text-white">Join our team and work with the largest companies from the comfort of your own home.
+                        </h4>
                         <a class="button button-lg button-radius button-white-3 margin-top-20" href="{{route('employee')}}">Learn more</a>
                     </div>
                 </div><!-- end row -->
@@ -52,53 +56,93 @@
             <!-- About Content -->
             <div class="col-12 col-lg-6">
                 <h3 class="font-weight-light">About EmployingX</h3>
-                <p style="  text-align: justify;text-justify: inter-word;">EmployingX offers professional personnel services at the highest level.
-                    We specialize in finding professional, trustworthy and affordable personnel that will work remotely for your company. Companies will not need to directly hire our employees and as such will not have any labour obligations towards them. These are project based personnnel that can work on short term and long term projects for your comfort. </p>
-                <a class="button button-lg button-radius button-dark margin-top-40" href="{{route('about')}}">Learn more</a>
+                <p style="  text-align: justify;text-justify: inter-word;">EmployingX is a staffing company that provides staffing services for companies from all over the world. We offer entry, mid-level and senior talents in different professions.  We specialize in finding professional, trustworthy and affordable talent that will work remotely for your company.
+                    Companies will not need to directly hire our talent, as such will not have any legal obligations towards them. These are project based talent that can work on short term and long term projects, whether part-time or full-time.
+                </p>
+{{--                <a class="button button-lg button-radius button-dark margin-top-40" href="{{route('about')}}">Learn more</a>--}}
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
 </div>
 <!-- end About section -->
 
-
-<!-- Services section -->
-<div class="section" style="padding-top: 0px">
-    <div class="container text-center">
-        <div class="margin-bottom-70">
-            <div class="row text-center">
+<div class="section-lg bg-image bg-image-gradient-top parallax" data-bg-src="../assets/images/background.jpg" style="padding-top: 0px">
+    <div class="bg-white-06">
+        <div class="container text-center" style="padding:50px">
+            <div class="row">
                 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                    <h2 class="font-weight-normal">What We Do</h2>
+                    <h1 class="font-weight-light margin-0">What we do</h1>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div>
+</div>
+
+<div class="section padding-top-0">
+    <div class="container">
+        <div class="row icon-5xl text-center">
+            <div class="col-12 col-lg-6">
+                <div class="border-all border-radius padding-40 hover-shadow">
+                    <div class="circle-box-xl bg-grey margin-bottom-20">
+                        <h2 class="font-weight-medium">1</h2>
+                    </div>
+                    <h5 class="font-weight-normal">Find the Ideal Candidate</h5>
+                    <p>We help you find the ideal talent. We host a large database of candidates who have been vetted and trained. We use your job description and company culture to pinpoint the most talent candidates for the position, using our metrics and filters.</p>
                 </div>
             </div>
-        </div>
-        <div class="row col-spacing-40 icon-5xl">
-            <!-- Icon text box 1 -->
-            <div class="col-12 col-lg-4">
-            <img src="{{asset('/static/assets/images/number1.png')}}">
-                <h5 class="font-weight-normal margin-top-20">Find the Ideal Candidate</h5>
-                <p>We help you find the ideal candidate. We host a large database of candidates, we use your job description to pinpoint the most ideal candidates for the position, using our metrics and filters.
-                    </p>
+            <div class="col-12 col-lg-6">
+                <div class="border-all border-radius padding-40 hover-shadow">
+                    <div class="circle-box-xl bg-grey margin-bottom-20">
+                        <h2 class="font-weight-medium">2</h2>
+                    </div>
+                    <h5 class="font-weight-normal">Recruiting Process</h5>
+                    <p>We assist companies during the recruiting process, once we have identified the ideal potential candidates we assist with providing the necessary documentation, setting up the interviews, onboarding the successful candidate.</p>
+                </div>
             </div>
-            <!-- Icon text box 2 -->
-            <div class="col-12 col-lg-4">
-                <img src="{{asset('/static/assets/images/number2.png')}}">
-                <h5 class="font-weight-normal margin-top-20">Assist in the Recruiting Process</h5>
-                <p>We also assist companies during the recruiting process, once we have identified the ideal potential candidates we assist with providing the necessary documentation, setting up the interviews and more. </p>
+            <div class="col-12 col-lg-6">
+                <div class="border-all border-radius padding-40 hover-shadow">
+                    <div class="circle-box-xl bg-grey margin-bottom-20">
+                        <h2 class="font-weight-medium">3</h2>
+                    </div>
+                    <h5 class="font-weight-normal">Train </h5>
+                    <p>All our talents go through our Training Academy, where we work with them on their communication skills; technology skills and remote work, so that when they start working for your company they are already accustomed to remote international work.</p>
+                </div>
             </div>
-            <!-- Icon text box 3 -->
-            <div class="col-12 col-lg-4">
-                <img src="{{asset('/static/assets/images/number3.png')}}">
-                <h5 class="font-weight-normal margin-top-20">Manage Employees</h5>
-                <p>The successful candidate will work remotely for your company, however we will take care of everything, starting from the employment contract, health insurance, vacation days and more. </p>
+
+            <div class="col-12 col-lg-6">
+                <div class="border-all border-radius padding-40 hover-shadow">
+                    <div class="circle-box-xl bg-grey margin-bottom-20">
+                        <h2 class="font-weight-medium">4</h2>
+                    </div>
+                    <h5 class="font-weight-normal">Manage Talent </h5>
+                    <p>The successful candidate will work remotely for your company, however we will take care of everything, starting from the employment contract, health insurance, vacation days and more. We regularly meet with the company and talents if changes are needed.</p>
+                </div>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
 </div>
-<!-- end Services section -->
 
+<div class="section padding-top-0">
+    <div class="container">
+        <div class="row align-items-center margin-top-30 col-spacing-50">
+            <!-- About Image -->
 
-
+            <!-- About Content -->
+            <div class="col-12 col-lg-6">
+                <h3 class="font-weight-light">What we offer</h3>
+                <p style="  text-align: justify;text-justify: inter-word;"><span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> A transparent, efficient and secure process <br>
+                    <span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> A continuous support for our clients <br>
+                    <span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> Regular meetings and evaluation of talent performance <br>
+                    <span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> High level talents ready to start on day one
+                </p>
+                {{--                <a class="button button-lg button-radius button-dark margin-top-40" href="{{route('about')}}">Learn more</a>--}}
+            </div>
+            <div class="col-12 col-lg-6">
+                <img src="{{asset('/static/assets/images/offer.jpg')}}" alt="">
+            </div>
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div>
 
 <!-- Facts section -->
 <div class="section-lg bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1542744173-8e7e53415bb0.jpg')}}">
@@ -147,10 +191,10 @@
                     All you have to do is contact us and let us know what kind of job position you need filled, when you need them filled and for how long.
                    <br><br> We will use our vast database to find you the best suitable candidates for you and send you their profiles which we can then review together.  We will also assist you during the recruitment process starting from setting up interviews and providing the necessary documentation.
                     The successful candidates will work for you however will not be employed by you, this way we take care of everything: health insurance, vacation days, medical leave and more.  You will only be preoccupied with the candidates work performance, should you not be happy we will help you find a suitable replacement. </p>
-                <a class="button button-lg button-rounded button-reveal-right-outline-grey margin-top-30" href="{{route('about')}}">
-                    <i class="ti-arrow-right"></i>
-                    <span>Learn more</span>
-                </a>
+{{--                <a class="button button-lg button-rounded button-reveal-right-outline-grey margin-top-30" href="{{route('about')}}">--}}
+{{--                    <i class="ti-arrow-right"></i>--}}
+{{--                    <span>Learn more</span>--}}
+{{--                </a>--}}
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
@@ -178,15 +222,42 @@
 @include('staticIncludes.clients')
 <!-- end Clients section -->
 
+
 <!-- Parallax section -->
 <div class="section-xl bg-image parallax" data-bg-src="{{asset('/static/assets/images/photo-1587560699334-cc4ff634909a.jpg')}}">
     <div class="bg-black-06">
         <div class="container text-center">
             <div class="row">
-                <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="col-12 col-md-10 offset-md-1 col-lg-10">
                     <h2>Do you have any questions?</h2>
-                    <a class="button button-xl button-rounded button-white-3 margin-top-30" href="{{route('contact')}}">Contact Us</a>
-                </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 text-center">
+                            <!-- Contact Form -->
+                            <form action="http://127.0.0.1:8000/contact/store" method="POST">
+                                <input type="hidden" name="_token" value="J9vUThkahlOJgVfnDzfalohbdeJ4b0APqhEWoMMh">                    <input type="hidden" name="_method" value="POST">                <div class="contact-form">
+                                    <form method="post" id="contactform">
+                                        <div class="form-row">
+                                            <div class="col-12 col-sm-6">
+
+                                                <input type="text" id="name" style="border-color:#D0D0D0; color:white" name="name" autocomplete="off" placeholder="Name" required>
+
+                                            </div>
+
+                                            <div class="col-12 col-sm-6">
+                                                <input type="email" id="email" style="border-color:#D0D0D0; color:white" name="email" autocomplete="off" placeholder="E-Mail" required>
+                                            </div>
+                                        </div>
+                                        <input type="text" id="subject" style="border-color:#D0D0D0; color:white" name="subject" autocomplete="off" placeholder="Subject" required>
+                                        <textarea name="message" id="message" style="border-color:#D0D0D0; color:white" placeholder="Message"></textarea>
+                                        <button class="button button-lg button-rounded button-outline-white-2" type="submit">Send Message</button>
+                                    </form>
+                                    <!-- Submit result -->
+
+
+                                </div><!-- end contact-form -->
+                            </form>
+                        </div>
+                    </div><!-- end row -->                </div>
             </div><!-- end row -->
         </div><!-- end container -->
     </div>

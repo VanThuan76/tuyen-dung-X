@@ -48,18 +48,18 @@
         <div class="header-menu">
             <ul class="nav">
 
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="{{route('about')}}">About</a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('about')}}">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('employee')}}">For Employees</a>
+                    <a class="nav-link" href="{{route('employee')}}">For Talents</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('company')}}">For Companies</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('contact')}}">Contact</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="{{route('contact')}}">Contact</a>--}}
+{{--                </li>--}}
 
             </ul>
         </div>

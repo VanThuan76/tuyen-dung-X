@@ -65,15 +65,15 @@
                         Home
                     </a>
 
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a href="{{route('about')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">
-                        About
+{{--                <li class="nav-item dropdown dropdown-hover mx-2">--}}
+{{--                    <a href="{{route('about')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">--}}
+{{--                        About--}}
 
-                    </a>
-                </li>
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item dropdown dropdown-hover mx-2">
                     <a href="{{route('employee')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">
-                        For employees
+                        For Talents
 
                     </a>
                 </li>
@@ -84,12 +84,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a href="{{route('contact')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">
-                        Contact
+{{--                <li class="nav-item dropdown dropdown-hover mx-2">--}}
+{{--                    <a href="{{route('contact')}}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center">--}}
+{{--                        Contact--}}
 
-                    </a>
-                </li>
+{{--                    </a>--}}
+{{--                </li>--}}
             </ul>
             <ul class="navbar-nav d-lg-block d-none">
                 <li class="nav-item">

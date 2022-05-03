@@ -12,7 +12,7 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                        <h1 class="display-4 margin-0">For employees</h1>
+                        <h1 class="display-4 margin-0">For Talents</h1>
                     </div>
                 </div><!-- end row -->
             </div><!-- end container -->
@@ -23,10 +23,17 @@
         <div class="container">
             <div class="row col-spacing-40">
                 <div class="col-12 col-lg-6">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+                    <p>Have you always wanted to work for top companies worldwide, or maybe a thriving startup?
+                        Whether you are looking for a senior legal position or an entry level administration position;
+                        whether you want to work full time or part time; whether you want to work fully remotely or on
+                        sight; whether you want to be fully employed or work freelance; we have all those options
+                        ready for you.</p>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.</p>
+                    <p>At EmployingX we believe that employees are the most valuable and most expensive asset. That is
+                        why we are very committed to our talents.
+                        We know that looking for a new job is stressful, time consuming and exhausting. We&#39;re here to help
+                        you every step of the way. That is why we take our time with you to get to know you and find you the perfect fit for you.</p>
                 </div>
             </div><!-- end row -->
 
@@ -46,8 +53,9 @@
                         <div class="feature-box-icon">
                           <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
-                        <h5 class="font-weight-normal">Service title</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                        <h5 class="font-weight-normal">Apply</h5>
+                        <p>Create an account with us and upload your resume to our database. Our recruiters will review your
+                            application and get back to you with recommendations.</p>
                     </div>
                 </div>
                 <!-- Service box 2 -->
@@ -57,8 +65,9 @@
 {{--                            <i class="fas fa-heart"></i>--}}
                             <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
-                        <h5 class="font-weight-normal">Service title</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                        <h5 class="font-weight-normal">Consult</h5>
+                        <p>Have a one on one talk with one of our recruiters and discuss in detail what it is you want and what
+                            we can offer to you.</p>
                     </div>
                 </div>
                 <!-- Service box 3 -->
@@ -67,8 +76,9 @@
                         <div class="feature-box-icon">
                             <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
-                        <h5 class="font-weight-normal">Service title</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                        <h5 class="font-weight-normal">Train</h5>
+                        <p>Once we have identified your needs we will provide a general and a personalized training
+                            programme for you to help you fit in the new position.</p>
                     </div>
                 </div>
                 <!-- Service box 4 -->
@@ -77,8 +87,9 @@
                         <div class="feature-box-icon">
                             <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
-                        <h5 class="font-weight-normal">Service title</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                        <h5 class="font-weight-normal">Engage</h5>
+                        <p>Once you have finished the necessary training program, we will assist you during the recruitment
+                            process and help you with the onboarding process all the way.</p>
                     </div>
                 </div>
                 <!-- Service box 5 -->
@@ -87,8 +98,9 @@
                         <div class="feature-box-icon">
                             <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
-                        <h5 class="font-weight-normal">Service title</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                        <h5 class="font-weight-normal">Manage</h5>
+                        <p>Once you have been employed, we will be at your disposal at all time. Guide you if you need
+                            assistance, help you network and more.</p>
                     </div>
                 </div>
                 <!-- Service box 6 -->
@@ -97,8 +109,9 @@
                         <div class="feature-box-icon">
                             <img src="{{asset('/static/assets/images/x-logo.png')}}" style="width:25px; margin-top:25%; margin-left:3px">
                         </div>
-                        <h5 class="font-weight-normal">Service title</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                        <h5 class="font-weight-normal">Legal</h5>
+                        <p>We help you with all legal matters. If you are hired we take care of your taxes and other obligations;
+                            we also assist with relocation, visa and more.</p>
                     </div>
                 </div>
             </div><!-- end row -->

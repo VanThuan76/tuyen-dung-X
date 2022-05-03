@@ -65,16 +65,16 @@
                                     Home
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link me-2" href="{{route('about')}}">
-                                    <i class="fa fa-user opacity-6 text-dark me-1"></i>
-                                    About
-                                </a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link me-2" href="{{route('about')}}">--}}
+{{--                                    <i class="fa fa-user opacity-6 text-dark me-1"></i>--}}
+{{--                                    About--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                             <li class="nav-item">
                                 <a class="nav-link me-2" href="{{route('employee')}}">
                                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                                   For employees
+                                   For Talents
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -83,12 +83,12 @@
                                     For companies
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link me-2" href="{{route('contact')}}">
-                                    <i class="fab fa-telegram opacity-6 text-dark me-1"></i>
-                                    Contact
-                                </a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link me-2" href="{{route('contact')}}">--}}
+{{--                                    <i class="fab fa-telegram opacity-6 text-dark me-1"></i>--}}
+{{--                                    Contact--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                         </ul>
                         <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item">
