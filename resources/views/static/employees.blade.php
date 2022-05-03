@@ -42,6 +42,29 @@
     </div>
 
 
+    <div class="section padding-top-0">
+        <div class="container">
+            <div class="row align-items-center margin-top-30 col-spacing-50">
+                <!-- About Image -->
+
+                <!-- About Content -->
+                <div class="col-12 col-lg-6">
+                    <h3 class="font-weight-light">Positions we prioritize</h3>
+                    <p style="  text-align: justify;text-justify: inter-word;"><span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> Legal <br>
+                        <span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> Administration <br>
+                        <span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> Finance <br>
+                        <span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> Human Resources <br>
+                        <span style="color:#daa520; font-weight:bold; font-size:20px"> &#8212;</span> Management
+                    </p>
+
+                </div>
+                <div class="col-12 col-lg-6">
+                    <img src="{{asset('/static/assets/images/job-positions.jpg')}}" alt="">
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div>
+
 
     <!-- Services section -->
     <div class="section padding-top-0">
