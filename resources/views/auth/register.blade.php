@@ -220,9 +220,11 @@
                                         <label class="form-label mt-4">*Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
                                             <option value = "" selected>Choose Category</option>
-                                            @foreach($categories as $category)
+                                            {{-- @foreach($categories as $category)
                                                 <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
-                                            @endforeach
+                                            @endforeach --}}
+                                            <option value="0">Lập trình viên</option>
+                                            <option value="1">Kế toán</option>
                                         </select>
                                         @error('category_id')
                                         <span style="color:red;">{{ $message }}</span>
@@ -245,9 +247,11 @@
                                         <label class="form-label mt-2">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
                                         <select class="form-select" name="language_id[]" aria-label="Default select example">
                                             <option value = "" selected>Choose Language</option>
-                                            @foreach($languages as $language)
+                                            {{-- @foreach($languages as $language)
                                                 <option value="{{$language->id}}">{{$language->name}}</option>
-                                            @endforeach
+                                            @endforeach --}}
+                                            <option value="0">English</option>
+                                            <option value="1">VietNamese</option>
                                         </select>
 
 
@@ -257,14 +261,12 @@
                                             <label class="form-label mt-2">*Level of knowledge</label>
                                             <select class="form-select" name="level[]" aria-label="Default select example">
                                                 <option value = "" selected>Choose Level</option>
-
                                                 <option value="A1">A1</option>
                                                 <option value="A2">A2</option>
                                                 <option value="B1">B1</option>
                                                 <option value="B2">B2</option>
                                                 <option value="C1">C1</option>
                                                 <option value="C2">C2</option>
-
                                             </select>
 
                                         </div>

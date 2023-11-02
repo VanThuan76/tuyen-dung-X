@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\StaticPageController::class, 'index'])->name('index');
 Route::get('/index', [App\Http\Controllers\StaticPageController::class, 'index']);
 //Route::get('/about', [App\Http\Controllers\StaticPageController::class, 'about'])->name('about');
-//Route::get('/contact', [App\Http\Controllers\StaticPageController::class, 'contact'])->name('contact');
+// Route::get('/contact', [App\Http\Controllers\StaticPageController::class, 'contact'])->name('contact');
 Route::POST('/contact/store', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::get('/talents', [App\Http\Controllers\StaticPageController::class, 'employee'])->name('employee');
 Route::get('/companies', [App\Http\Controllers\StaticPageController::class, 'company'])->name('company');
@@ -71,6 +71,7 @@ Route::middleware(['auth','company'])->group(function() {
 
 });
 Route::middleware(['auth','user'])->group(function() {
+    Route::get('/user/jobs', [App\Http\Controllers\JobsController::class, 'list'])->name('job.list');
     Route::get('/user/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('user.edit');
     Route::get('/user/changePassword', 'App\Http\Controllers\UserChangePasswordController@index')->name('user.password.edit');
     Route::get('/user/changePhoto', 'App\Http\Controllers\UserChangePhotoController@index')->name('user.photo.edit');

@@ -111,6 +111,12 @@ class JobsController extends Controller
         $jobs = $company->job->where('id','<>',$job->id);
         return view('job.show',compact('user','job', 'jobs'));
     }
+    public function list()
+    {
+        $user = auth()->user();
+        $jobs = Job::all();
+        return view('job.list',compact('user','jobs'));
+    }
 
     /**
      * Show the form for editing the specified resource.
