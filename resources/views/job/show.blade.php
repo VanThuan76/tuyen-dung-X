@@ -61,14 +61,11 @@
                                 </div>
 
                                 @endif
-                            @if (auth()->user()->id == $job->user_id)
-                                    <div class="col-lg-5">
-                                        <form action="{{route('job.destroy',$job->slug)}}" method="POST">@csrf @method('DELETE')
-                                        <button class="btn bg-gradient-danger mb-0 mt-lg-auto mt-2 w-100" type="submit">Delete job</button>
-                                        </form>
-                                    </div>
+                                @if (auth()->user()->id == $job->user_id)
+                                <div class="col-lg-5">
+                                    <button class="btn bg-gradient-danger mb-0 mt-lg-auto mt-2 w-100" data-toggle="modal" data-target="#confirmDeleteJobModal">Delete job</button>
                                 </div>
-                            @endif
+                                @endif
                     </div>
                     <div class="row mt-5">
                         <div class="col-12">
@@ -130,6 +127,30 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal cửa sổ xác nhận xóa công việc -->
+<div class="modal fade" id="confirmDeleteJobModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteJobModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteJobModalLabel">Xác nhận xóa công việc</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa công việc này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                <form action="{{route('job.destroy',$job->slug)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
             </div>
         </div>
     </div>

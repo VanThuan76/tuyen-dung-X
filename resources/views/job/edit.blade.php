@@ -194,7 +194,7 @@
 
                         <div class="d-flex justify-content-end mt-4">
                             <a href="{{route('company.show',auth()->user()->slug)}}" class="btn btn-light m-0">Cancel</a>
-                            <button type="submit" class="btn bg-gradient-dark m-0 ms-2">Create Job offer</button>
+                            <button type="submit" class="btn bg-gradient-dark m-0 ms-2">Update Job offer</button>
                         </div>
                     </div>
                 </form>

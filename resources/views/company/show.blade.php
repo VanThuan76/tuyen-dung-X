@@ -137,7 +137,7 @@
                                             </h5>
                                         </a>
                                         <p class="mb-4 text-sm">
-                                            {{Str::limit($job->body,100)}}
+                                            {{Str::limit($job->body,70)}}
                                         </p>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <a href="{{route('job.show',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">See job</a>
