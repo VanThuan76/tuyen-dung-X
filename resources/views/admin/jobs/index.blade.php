@@ -124,10 +124,12 @@
                                             </td>
                                             <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">
-                                                <form action="{{route('job.destroy',$job->slug)}}" method="POST" style="display: inline; ">
+                                                <!-- <form action="{{route('job.destroy',$job->slug)}}" method="POST" style="display: inline; ">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" name="remove_job" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form>
+                                                    <button type="submit" name="remove_job" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form> -->
+                                                    <button class="btn btn-link delete-job-btn" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" type="button" data-toggle="modal" data-target="#confirmDeleteModal{{$job->id}}">Delete</button>
+
                                             </span>
                                             </td>
                                         </tr>
@@ -150,6 +152,32 @@
                 </div>
             </div>
         </div>
+<!-- Modal cửa sổ xác nhận xóa -->
+@foreach($jobs as $job)
+    <div class="modal fade" id="confirmDeleteModal{{$job->id}}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel{{$job->id}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel{{$job->id}}">Confirm Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this job?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form action="{{route('job.destroy',$job->slug)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
 
 @endsection
 @section('scripts')
