@@ -37,9 +37,9 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminStoreCategoriesRequest $request)
+    public function store(AdminStoreCategoriesRequest $request) //luu danh muc moi tao tu form
     {
-        $input = $request->all();
+        $input = $request->all();// lay toan bo du lieu cuar request luu vao input
         Category::create($input);
         session()->flash('added_category', 'Category added sucessfully');
         return back();
