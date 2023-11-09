@@ -27,11 +27,6 @@
                             @enderror
                             <button class="btn bg-gradient-dark btn-sm float-end mt-2 mb-0">Update</button>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>

@@ -62,6 +62,9 @@ Route::middleware(['auth','company'])->group(function() {
     Route::get('/company/changeUsername', 'App\Http\Controllers\CompanyChangeUsernameController@edit')->name('company.username.edit');
     Route::get('/company/{company}', [App\Http\Controllers\CompanyProfileController::class, 'show'])->name('company.show');
     Route::patch('/company/update', [App\Http\Controllers\CompanyProfileController::class, 'update'])->name('company.update');
+    Route::get('/company/jobs/response', [App\Http\Controllers\JobsRequestController::class, 'response'])->name('company.job.response');
+    Route::patch('/company/jobs/response/{id}/{status}', [App\Http\Controllers\JobsRequestController::class, 'update'])->name('job.response.update');
+    Route::get('/company/candidate/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('candidate.show');
     Route::get('/job/create', [App\Http\Controllers\JobsController::class, 'create'])->name('job.create');
     Route::POST('/job/store', [App\Http\Controllers\JobsController::class, 'store'])->name('job.store');
     Route::get('/job/{job}', [App\Http\Controllers\JobsController::class, 'show'])->name('job.show');
@@ -73,9 +76,13 @@ Route::middleware(['auth','company'])->group(function() {
 });
 Route::middleware(['auth','user'])->group(function() {
     Route::get('/user/jobs', [App\Http\Controllers\JobsController::class, 'list'])->name('job.list');
+    Route::get('/user/jobs/request', [App\Http\Controllers\JobsRequestController::class, 'request'])->name('jobs.request');
+    Route::patch('/user/jobs/request/create/{userId}/{jobId}', [App\Http\Controllers\JobsRequestController::class, 'create'])->name('jobRequest.create');
+    Route::delete('/user/jobs/request/{id}', [App\Http\Controllers\JobsRequestController::class, 'delete'])->name('job.request.delete');
     Route::get('/user/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('user.edit');
     Route::get('/user/changePassword', 'App\Http\Controllers\UserChangePasswordController@index')->name('user.password.edit');
     Route::get('/user/changePhoto', 'App\Http\Controllers\UserChangePhotoController@index')->name('user.photo.edit');
+    Route::get('/job/{job}', [App\Http\Controllers\JobsController::class, 'show'])->name('job.show');
 
     Route::get('/user/changeUsername', 'App\Http\Controllers\UserChangeUsernameController@edit')->name('user.username.edit');
     Route::get('/user/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('user.show');

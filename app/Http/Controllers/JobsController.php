@@ -6,7 +6,6 @@ use App\Http\Requests\JobStoreRequest;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class JobsController extends Controller
 {
@@ -117,7 +116,6 @@ class JobsController extends Controller
         $jobs = Job::all();
         return view('job.list',compact('user','jobs'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

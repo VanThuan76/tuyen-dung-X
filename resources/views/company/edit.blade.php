@@ -133,7 +133,7 @@
                                 </div>
 
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-sm-6 col-12">
                                     <label class="form-label mt-4">LinkedIn</label>
                                     <div class="input-group">
@@ -153,7 +153,7 @@
                                     @enderror
                                 </div>
 
-                            </div>
+                            </div> --}}
                             <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update Profile</button>
                         </div>
                     </div>

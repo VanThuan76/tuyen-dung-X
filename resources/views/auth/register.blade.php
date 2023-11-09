@@ -220,11 +220,9 @@
                                         <label class="form-label mt-4">*Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
                                             <option value = "" selected>Choose Category</option>
-                                            {{-- @foreach($categories as $category)
+                                            @foreach($categories as $category)
                                                 <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
-                                            @endforeach --}}
-                                            <option value="0">Lập trình viên</option>
-                                            <option value="1">Kế toán</option>
+                                            @endforeach
                                         </select>
                                         @error('category_id')
                                         <span style="color:red;">{{ $message }}</span>
@@ -247,11 +245,9 @@
                                         <label class="form-label mt-2">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
                                         <select class="form-select" name="language_id[]" aria-label="Default select example">
                                             <option value = "" selected>Choose Language</option>
-                                            {{-- @foreach($languages as $language)
+                                            @foreach($languages as $language)
                                                 <option value="{{$language->id}}">{{$language->name}}</option>
-                                            @endforeach --}}
-                                            <option value="0">English</option>
-                                            <option value="1">VietNamese</option>
+                                            @endforeach
                                         </select>
 
 

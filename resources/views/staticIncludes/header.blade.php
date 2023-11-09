@@ -57,6 +57,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('company')}}">For Companies</a>
                 </li>
+                @if (auth()->user() && auth()->user()->role->name =='user')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('job.list')}}">For Users</a>
+                    </li>
+                @endif
+
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link" href="{{route('contact')}}">Contact</a>--}}
 {{--                </li>--}}
