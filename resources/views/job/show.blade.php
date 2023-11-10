@@ -1,4 +1,13 @@
+<?php 
+    use App\Models\Job;
+    use App\Models\JobRequest;
+?>
+
 @extends('layouts.index')
+<?php
+ $jobs = Job::all();
+ $jobsRequest = JobRequest::all();
+?>
 @section('title')
     <title>
     {{$job->title .' - EmployingX'}}
@@ -54,18 +63,39 @@
                             <span>
                                 {{$job->job_type}}
                               </span>
+                             <br>
+                             @if (auth()->user()->role->name == 'user')
+                             @php
+                                $applied = false;
+                                @endphp
+                                @foreach($jobsRequest as $jobRequest)
+                                    @if ($jobRequest->user_id == auth()->user()->id && $jobRequest->job_id == $job->id)
+                                        @php
+                                            $applied = true;
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                @if (!$applied)
+                                    <form action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}" method="POST">
+                                    @Method("PATCH")    
+                                    @csrf
+                                        <button type="submit" name="remove_jobRequest" class="btn btn-primary mt-4 btn-lg">Apply</button>
+                                    </form>
+                                @else
+                                    <button type="button" name="remove_jobRequest" class="btn btn-success mt-4 btn-lg">Applied</button>
+                                @endif
+                            @endif
                             @if (auth()->user()->id == $job->user_id)
                             <div class="row mt-4">
                                 <div class="col-lg-5">
                                     <a href="{{route('job.edit',$job->slug)}}" class="btn bg-gradient-dark mb-0 mt-lg-auto mt-2 w-100" type="button">Edit job</a>
-                                </div>
-
-                                @endif
-                                @if (auth()->user()->id == $job->user_id)
+                            </div>
+                            @endif
+                            @if (auth()->user()->id == $job->user_id)
                                 <div class="col-lg-5">
                                     <button class="btn bg-gradient-danger mb-0 mt-lg-auto mt-2 w-100" data-toggle="modal" data-target="#confirmDeleteJobModal">Delete job</button>
                                 </div>
-                                @endif
+                            @endif
                     </div>
                     <div class="row mt-5">
                         <div class="col-12">
@@ -136,20 +166,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteJobModalLabel">Xác nhận xóa công việc</h5>
+                <h5 class="modal-title" id="confirmDeleteJobModalLabel">Confirm Deletion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Bạn có chắc chắn muốn xóa công việc này?
+                Are you sure want to delete this job?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <form action="{{route('job.destroy',$job->slug)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>

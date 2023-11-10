@@ -67,7 +67,7 @@ class JobsRequestController extends Controller
             return back();
         }
         else{
-            return redirect()->route('home');
+            return redirect()->route('jobs.request');
         }
     }
 
