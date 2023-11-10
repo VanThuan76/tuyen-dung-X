@@ -15,55 +15,29 @@
 @endsection
 @section('content')
 <div class="container-fluid py-4">
-    @foreach($jobs as $job)
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div style="display: grid; grid-template-columns: 1fr 2fr 1fr;">
-                            <div class="text-center">
-                                <img class="w-50 border-radius-lg shadow-lg mx-auto" src="/images/{{$job->user->photo->name}}" alt="{{$job->title}}">
-                            </div>
-                            <div class="col-lg-6 mx-auto">
-                                <div class="row" style="flex-direction:column; min-height: 30vh;">
-                                    <div class="row" style="display: flex; gap: 20px; justify-content: start; align-items: center;">
-                                        <h3 class="mt-lg-0 mt-4">{{$job->title}}</h3>
-                                        <div style="display: flex; gap: 5px; justify-content: start; align-items: start;">
-                                            <i class="fa fa-list-alt" aria-hidden="true"></i>
-                                            <span>{{$job->category->name}}</span>
-                                        </div>
-                                        <div style="display: flex; gap: 5px; justify-content: start; align-items: start;">
-                                            <i class="fas fa-address-card"></i> 
-                                            <span>{{$job->address}}</span>
-                                        </div>
-                                        <div style="display: flex; gap: 5px; justify-content: start; align-items: start;">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>{{$job->startingDate}} | {{$job->endingDate ? $job->endingDate : ''}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3" style="flex-direction:column">
-                                        <div style="display: flex; gap: 5px; justify-content: start; align-items: center;">
-                                            <h4>Price ({{$job->price_type}}):</h4>
-                                            <h5>${{$job->price}}</h5>
-                                        </div>
-                                        <div style="display: flex; gap: 5px; justify-content: start; align-items: center;">
-                                            <h4>Address:</h4>
-                                            <h5>{{$job->address}}</h5>
-                                        </div>
-                                        <div style="display: flex; gap: 5px; justify-content: start; align-items: center;">
-                                            <h4>Experience</h4>
-                                            <h5>{{$job->experience}}</h5>
-                                        </div>
-                                        <div style="display: flex; gap: 5px; justify-content: start; align-items: center;">
-                                            <h4>Job Type:</h4>
-                                            <h5>{{$job->job_type}}</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 mx-auto">
+    <div class="row">
+        @foreach($jobs as $job)
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="w-100 border-radius-lg shadow-lg" src="/images/{{$job->user->photo->name}}" alt="{{$job->title}}">
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="mt-1" style="white-space: nowrap;">{{$job->title}}</h3>
+                            <p style="font-weight: bold; color: red; font-size: 24px;">{{$job->user->company->name}}</p>
+                            <p><i class="fa fa-list-alt" aria-hidden="true"></i> <span>{{$job->category->name}}</span></p>
+                            <p><i class="fas fa-address-card"></i> <span>{{$job->address}}</span></p>
+                            <p><i class="fas fa-calendar-alt"></i> <span>{{$job->startingDate}} | {{$job->endingDate ? $job->endingDate : ''}}</span></p>
+                            <p><strong>Price ({{$job->price_type}}):</strong> <span>${{$job->price}}</span></p>
+                            <p><strong>Address:</strong> <span>{{$job->address}}</span></p>
+                            <p><strong>Experience:</strong> <span>{{$job->experience}}</span></p>
+                            <p><strong>Job Type:</strong> <span>{{$job->job_type}}</span></p>
+                            <div class="mt-3 d-flex justify-between">
+                            <a href="{{ route('job.show', $job->slug) }}" class="btn btn-primary mr-2">See job</a>
                                 @php
-                                    $applied = false;
+                                $applied = false;
                                 @endphp
                                 @foreach($jobsRequest as $jobRequest)
                                     @if ($jobRequest->user_id == auth()->user()->id && $jobRequest->job_id == $job->id)
@@ -72,21 +46,22 @@
                                         @endphp
                                     @endif
                                 @endforeach
-                            
                                 @if (!$applied)
-                                    <form action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}" method="POST" style="display: inline;">
-                                        @method("PATCH")
-                                        @csrf
-                                        <button type="submit" name="remove_jobRequest" style="text-decoration: none; color:green!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Apply</button>
+                                    <form action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}" method="POST">
+                                    @Method("PATCH")    
+                                    @csrf
+                                        <button type="submit" name="remove_jobRequest" class="btn btn-primary">Apply</button>
                                     </form>
                                 @else
-                                    <button type="button" name="remove_jobRequest" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Applied</button>
+                                    <button type="button" name="remove_jobRequest" class="btn btn-success">Applied</button>
                                 @endif
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        @endforeach
+    </div>
 </div>
-@endforeach
 @endsection
