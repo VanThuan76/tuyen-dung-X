@@ -113,11 +113,14 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showByUser($id)
+    public function showByUser($slug)
     {
         $user = auth()->user();
-        $job = Job::where('id', $id)->first();
-        $jobs = null;
+        $job = Job::findBySlugOrFail($slug);
+
+        //other jobs by same company
+        $company = User::find($job->user_id);
+        $jobs = $company->job->where('id', '<>', $job->id);
         return view('job.show', compact('user', 'job', 'jobs'));
     }
     public function list()
