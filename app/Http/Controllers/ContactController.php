@@ -42,7 +42,7 @@ class ContactController extends Controller
             'message' => 'required|max:1000|min:1',
         ]);
         Contact::create($request->all());
-        session()->flash('contact_success','Message sent sucessfully!');
+        session()->flash('contact_success','Message sent successfully!');
         return back();
     }
 

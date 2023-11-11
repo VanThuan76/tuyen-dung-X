@@ -16,6 +16,11 @@
                     <div class="card-header pb-0">
                         <h6>Jobs Response</h6>
                     </div>
+                    <div class="card-header">  
+                        @if (session('updated_jobRequest'))
+                            <span style="color:green!important">{{session('updated_jobRequest')}}</span>
+                        @endif                 
+                    </div>
                     <div class="card-body px-0 pb-2 pt-0">
                         <div class="table-responsive p-0">
                             <table class="align-items-center mb-0 table">
@@ -118,7 +123,7 @@
                                                             </span>
                                                         </td>
                                                     </tr>
-     @endforeach
+                                        @endforeach
                                 </tbody>
                             </table>
 

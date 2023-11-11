@@ -92,7 +92,7 @@ class SucessfulUsersController extends Controller
     public function destroy(SucessfulUsers $user)
     {
         $user->delete();
-        session()->flash('deleted_user', 'User deleted sucessfully');
+        session()->flash('deleted_user', 'User deleted successfully');
         return back();
     }
 }

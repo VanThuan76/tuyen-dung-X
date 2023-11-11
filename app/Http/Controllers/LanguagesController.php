@@ -80,7 +80,7 @@ class LanguagesController extends Controller
         $request->validate(['name'=>'required|max:255']);
         $language = Language::findBySlugOrFail($slug);
         $language->update($request->all());
-        session()->flash('updated_language', 'Language updated sucessfully.');
+        session()->flash('updated_language', 'Language updated successfully.');
         return redirect()->route('languages');
     }
 
@@ -100,7 +100,7 @@ class LanguagesController extends Controller
         }
 
         $language->delete();
-        session()->flash('deleted_language', 'Language deleted sucessfully.');
+        session()->flash('deleted_language', 'Language deleted successfully.');
         return back();
     }
 }

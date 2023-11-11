@@ -15,6 +15,11 @@ use App\Models\Job;
                     <div class="card-header pb-0">
                         <h6>Jobs Request</h6>
                     </div>
+                    <div class="card-header">                  
+                        @if (session('deleted_jobRequest'))
+                            <span style="color:red!important">{{session('deleted_jobRequest')}}</span>
+                        @endif
+                    </div>
                     <div class="card-body px-0 pb-2 pt-0">
                         <div class="table-responsive p-0">
                             <table class="align-items-center mb-0 table">
@@ -94,14 +99,6 @@ use App\Models\Job;
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle">
-                                                <!-- <form action="{{ route('job.request.delete', $jobRequest->id) }}"
-                                                    method="POST" style="display: inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" name="remove_jobRequest"
-                                                        style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;"
-                                                        class="btn btn-link">Delete</button>
-                                                </form> -->
                                                 <button class="btn btn-link delete-job-request-btn" data-toggle="modal" data-target="#confirmDeleteJobRequestModal{{$jobRequest->id}}" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;">Delete</button>
                                             </td>
                                         </tr>

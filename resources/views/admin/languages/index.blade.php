@@ -36,11 +36,6 @@
                             @enderror
                             <button class="btn bg-gradient-dark btn-sm float-end mt-2 mb-0">Create</button>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -87,18 +82,39 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold"><a href="{{route('admin.language.edit',$language->slug)}}">Change</a>/
-                                                <form action="{{route('admin.language.destroy',$language->slug)}}" method="POST" style="display: inline; ">
+                                                <!-- <form action="{{route('admin.language.destroy',$language->slug)}}" method="POST" style="display: inline; ">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" name="remove_language" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form>
+                                                    <button type="submit" name="remove_language" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form> -->
+                                                    <button class="btn btn-link delete-language-btn" data-toggle="modal" data-target="#confirmDeleteLanguageModal{{$language->id}}" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;">Delete</button>
                                             </span>
                                         </td>
-
                                     </tr>
+                                    <div class="modal fade" id="confirmDeleteLanguageModal{{$language->id}}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLanguageModalLabel{{$language->id}}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmDeleteLanguageModalLabel{{$language->id}}">Confirm Deletion</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                     Are you sure you want to delete this language?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <form action="{{route('admin.language.destroy',$language->slug)}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 @endforeach
-
                                 </tbody>
-
                             </table>
                             <div class="d-flex justify-content-center mt-3">
                                 {{$languages->links()}}

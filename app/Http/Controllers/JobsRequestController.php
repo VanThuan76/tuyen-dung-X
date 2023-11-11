@@ -44,11 +44,11 @@ class JobsRequestController extends Controller
      */
     public function create($userId, $jobId)
     {
-        $jobRequet = new JobRequest();
-        $jobRequet->user_id = $userId;
-        $jobRequet->job_id = $jobId;
-        $jobRequet->save();
-        session()->flash('added_jobRequest', 'Job request added sucessfully');
+        $jobRequest = new JobRequest();
+        $jobRequest->user_id = $userId;
+        $jobRequest->job_id = $jobId;
+        $jobRequest->save();
+        session()->flash('added_jobRequest', 'Job request added successfully');
         return back();
     }
 
@@ -62,13 +62,9 @@ class JobsRequestController extends Controller
     {
         $jobRequest = JobRequest::where('id', $id);
         $jobRequest->delete();
-        session()->flash('deleted_job', 'Job offer deleted sucessfully');
-        if (auth()->user()->role->name == 'administrator') {
-            return back();
-        }
-        else{
-            return redirect()->route('jobs.request');
-        }
+        session()->flash('deleted_jobRequest', 'Job Request deleted successfully');       
+        return back();
+    
     }
 
     /**
@@ -84,11 +80,9 @@ class JobsRequestController extends Controller
             $jobRequest->status = $status;
             $jobRequest->save();
         }
-        if (auth()->user()->role->name == 'administrator') {
-            return back();
-        } else {
-            return redirect()->route('home');
-        }
+        session()->flash('updated_jobRequest', 'Job Request updated successfully.');
+        return back();
+        
     }
     
 }

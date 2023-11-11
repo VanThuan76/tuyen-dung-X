@@ -15,6 +15,11 @@
 @endsection
 @section('content')
 <div class="container-fluid py-4">
+    <div class="card-header">                  
+        @if (session('added_jobRequest'))
+            <span style="color:green!important">{{session('added_jobRequest')}}</span>
+        @endif
+    </div>
     <div class="row">
         @foreach($jobs as $job)
         <div class="col-md-6 mb-4">

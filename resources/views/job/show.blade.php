@@ -27,15 +27,12 @@
                         </div>
                         <div class="col-lg-5 mx-auto">
                             <h3 class="mt-lg-0 mt-4">{{$job->title}}</h3>
-
-
                             <i class="fa fa-list-alt" aria-hidden="true"></i> {{$job->category->name}}
                             <br>
                             <i class="fas fa-address-card"></i> {{$job->address}}<br>
                             <i class="fas fa-calendar-alt"></i> {{$job->startingDate}} | {{$job->endingDate ? $job->endingDate : '/'}}<br>
                             <h6 class="mb-0 mt-3">Price ({{$job->price_type}})</h6>
                             <h5>€{{$job->price}}</h5>
-
                             <br>
                             <label>Description</label>
                             <br>
@@ -72,7 +69,7 @@
                                     @if ($jobRequest->user_id == auth()->user()->id && $jobRequest->job_id == $job->id)
                                         @php
                                             $applied = true;
-                                        @endphp
+                                    @endphp
                                     @endif
                                 @endforeach
                                 @if (!$applied)
@@ -113,9 +110,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     @foreach($jobs as $job)
-
                                     <tr>
 
                                         <td>
@@ -131,7 +126,6 @@
                                             </div>
                                         </td>
                                         <td>
-
                                             <p class="text-sm text-secondary mb-0">{{$job->price}}</p>
                                         </td>
                                         <td>
@@ -144,11 +138,8 @@
                                             <span class="text-secondary  text-sm">{{$job->experience}}</span>
                                         </td>
                                     </tr>
-
                                     @endforeach
-
                                     </tbody>
-
                                 </table>
                                 @else
                                     <span style="color:red; margin-left: 25px;">No jobs found.</span>

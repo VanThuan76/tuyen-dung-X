@@ -81,7 +81,7 @@ class CategoriesController extends Controller
 
         $category = Category::findBySlugOrFail($slug);
         $category->update($request->all());
-        session()->flash('updated_category', 'Category updated sucessfully.');
+        session()->flash('updated_category', 'Category updated successfully.');
         return redirect()->route('categories');
     }
 
@@ -95,7 +95,7 @@ class CategoriesController extends Controller
     {
         $category = Category::findBySlugOrFail($slug);
         $category->delete();
-        session()->flash('deleted_category', 'Category deleted sucessfully.');
+        session()->flash('deleted_category', 'Category deleted successfully.');
         return back();
     }
 }
