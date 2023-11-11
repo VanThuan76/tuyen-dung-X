@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ApplyMail;
 use App\Models\Job;
 use App\Models\JobRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class JobsRequestController extends Controller
 {
@@ -25,14 +28,9 @@ class JobsRequestController extends Controller
     public function response()
     {
         $user = auth()->user();
-        $job = Job::where('user_id', $user->id)->first();
-        if($job){
+            $job = Job::where('user_id', $user->id)->first();
             $jobsResponse = JobRequest::where("job_id", $job->id)->get();
             return view('job.response',compact('jobsResponse'));
-        }else{
-            $jobsResponse = null;
-            return;
-        }
     }
 
      /**
@@ -83,6 +81,8 @@ class JobsRequestController extends Controller
         if ($jobRequest) {
             $jobRequest->status = $status;
             $jobRequest->save();
+            $email = User::where("id", $jobRequest->user_id)->first()->email;
+            Mail::to($email)->send(new ApplyMail($jobRequest));
         }
         if (auth()->user()->role->name == 'administrator') {
             return back();

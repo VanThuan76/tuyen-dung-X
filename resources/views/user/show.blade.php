@@ -1,3 +1,6 @@
+<?php
+use App\Models\SucessfulUsers;
+?>
 @extends('layouts.index')
 @section('title')
     <title>
@@ -33,7 +36,7 @@
 
 
                <li class="nav-item">
-
+                @if(!SucessfulUsers::where('user_id', $user->id)->exists())
                    <a class="nav-link mb-0 px-0 py-1 active " data-toggle="modal" data-target="#candidatesModal" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
                        <svg class="text-dark" width="16px" height="16px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -51,6 +54,7 @@
                        </svg>
                        <span class="ms-1">Mark successful candidate</span>
                    </a>
+                @endif
                </li>
 
            </ul>
@@ -85,7 +89,13 @@
            <hr class="horizontal gray-light my-1">
            <ul class="list-group">
                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp;{{$user->name. " " . $user->surname}}</li>
-               <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> <a href="mailto:{{$user->email}}"> {{$user->email}}</a> </li>
+               <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> 
+                    @if($user->email_verified_at != null)
+                        <a style="color: green" href="mailto:{{$user->email}}"> {{$user->email}}</a>
+                    @else
+                        <a href="mailto:{{$user->email}}">{{$user->email}}</a>
+                    @endif
+                </li>
                @if ($user->category)
                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Category:</strong> &nbsp;{{$user->category->name}}</li>@endif
                @if ($user->cv)

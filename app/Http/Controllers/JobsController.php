@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\JobStoreRequest;
 use App\Models\Category;
 use App\Models\Job;
+use App\Models\JobRequest;
 use App\Models\User;
 
 class JobsController extends Controller
@@ -28,7 +29,7 @@ class JobsController extends Controller
     {
         $user = auth()->user();
         $categories = Category::all();
-        return view('job.create',compact('user','categories'));
+        return view('job.create', compact('user', 'categories'));
     }
 
     /**
@@ -42,46 +43,41 @@ class JobsController extends Controller
         $user = auth()->user();
 
         $category = Category::find($request->category_id);
-        if (!$category){
+        if (!$category) {
             session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
             return back()->withInput();
         }
-        if (!$request->has_endDate && empty($request->endingDate)){
+        if (!$request->has_endDate && empty($request->endingDate)) {
             session()->flash('error_endDate', 'Please fill in the date.');
             return back()->withInput();
         }
-        if (!$request->remote && empty($request->address)){
+        if (!$request->remote && empty($request->address)) {
             session()->flash('error_address', 'Please fill in the address.');
             return back()->withInput();
         }
-        if ($request->has_endDate == 'on'){
+        if ($request->has_endDate == 'on') {
             $request->request->remove('endDate');
         }
-        if ($request->remote == 'on'){
-           $request['remote'] = 1;
-        }
-        else{
+        if ($request->remote == 'on') {
+            $request['remote'] = 1;
+        } else {
             $request['remote'] = 0;
         }
-        if ($request->price_type == 1){
+        if ($request->price_type == 1) {
             $request['price_type'] = 'Fixed';
-        }
-        else{
+        } else {
             $request['price_type'] = 'Hourly';
         }
-        if ($request->experience == 1){
+        if ($request->experience == 1) {
             $request['experience'] = '1-3';
-        }
-        else if ($request->experience == 2){
+        } else if ($request->experience == 2) {
             $request['experience'] = '4-7';
-        }
-        else if ($request->experience == 3){
+        } else if ($request->experience == 3) {
             $request['experience'] = '+7';
         }
-        if ($request->job_type == 1){
+        if ($request->job_type == 1) {
             $request['job_type'] = 'Part Time';
-        }
-        else{
+        } else {
             $request['job_type'] = 'Full Time';
         }
 
@@ -107,14 +103,30 @@ class JobsController extends Controller
 
         //other jobs by same company
         $company = User::find($job->user_id);
-        $jobs = $company->job->where('id','<>',$job->id);
-        return view('job.show',compact('user','job', 'jobs'));
+        $jobs = $company->job->where('id', '<>', $job->id);
+        return view('job.show', compact('user', 'job', 'jobs'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showByUser($id)
+    {
+        $user = auth()->user();
+        $job = Job::where('id', $id)->first();
+        $jobs = null;
+        return view('job.show', compact('user', 'job', 'jobs'));
     }
     public function list()
     {
         $user = auth()->user();
         $jobs = Job::all();
-        return view('job.list',compact('user','jobs'));
+        $categories = Category::all();
+        $jobsRequest = JobRequest::all();
+        return view('job.list', compact('user', 'jobs', 'categories', 'jobsRequest'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -127,7 +139,7 @@ class JobsController extends Controller
         $user = auth()->user();
         $categories = Category::all();
         $job = Job::findBySlugOrFail($slug);
-        return view ('job.edit',compact('user','categories','job'));
+        return view('job.edit', compact('user', 'categories', 'job'));
     }
 
     /**
@@ -143,50 +155,45 @@ class JobsController extends Controller
         $user = auth()->user();
 
         $job = Job::findBySlugOrFail($slug);
-        if (auth()->user()->id != $job->user_id){
+        if (auth()->user()->id != $job->user_id) {
             abort(403, 'Unauthorized action.');
         }
         $category = Category::find($request->category_id);
-        if (!$category){
+        if (!$category) {
             session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
             return back()->withInput();
         }
-        if (!$request->has_endDate && empty($request->endingDate)){
+        if (!$request->has_endDate && empty($request->endingDate)) {
             session()->flash('error_endDate', 'Please fill in the date.');
             return back()->withInput();
         }
-        if (!$request->remote && empty($request->address)){
+        if (!$request->remote && empty($request->address)) {
             session()->flash('error_address', 'Please fill in the address.');
             return back()->withInput();
         }
-        if ($request->has_endDate == 'on'){
+        if ($request->has_endDate == 'on') {
             $request['endingDate'] = '';
         }
-        if ($request->remote == 'on'){
+        if ($request->remote == 'on') {
             $request['remote'] = 1;
-        }
-        else{
+        } else {
             $request['remote'] = 0;
         }
-        if ($request->price_type == 1){
+        if ($request->price_type == 1) {
             $request['price_type'] = 'Fixed';
-        }
-        else{
+        } else {
             $request['price_type'] = 'Hourly';
         }
-        if ($request->experience == 1){
+        if ($request->experience == 1) {
             $request['experience'] = '1-3';
-        }
-        else if ($request->experience == 2){
+        } else if ($request->experience == 2) {
             $request['experience'] = '4-7';
-        }
-        else if ($request->experience == 3){
+        } else if ($request->experience == 3) {
             $request['experience'] = '+7';
         }
-        if ($request->job_type == 1){
+        if ($request->job_type == 1) {
             $request['job_type'] = 'Part Time';
-        }
-        else{
+        } else {
             $request['job_type'] = 'Full Time';
         }
 
@@ -207,16 +214,15 @@ class JobsController extends Controller
     {
         $job = Job::findBySlugOrFail($slug);
 
-        if (auth()->user()->id != $job->user_id && auth()->user()->role->name != 'administrator'){
+        if (auth()->user()->id != $job->user_id && auth()->user()->role->name != 'administrator') {
             abort(403, 'Unauthorized action.');
         }
         $job->delete();
         session()->flash('deleted_job', 'Job offer deleted sucessfully');
         if (auth()->user()->role->name == 'administrator') {
             return back();
-        }
-        else{
-            return redirect()->route('home');
+        } else {
+            return redirect()->route('jobs.request');
         }
     }
 }

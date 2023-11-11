@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -62,7 +63,7 @@ Route::middleware(['auth','company'])->group(function() {
     Route::get('/company/changeUsername', 'App\Http\Controllers\CompanyChangeUsernameController@edit')->name('company.username.edit');
     Route::get('/company/{company}', [App\Http\Controllers\CompanyProfileController::class, 'show'])->name('company.show');
     Route::patch('/company/update', [App\Http\Controllers\CompanyProfileController::class, 'update'])->name('company.update');
-    Route::get('/company/jobs/response', [App\Http\Controllers\JobsRequestController::class, 'response'])->name('company.job.response');
+    Route::get('/company/jobs/response', [App\Http\Controllers\JobsRequestController::class, 'response'])->name('response.company.job');
     Route::patch('/company/jobs/response/{id}/{status}', [App\Http\Controllers\JobsRequestController::class, 'update'])->name('job.response.update');
     Route::get('/company/candidate/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('candidate.show');
     Route::get('/job/create', [App\Http\Controllers\JobsController::class, 'create'])->name('job.create');
@@ -82,7 +83,8 @@ Route::middleware(['auth','user'])->group(function() {
     Route::get('/user/edit', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('user.edit');
     Route::get('/user/changePassword', 'App\Http\Controllers\UserChangePasswordController@index')->name('user.password.edit');
     Route::get('/user/changePhoto', 'App\Http\Controllers\UserChangePhotoController@index')->name('user.photo.edit');
-    Route::get('/job/{job}', [App\Http\Controllers\JobsController::class, 'show'])->name('job.show');
+    Route::get('/job/{job}', [App\Http\Controllers\JobsController::class, 'showByUser'])->name('job.showByUser');
+    Route::get('/user/search/jobs', [App\Http\Controllers\SearchController::class, 'jobsByUser'])->name('user.search.jobs');
 
     Route::get('/user/changeUsername', 'App\Http\Controllers\UserChangeUsernameController@edit')->name('user.username.edit');
     Route::get('/user/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('user.show');
@@ -100,3 +102,13 @@ Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name(
 Auth::routes();
 
 Route::get('/send-test', [App\Http\Controllers\TestEnrollmentController::class, 'sendTestNotification']);
+
+if(\Illuminate\Support\Facades\App::environment("local")){
+    Route::post("/verify-email", function(Request $request){
+        $email = $request->input('email');
+        $user = \App\Models\User::factory()->make(['email' => $email]);
+        Mail::to($email)->send(new WelcomeMail($user));
+        return response()->json(['message' => 'Verification email sent successfully']);
+    })->name('verify-email');
+}
+Route::get('/verification/{id}', [App\Http\Controllers\VerifyMailController::class, 'verify'])->name('verification.verify');

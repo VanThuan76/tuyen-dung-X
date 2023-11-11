@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\JobRequest;
 use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -106,6 +107,87 @@ class SearchController extends Controller
         }
 
 
+    }
+    public function jobsByUser(Request $request){
+        $categories = Category::all();
+        $input = $request->q;
+        $user = auth()->user();
+        $category = $request->category;
+        $job_type = $request->job_type;
+        $price_type = $request->price_type;
+        $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
+        $jobs = Job::query();
+        if ($category != ''){
+            $category = Category::findBySlugOrFail($category);
+            $category = $category->id;
+        }
+        if ($input != '') {
+            if (strlen($input) <= 2) {
+                session()->flash('min_length_input', "Please give a longer word");
+                return redirect()->route('admin.jobs');
+            }
+
+            $jobs_by_word = Job::where(function ($q) use ($separated_input) {
+                foreach ($separated_input as $input) {
+                    if (strlen($input) < 2) {
+                        continue;
+                    }
+                    $q->orWhere('title', 'like', "%{$input}%")
+                        ->orWhere('body', 'like', "%{$input}%")
+                        ->orWhere('duties', 'like', "%{$input}%")
+                        ->orWhere('address', 'like', "%{$input}%")
+                        ->orWhere('experience', 'like', "%{$input}%")
+                        ->orWhere('price', 'like', "%{$input}%")->orderBy('title', 'ASC');
+                }
+            });
+
+            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');//kerko me fjali
+            if ($category != ''){
+                $jobs->where('category_id', $category);
+                $jobs_by_word->where('category_id', $category);
+            }
+            if ($job_type != ''){
+                $jobs->where('job_type', $job_type);
+                $jobs_by_word->where('job_type', $job_type);
+
+            }
+            if ($price_type != ''){
+                $jobs->where('price_type', $price_type);
+                $jobs_by_word->where('price_type', $price_type);
+            }
+
+            $jobs->union($jobs_by_word);
+
+
+            $jobs = $jobs->paginate(10)->appends(request()->query());
+            $jobs_count = $jobs->count();
+            $jobsRequest = JobRequest::all();
+
+            return view('job.list', compact('jobs', 'jobs_count', 'user', 'jobsRequest', 'categories'));
+
+        }
+        else{
+
+            if ($category == '' && $job_type == '' && $price_type == ''){
+                return redirect()->route('admin.jobs');
+            }
+
+            if ($category != '') {
+
+                $jobs->where('category_id', $category)->toSql();
+            }
+            if ($job_type != '') {
+                $jobs->where('job_type', $job_type);
+            }
+            if ($price_type != '') {
+                $jobs->where('price_type', $price_type);
+            }
+            $jobsRequest = JobRequest::all();
+            $jobs = $jobs->paginate(10)->appends(request()->query());
+                $jobs_count = $jobs->count();
+                return view('job.list', compact('jobs', 'jobs_count', 'jobsRequest', 'user', 'categories'));
+
+        }
     }
     public function users(Request $request)
     {

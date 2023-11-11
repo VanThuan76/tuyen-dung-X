@@ -53,6 +53,11 @@
                 </div>
                 <ul class="navbar-nav  justify-content-end">
                     <li class="nav-item d-flex align-items-center">
+                        @if(auth()->user()->email_verified_at == null)
+                            <a href="https://mail.google.com" target="_blank">
+                                <span style="padding-right: 50px; color:red; text-decoration: underline;">Not verify email</span>
+                            </a>
+                        @endif
                         <a @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.show',auth()->user()->slug)}}" @else href="{{route('company.show',auth()->user()->slug)}}"  @endif class="nav-link text-body font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
                             <span class="d-sm-inline d-none">@if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{auth()->user()->name. " " . auth()->user()->surname}} @else {{auth()->user()->company->name}} @endif</span>

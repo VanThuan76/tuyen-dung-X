@@ -126,12 +126,12 @@
                                 <div class="card card-blog card-plain">
                                     <div class="position-relative">
                                         <a class="d-block shadow-xl border-radius-xl">
-                                            <a href="{{route('job.show',$job->slug)}}">  <img src="/images/{{$user->photo->name}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl"></a>
+                                            <a href="{{route('job.showByUser',$job->slug)}}">  <img src="/images/{{$user->photo->name}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl"></a>
                                         </a>
                                     </div>
                                     <div class="card-body px-1 pb-0">
                                         <p class="text-gradient text-dark mb-2 text-sm">{{$job->category->name}}</p>
-                                        <a href="{{route('job.show',$job->slug)}}">
+                                        <a href="{{route('job.showByUser',$job->slug)}}">
                                             <h5>
                                                 {{Str::limit($job->title,50)}}
                                             </h5>
@@ -140,7 +140,7 @@
                                             {{Str::limit($job->body,70)}}
                                         </p>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <a href="{{route('job.show',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">See job</a>
+                                            <a href="{{route('job.showByUser',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">See job</a>
 
                                         </div>
                                     </div>

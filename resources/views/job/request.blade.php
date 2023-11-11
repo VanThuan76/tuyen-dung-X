@@ -77,7 +77,8 @@ use App\Models\Job;
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center mt-3">
                                                     <a class="nav-link"
-                                                        href="{{ route('job.show', $jobRequest->job_id) }}">Detail Job</a>
+                                                        href="{{ route('job.showByUser', $jobRequest->job_id) }}">Detail
+                                                        Job</a>
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle">
@@ -95,39 +96,49 @@ use App\Models\Job;
                                             </td>
                                             <td class="text-center align-middle">
                                                 <!-- <form action="{{ route('job.request.delete', $jobRequest->id) }}"
-                                                    method="POST" style="display: inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" name="remove_jobRequest"
-                                                        style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;"
-                                                        class="btn btn-link">Delete</button>
-                                                </form> -->
-                                                <button class="btn btn-link delete-job-request-btn" data-toggle="modal" data-target="#confirmDeleteJobRequestModal{{$jobRequest->id}}" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;">Delete</button>
+                                                        method="POST" style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" name="remove_jobRequest"
+                                                            style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;"
+                                                            class="btn btn-link">Delete</button>
+                                                    </form> -->
+                                                <button class="btn btn-link delete-job-request-btn" data-toggle="modal"
+                                                    data-target="#confirmDeleteJobRequestModal{{ $jobRequest->id }}"
+                                                    style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;">Delete</button>
                                             </td>
                                         </tr>
-                                        <div class="modal fade" id="confirmDeleteJobRequestModal{{$jobRequest->id}}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteJobRequestModalLabel{{$jobRequest->id}}" aria-hidden="true">
+                                        <div class="modal fade" id="confirmDeleteJobRequestModal{{ $jobRequest->id }}"
+                                            tabindex="-1" role="dialog"
+                                            aria-labelledby="confirmDeleteJobRequestModalLabel{{ $jobRequest->id }}"
+                                            aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="confirmDeleteJobRequestModalLabel{{$jobRequest->id}}">Confirm Deletion</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                        <h5 class="modal-title"
+                                                            id="confirmDeleteJobRequestModalLabel{{ $jobRequest->id }}">
+                                                            Confirm Deletion</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete this job request?
-                                                </div>
-                                            <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                        <form action="{{ route('job.request.delete', $jobRequest->id) }}" method="POST">
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete this job request?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <form action="{{ route('job.request.delete', $jobRequest->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Delete</button>
                                                         </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     @endforeach
                                 </tbody>
                             </table>

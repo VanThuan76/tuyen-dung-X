@@ -72,6 +72,11 @@
         <!-- Menu Extra -->
         <div class="header-menu-extra">
             <ul class="list-inline">
+                @if(auth()->user()->email_verified_at == null)
+                            <a href="https://mail.google.com" target="_blank">
+                                <span style="padding-right: 50px; color:red; text-decoration: underline;">Not verify email</span>
+                            </a>
+                @endif
                 <li><a href="{{route('login')}}">@if (!auth()->guest()) @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{auth()->user()->name. " " . auth()->user()->surname}} @else {{auth()->user()->company->name}} @endif @else Log in @endif </a></li>
 
             </ul>

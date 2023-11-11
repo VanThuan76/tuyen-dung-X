@@ -95,7 +95,7 @@
 
                                         <tr>
                                             <td>
-                                                <a href="{{route('job.show',$job->slug)}}">                                                    <div class="d-flex px-2 py-1">
+                                                <a href="{{route('job.showByUser',$job->slug)}}">                                                    <div class="d-flex px-2 py-1">
                                                         <div>
                                                             <img src="/images/{{$job->user->photo->name}}" class="avatar avatar-sm me-3" alt="user1">
                                                         </div>
