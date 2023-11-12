@@ -36,11 +36,6 @@
                             @enderror
                             <button class="btn bg-gradient-dark btn-sm float-end mt-2 mb-0">Create</button>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -65,18 +60,14 @@
                                 </thead>
                                 <tbody>
                                 @foreach($languages as $language)
-
                                     <tr>
                                         <td>
-
                                             <div class="d-flex px-2 py-1">
 
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">{{$language->id}}</h6>
-
                                                 </div>
                                             </div>
-
                                         </td>
                                         <td>
                                             <h6 class="mb-0 text-sm">{{$language->name}}</h6>
@@ -93,21 +84,15 @@
                                                     <button type="submit" name="remove_language" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form>
                                             </span>
                                         </td>
-
                                     </tr>
                                 @endforeach
-
                                 </tbody>
-
                             </table>
                             <div class="d-flex justify-content-center mt-3">
                                 {{$languages->links()}}
-
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>

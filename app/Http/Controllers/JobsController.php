@@ -203,7 +203,7 @@ class JobsController extends Controller
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
         $job->update($input);
-        session()->flash('job_updated', 'Job offer updated sucessfully.');
+        session()->flash('job_updated', 'Job offer updated successfully.');
         return back();
     }
 
@@ -221,7 +221,7 @@ class JobsController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $job->delete();
-        session()->flash('deleted_job', 'Job offer deleted sucessfully');
+        session()->flash('deleted_job', 'Job offer deleted successfully');
         if (auth()->user()->role->name == 'administrator') {
             return back();
         } else {

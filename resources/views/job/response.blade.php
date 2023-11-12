@@ -16,6 +16,11 @@
                     <div class="card-header pb-0">
                         <h6>Jobs Response</h6>
                     </div>
+                    <div class="card-header">  
+                        @if (session('updated_jobRequest'))
+                            <span style="color:green!important">{{session('updated_jobRequest')}}</span>
+                        @endif                 
+                    </div>
                     <div class="card-body px-0 pb-2 pt-0">
                         <div class="table-responsive p-0">
                             <table class="align-items-center mb-0 table">
@@ -96,29 +101,25 @@
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle">
-                                                <span class="text-secondary font-weight-bold text-xs">
-                                                    <form
-                                                        action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 2]) }}"
-                                                        method="POST" style="display: inline; ">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <button type="submit" name="disAgree_jobResponse"
-                                                            style="text-decoration: none; color:rgb(201, 201, 63)!important; padding: 0; margin:0!important;text-transform: none;"
-                                                            class="btn btn-link">Disagree</button>
-                                                    </form>/
-                                                    <form
-                                                        action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 1]) }}"
-                                                        method="POST" style="display: inline; ">
-                                                                    @csrf
-                                                                    @method('PATCH')
-                                                                    <button type="submit" name="agree_jobResponse"
-                                                                        style="text-decoration: none; color:green!important; padding: 0; margin:0!important;text-transform: none;"
-                                                                        class="btn btn-link">Agree</button>
-                                                                </form>
-                                                            </span>
-                                                        </td>
+    @if ($jobResponse->status === null)
+        <span class="text-secondary font-weight-bold text-xs">
+            <form action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 2]) }}" method="POST" style="display: inline;">
+                @csrf
+                @method('PATCH')
+                <button type="submit" name="disAgree_jobResponse" style="text-decoration: none; color:rgb(201, 201, 63)!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Disagree</button>
+            </form>
+            /
+            <form action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 1]) }}" method="POST" style="display: inline;">
+                @csrf
+                @method('PATCH')
+                <button type="submit" name="agree_jobResponse" style="text-decoration: none; color:green!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Agree</button>
+            </form>
+        </span>
+    @endif
+</td>
+
                                                     </tr>
-     @endforeach
+                                            @endforeach
                                 </tbody>
                             </table>
 

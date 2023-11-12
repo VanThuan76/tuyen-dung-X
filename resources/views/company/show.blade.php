@@ -26,7 +26,6 @@
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -72,11 +71,6 @@
                                             <i class="fab fa-linkedin fa-lg"></i>
                                         </a>
                                     @endif
-
-                                    {{--                   <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">--}}
-                                    {{--                       <i class="fab fa-instagram fa-lg"></i>--}}
-                                    {{--                   </a>--}}
-                                </li>
                             @endif
                         </ul>
                     </div>
@@ -97,8 +91,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
         <div class="row mt-4">
             <div class="col-12">
@@ -113,10 +105,8 @@
                                 <a href="{{route('job.create')}}">
                                 <div class="card h-100 card-plain border">
                                     <div class="card-body d-flex flex-column justify-content-center text-center">
-
                                             <i class="fa fa-plus text-secondary mb-3"></i>
                                             <h5 class=" text-secondary"> Create job </h5>
-
                                     </div>
                                 </div>
                                 </a>
@@ -133,7 +123,7 @@
                                         <p class="text-gradient text-dark mb-2 text-sm">{{$job->category->name}}</p>
                                         <a href="{{route('job.showByUser',$job->slug)}}">
                                             <h5>
-                                                {{Str::limit($job->title,50)}}
+                                                {{Str::limit($job->title,20)}}
                                             </h5>
                                         </a>
                                         <p class="mb-4 text-sm">
@@ -147,10 +137,7 @@
                                 </div>
                             </div>
                             @endforeach
-
-
                         </div>
-
                     </div>
                     <div class="d-flex justify-content-center mt-3">
                     {{$jobs->links()}}

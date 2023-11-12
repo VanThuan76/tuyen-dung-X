@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Category;
-use App\Models\City;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\JobRequest;

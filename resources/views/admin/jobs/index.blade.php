@@ -124,10 +124,6 @@
                                             </td>
                                             <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">
-                                                <!-- <form action="{{route('job.destroy',$job->slug)}}" method="POST" style="display: inline; ">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" name="remove_job" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form> -->
                                                     <button class="btn btn-link delete-job-btn" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" type="button" data-toggle="modal" data-target="#confirmDeleteModal{{$job->id}}">Delete</button>
 
                                             </span>

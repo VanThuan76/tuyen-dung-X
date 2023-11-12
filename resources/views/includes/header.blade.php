@@ -55,7 +55,7 @@
                     <li class="nav-item d-flex align-items-center">
                         @if(auth()->user()->email_verified_at == null)
                             <a href="https://mail.google.com" target="_blank">
-                                <span style="padding-right: 50px; color:red; text-decoration: underline;">Not verify email</span>
+                                <span style="padding-right: 50px; color:red;">Not verify email</span>
                             </a>
                         @endif
                         <a @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.show',auth()->user()->slug)}}" @else href="{{route('company.show',auth()->user()->slug)}}"  @endif class="nav-link text-body font-weight-bold px-0">

@@ -19,6 +19,11 @@ $jobsRequest = JobRequest::all();
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                    <div class="card-header">                  
+                        @if (session('added_jobRequest'))
+                            <span style="color:green!important">{{session('added_jobRequest')}}</span>
+                        @endif
+                    </div>
                         <h5 class="mb-4">Job details</h5>
                         <div class="row">
                             <div class="col-xl-5 col-lg-6 text-center">
@@ -78,27 +83,22 @@ $jobsRequest = JobRequest::all();
                                         @endif
                                     @endforeach
                                     @if (!$applied)
-                                        <form
-                                            action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}"
-                                            method="POST">
-                                            @Method('PATCH')
-                                            @csrf
-                                            <button type="submit" name="remove_jobRequest"
-                                                class="btn btn-primary btn-lg mt-4">Apply</button>
+                                    @if(auth()->user()->email_verified_at != null)
+                                        <form action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}" method="POST">
+                                        @Method("PATCH")    
+                                        @csrf
+                                            <button type="submit" name="remove_jobRequest" class="btn btn-primary btn-lg mt-4">Apply</button>
                                         </form>
+                                    @endif
                                     @else
-                                        @if(auth()->user()->email_verified_at != null)
-                                            <button type="button" name="remove_jobRequest"
-                                                class="btn btn-success btn-lg mt-4">Applied</button>
-                                        @endif
+                                            <button type="button" name="remove_jobRequest" class="btn btn-success btn-lg mt-4">Applied</button>
                                     @endif
                                 @endif
                                 @if (auth()->user()->id == $job->user_id)
                                     <div class="row mt-4">
                                         <div class="col-lg-5">
                                             <a href="{{ route('job.edit', $job->slug) }}"
-                                                class="btn bg-gradient-dark mt-lg-auto w-100 mb-0 mt-2" type="button">Edit
-                                                job</a>
+                                                class="btn bg-gradient-dark mt-lg-auto w-100 mb-0 mt-2" type="button">Edit job</a>
                                         </div>
                                 @endif
                                 @if (auth()->user()->id == $job->user_id)

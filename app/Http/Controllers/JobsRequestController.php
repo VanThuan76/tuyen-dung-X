@@ -28,9 +28,10 @@ class JobsRequestController extends Controller
     public function response()
     {
         $user = auth()->user();
-            $job = Job::where('user_id', $user->id)->first();
-            $jobsResponse = JobRequest::where("job_id", $job->id)->get();
-            return view('job.response',compact('jobsResponse'));
+        $jobs = Job::where('user_id', $user->id)->get();
+        $jobIds = $jobs->pluck('id')->toArray();
+        $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get();
+        return view('job.response', compact('jobsResponse'));
     }
 
      /**
@@ -46,7 +47,7 @@ class JobsRequestController extends Controller
         $jobRequet->user_id = $userId;
         $jobRequet->job_id = $jobId;
         $jobRequet->save();
-        session()->flash('added_jobRequest', 'Job request added sucessfully');
+        session()->flash('added_jobRequest', 'Job request added successfully');
         return back();
     }
 
@@ -60,13 +61,8 @@ class JobsRequestController extends Controller
     {
         $jobRequest = JobRequest::where('id', $id);
         $jobRequest->delete();
-        session()->flash('deleted_job', 'Job offer deleted sucessfully');
-        if (auth()->user()->role->name == 'administrator') {
-            return back();
-        }
-        else{
-            return redirect()->route('jobs.request');
-        }
+        session()->flash('deleted_jobRequest', 'Job Request deleted successfully');       
+        return back();
     }
 
     /**
@@ -84,11 +80,8 @@ class JobsRequestController extends Controller
             $email = User::where("id", $jobRequest->user_id)->first()->email;
             Mail::to($email)->send(new ApplyMail($jobRequest));
         }
-        if (auth()->user()->role->name == 'administrator') {
-            return back();
-        } else {
-            return redirect()->route('home');
-        }
+        session()->flash('updated_jobRequest', 'Job Request updated successfully.');
+        return back();
     }
     
 }

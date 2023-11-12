@@ -83,7 +83,7 @@ class AdminContactsController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        session()->flash('deleted_contact','Contact deleted sucessfully');
+        session()->flash('deleted_contact','Contact deleted successfully');
         return back();
     }
 }

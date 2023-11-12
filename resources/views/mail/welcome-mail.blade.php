@@ -11,7 +11,7 @@ This is a verify mail from EmployingX
 @endcomponent
 
 @component('mail::subcopy')
-This is a subcopy component
+If you have any questions or concerns, feel free to contact us.
 @endcomponent
 
 Thanks, <br>

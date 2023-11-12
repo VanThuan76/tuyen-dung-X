@@ -22,8 +22,7 @@
 @endsection
 @section('content')
     <div class="container-fluid py-4">
-
-        <form action="{{route('admin.search.jobs')}}" method="GET">
+    <form action="{{route('admin.search.jobs')}}" method="GET">
             <div class="row g-0">
                 <div class="col-lg-3 col-6">
                     <input id="q" name="q" class="form-control" value="@if(isset($_GET['q'])){{$_GET['q']}}@endif" type="text" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search jobs" autocomplete="off">
@@ -32,34 +31,27 @@
                     <select class="form-select" name="category" id="category" style="border-radius: 0px;" aria-label="Default select example">
                         <option value ="" selected>Categories</option>
                         @foreach($categories as $category)
-                            <option value="{{$category->slug}}" @if(isset($_GET['category'])) @if($_GET['category'] == $category->slug) {{'selected'}} @endif @endif>{{$category->name}}</option>
-                        @endforeach
+                        <option value="{{$category->slug}}">{{$category->name}}</option>
+                    @endforeach
                     </select>
                 </div>
                 <div class="col-lg-2 col-6">
                     <select class="form-select" name="job_type" id="job_type" style="border-radius: 0px;" aria-label="Default select example">
-                        <option value ="" selected>Job Type</option>
-
-                        <option value="Part Time" @if(isset($_GET['job_type'])) @if($_GET['job_type'] == 'Part Time') {{'selected'}} @endif @endif>Part Time</option>
-                        <option value="Full Time" @if(isset($_GET['job_type'])) @if($_GET['job_type'] == 'Full Time') {{'selected'}} @endif @endif>Full Time</option>
-
-
+                    <option value ="" selected>Job Type</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Full Time">Full Time</option>
                     </select>
                 </div>
                 <div class="col-lg-2 col-6">
                     <select class="form-select" name="price_type" id="price_type" style="border-radius: 0px;" aria-label="Default select example">
-                        <option value ="" selected>Price Type</option>
-
-                        <option value="Fixed" @if(isset($_GET['price_type'])) @if($_GET['price_type'] == 'Fixed') {{'selected'}} @endif @endif>Fixed</option>
-                        <option value="Hourly" @if(isset($_GET['price_type'])) @if($_GET['price_type'] == 'Hourly') {{'selected'}} @endif @endif>Hourly</option>
-
-
+                    <option value ="" selected>Price Type</option>
+                    <option value="Fixed">Fixed</option>
+                    <option value="Hourly">Hourly</option>
                     </select>
                 </div>
                 <div class="col-lg-3 col-12"><button type="submit" class="btn btn-dark search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
             </div>
-        </form>
-
+    </form>
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">

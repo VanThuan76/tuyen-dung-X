@@ -1,20 +1,23 @@
 @component("mail::message")
 
-# {{ __('Apply job', ['name' => $name]) }}!!
-
-@component('mail::button', ['url' => route('home')])
-Thank you for applying this job {{$name}} {{$address}}
-@endcomponent
+# Congratulation!!!
+# Your application has been approved, {{ $name }} {{ $surname }}!!
 
 @component('mail::panel')
-This is a mail from EmployingX
+Thank you for your application for the job: {{$jobTitle}} at {{$address}}. 
+@endcomponent
+
+@component('mail::button', ['url' => route('home')])
+View the Company
 @endcomponent
 
 @component('mail::subcopy')
-This is a subcopy component
+If you have any questions or concerns, feel free to contact us. We wish you the best in your new role!
 @endcomponent
 
 Thanks, <br>
-{{ config('app.name') }}
+{{ $company }}
 
 @endcomponent
+
+
