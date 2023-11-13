@@ -3,7 +3,7 @@
 # {{ __('Apply job', ['name' => $name]) }}!!
 
 @component('mail::button', ['url' => route('home')])
-Thank you for applying this job {{$name}} {{$address}}
+Thank you {{$user}} for applying this job {{$name}} {{$address}}
 @endcomponent
 
 @component('mail::panel')

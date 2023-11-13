@@ -140,8 +140,11 @@
                                             {{Str::limit($job->body,70)}}
                                         </p>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <a href="{{route('job.showByUser',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">See job</a>
-
+                                            @if(auth()->user()->role->name=='company')
+                                                <a href="{{route('job.show',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">See job</a>
+                                            @else
+                                                <a href="{{route('job.showByUser',$job->slug)}}" class="btn btn-outline-primary btn-sm mb-0">See job</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

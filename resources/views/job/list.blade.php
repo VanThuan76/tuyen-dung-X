@@ -88,15 +88,15 @@
                                     @endif
                                 @endforeach
                                 @if (!$applied)
-                                    <form action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}" method="POST">
-                                    @Method("PATCH")    
-                                    @csrf
-                                        <button type="submit" name="remove_jobRequest" class="btn btn-primary">Apply</button>
-                                    </form>
-                                @else
                                     @if(auth()->user()->email_verified_at != null)
-                                        <button type="button" name="remove_jobRequest" class="btn btn-success">Applied</button>
+                                        <form action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}" method="POST">
+                                        @Method("PATCH")    
+                                        @csrf
+                                            <button type="submit" name="remove_jobRequest" class="btn btn-primary">Apply</button>
+                                        </form>
                                     @endif
+                                @else
+                                    <button type="button" name="remove_jobRequest" class="btn btn-success">Applied</button>
                                 @endif
                             </div>
                         </div>

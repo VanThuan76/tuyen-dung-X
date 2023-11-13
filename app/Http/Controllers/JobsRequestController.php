@@ -28,9 +28,10 @@ class JobsRequestController extends Controller
     public function response()
     {
         $user = auth()->user();
-            $job = Job::where('user_id', $user->id)->first();
-            $jobsResponse = JobRequest::where("job_id", $job->id)->get();
-            return view('job.response',compact('jobsResponse'));
+        $jobs = Job::where('user_id', $user->id)->get();
+        $jobIds = $jobs->pluck('id')->toArray();
+        $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get();
+        return view('job.response', compact('jobsResponse'));
     }
 
      /**
