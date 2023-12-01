@@ -22,7 +22,6 @@
 @endsection
 @section('content')
     <div class="container-fluid py-4">
-
         <form action="{{route('admin.search.jobs')}}" method="GET">
             <div class="row g-0">
                 <div class="col-lg-3 col-6">
@@ -48,11 +47,8 @@
                 <div class="col-lg-2 col-6">
                     <select class="form-select" name="price_type" id="price_type" style="border-radius: 0px;" aria-label="Default select example">
                         <option value ="" selected>Price Type</option>
-
                         <option value="Fixed">Fixed</option>
                         <option value="Hourly">Hourly</option>
-
-
                     </select>
                 </div>
                 <div class="col-lg-3 col-12"><button type="submit" class="btn btn-dark search" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>

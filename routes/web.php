@@ -29,6 +29,7 @@ Route::middleware(['auth','admin'])->group(function() {
     Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/companies', [App\Http\Controllers\AdminController::class, 'companies'])->name('admin.companies');
     Route::get('/admin/admins', [App\Http\Controllers\AdminController::class, 'admins'])->name('admin.admins');
+    Route::delete('/admin/destroy/{user}/destroy', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.user.destroy');
     Route::get('/admin/contacts', [App\Http\Controllers\AdminContactsController::class, 'index'])->name('admin.contacts');
     Route::delete('/admin/contacts/{contact}/destroy', [App\Http\Controllers\AdminContactsController::class, 'destroy'])->name('admin.contacts.destroy');
 
@@ -68,7 +69,7 @@ Route::middleware(['auth','company'])->group(function() {
     Route::get('/company/candidate/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('candidate.show');
     Route::get('/job/create', [App\Http\Controllers\JobsController::class, 'create'])->name('job.create');
     Route::POST('/job/store', [App\Http\Controllers\JobsController::class, 'store'])->name('job.store');
-    Route::get('/job/{job}', [App\Http\Controllers\JobsController::class, 'show'])->name('job.show');
+    Route::get('/jobCompany/{job}', [App\Http\Controllers\JobsController::class, 'show'])->name('job.show');
 
     Route::get('/job/{job}/edit', [App\Http\Controllers\JobsController::class, 'edit'])->name('job.edit');
     Route::patch('/job/{job}/update', [App\Http\Controllers\JobsController::class, 'update'])->name('job.update');
@@ -112,3 +113,4 @@ if(\Illuminate\Support\Facades\App::environment("local")){
     })->name('verify-email');
 }
 Route::get('/verification/{id}', [App\Http\Controllers\VerifyMailController::class, 'verify'])->name('verification.verify');
+Route::post('/resend/{id}', [App\Http\Controllers\VerifyMailController::class, 'sendMail'])->name('verification.resend');

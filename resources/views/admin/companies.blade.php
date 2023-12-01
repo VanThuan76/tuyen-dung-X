@@ -21,6 +21,11 @@
                     <div class="card-header pb-0">
                         <h6>Companies</h6>
                     </div>
+                    <div class="card-header">                  
+                        @if (session('deleted_user'))
+                            <span style="color:red!important">{{session('deleted_user')}}</span>
+                        @endif
+                    </div>
                     @if (session('min_length_input'))
                         <span style="color:red">{{session('min_length_input')}}</span>
                     @endif
@@ -35,12 +40,11 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Capacity</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mobile Number</th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Option</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($users as $user)
-
                                         <tr>
                                             <td>
                                                 <a href="{{route('company.show',$user->slug)}}">
@@ -67,8 +71,12 @@
                                             <td>
                                                 <p class="text-xs text-center font-weight-bold mb-0">{{$user->company->tel ? $user->company->tel : "/"}}</p>
                                             </td>
+                                            <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                                    <button class="btn btn-link delete-user-company-btn" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" type="button" data-toggle="modal" data-target="#confirmDeleteModal{{$user->id}}">Delete</button>
 
-
+                                            </span>
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -89,5 +97,30 @@
                 </div>
             </div>
         </div>
-
+<!-- Modal cửa sổ xác nhận xóa danh mục -->
+@foreach($users as $user)
+    <div class="modal fade" id="confirmDeleteModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel{{$user->id}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel{{$user->id}}">Confirm Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this user?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form action="{{route('admin.user.destroy',$user->slug)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
 @endsection

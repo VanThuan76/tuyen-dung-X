@@ -49,20 +49,33 @@
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <b>EmployingX</b>
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
                 </div>
-                <ul class="navbar-nav  justify-content-end">
-                    <li class="nav-item d-flex align-items-center">
-                        @if(auth()->user()->email_verified_at == null)
-                            <a href="https://mail.google.com" target="_blank">
-                                <span style="padding-right: 50px; color:red;">Not verify email</span>
-                            </a>
+                <div class="card-header">                  
+                        @if (session('Verify_mail_sent'))
+                            <span style="color:blue!important">{{session('Verify_mail_sent')}}</span>
                         @endif
-                        <a @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.show',auth()->user()->slug)}}" @else href="{{route('company.show',auth()->user()->slug)}}"  @endif class="nav-link text-body font-weight-bold px-0">
-                            <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">@if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{auth()->user()->name. " " . auth()->user()->surname}} @else {{auth()->user()->company->name}} @endif</span>
-                        </a>
-                    </li>
+                    </div>
+                <ul class="navbar-nav justify-content-end">
+                <li class="nav-item d-flex align-items-center">
+                @if(auth()->user()->email_verified_at == null && (auth()->user()->role->name == 'company' || auth()->user()->role->name == 'user'))
+                        <form method="post" action="{{ route('verification.resend', ['id' => auth()->user()->id]) }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger mx-2 mb-2">
+                        <i class="fas fa-envelope"></i> Verification Email
+                    </button>
+                    </form>
+                    @endif
+                <a @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.show',auth()->user()->slug)}}" @else href="{{route('company.show',auth()->user()->slug)}}"  @endif class="nav-link text-body font-weight-bold px-2">
+                    <i class="fa fa-user me-1"></i>
+                <span class="d-sm-inline d-none">
+                    @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') 
+                    {{auth()->user()->name. " " . auth()->user()->surname}} 
+                @else 
+                    {{auth()->user()->company->name}} 
+                @endif
+                </span>
+                </a>
+                </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                             <div class="sidenav-toggler-inner">

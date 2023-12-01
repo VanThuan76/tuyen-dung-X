@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DeleteMail;
 use App\Models\Category;
 use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -24,13 +26,17 @@ class AdminController extends Controller
         $user = auth()->user();
         $categories = Category::all();
         $languages = Language::all();
-        $users = User::Where('role_id',1)->paginate(20);
+        $users = User::where('role_id', 1)
+                    ->where('is_deleted', 0)
+                    ->paginate(20);
         return view('admin.users',compact('user','users', 'categories','languages'));
     }
     public function companies(){
         $user = auth()->user();
 
-        $users = User::Where('role_id',2)->paginate(20);
+        $users = User::Where('role_id',2)
+                    ->where('is_deleted', 0)
+                    ->paginate(20);
         return view('admin.companies',compact('user','users'));
     }
     public function admins(){
@@ -99,8 +105,14 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $user = User::findBySlugOrFail($slug);
+        $user->is_deleted = 1;
+        $user->save();
+        $email = $user->email;
+        Mail::to($email)->send(new DeleteMail($user));
+        session()->flash('deleted_user', 'User deleted successfully');
+        return back();
     }
 }

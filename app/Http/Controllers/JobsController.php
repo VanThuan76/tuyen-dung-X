@@ -163,7 +163,7 @@ class JobsController extends Controller
         }
         $category = Category::find($request->category_id);
         if (!$category) {
-            session()->flash('category_error', 'Oops... Kategoria nuk u gjet.');
+            session()->flash('category_error', 'Oops... Please fill in the category.');
             return back()->withInput();
         }
         if (!$request->has_endDate && empty($request->endingDate)) {

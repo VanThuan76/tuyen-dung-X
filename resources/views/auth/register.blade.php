@@ -371,11 +371,6 @@
 
                                     </div>
                                 </div>
-
-
-
-
-
                                 <div class="d-flex justify-content-end mt-4">
                                     <a href="{{route('login')}}" class="btn btn-light m-0">Cancel</a>
                                     <button id="createAccountBtn" type="submit" class="btn bg-gradient-dark m-0 ms-2">Create Account</button>

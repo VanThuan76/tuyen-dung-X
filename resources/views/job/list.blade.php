@@ -60,6 +60,7 @@
         @endif
     </div>
     <div class="row">
+    @if (count($jobs)>0)
         @foreach($jobs as $job)
         <div class="col-md-6 mb-4">
             <div class="card">
@@ -93,13 +94,11 @@
                                 @if (!$applied)
                                     @if(auth()->user()->email_verified_at != null)
                                     <form action="{{ route('jobRequest.create', ['userId' => auth()->user()->id, 'jobId' => $job->id]) }}" method="POST">
-                                        @method("PATCH")    
+                                        @Method("PATCH")    
                                         @csrf
-                                        <button type="submit" name="remove_jobRequest" class="btn btn-primary">Apply</button>
-                                    </form>
-                                @else
-                                        <p style="color: red; font-weight: bold;">Please verify email to apply</p>
-                                @endif
+                                            <button type="submit" name="remove_jobRequest" class="btn btn-primary">Apply</button>
+                                        </form>
+                                    @endif
                                 @else
                                     <button type="button" name="remove_jobRequest" class="btn btn-success">Applied</button>
                                 @endif
@@ -110,6 +109,11 @@
             </div>
         </div>
         @endforeach
+        @else
+            <div class="col-12">
+                <p class="text-center" style="color: red; font-size: 18px; font-weight: bold;">No jobs found</p>
+            </div>
+    @endif
     </div>
 </div>
 @endsection

@@ -82,7 +82,9 @@ use App\Models\Job;
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center mt-3">
                                                     <a class="nav-link"
-                                                        href="{{ route('job.showByUser', $jobRequest->job_id) }}">Detail Job</a>
+                                                    href="{{ route('job.showByUser', Job::where("id", $jobRequest->job_id)->first()->slug) }}">Detail
+                                                        Job
+                                                    </a>                                                
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle">

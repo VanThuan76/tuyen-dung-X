@@ -26,16 +26,13 @@ $jobsRequest = JobRequest::all();
                     </div>
                         <h5 class="mb-4">Job details</h5>
                         <div class="row">
-                            <div class="col-xl-5 col-lg-6 text-center">
-                                <img class="w-100 border-radius-lg mx-auto shadow-lg"
-                                    src="/images/{{ $job->user->photo->name }}" alt="{{ $job->title }}">
-                                <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                        <div class="col-xl-4 col-lg-6 text-center">
+                            <img class="w-100 border-radius-lg mx-auto shadow-lg"
+                                src="/images/{{ $job->user->photo->name }}" alt="{{ $job->title }}">
                             </div>
-                            <div class="col-lg-5 mx-auto">
+                            <div class="col-lg-8 mx-auto">
                                 <h3 class="mt-lg-0 mt-4">{{ $job->title }}</h3>
-
-
-                                <i class="fa fa-list-alt" aria-hidden="true"></i> {{ $job->category->name }}
+                                <p><i class="fa fa-list-alt" aria-hidden="true"></i> {{ $job->category->name }}</p>
                                 <br>
                                 <i class="fas fa-address-card"></i> {{ $job->address }}<br>
                                 <i class="fas fa-calendar-alt"></i> {{ $job->startingDate }} |
@@ -96,18 +93,16 @@ $jobsRequest = JobRequest::all();
                                 @endif
                                 @if (auth()->user()->id == $job->user_id)
                                     <div class="row mt-4">
-                                        <div class="col-lg-5">
-                                            <a href="{{ route('job.edit', $job->slug) }}"
-                                                class="btn bg-gradient-dark mt-lg-auto w-100 mb-0 mt-2" type="button">Edit job</a>
+                                        <div class="col-lg-6">
+                                            <a href="{{ route('job.edit', $job->slug) }}" class="btn bg-gradient-dark mt-lg-auto w-50 mb-0 mt-2" type="button">Edit job</a>
                                         </div>
-                                @endif
-                                @if (auth()->user()->id == $job->user_id)
-                                    <div class="col-lg-5">
-                                        <button class="btn bg-gradient-danger mt-lg-auto w-100 mb-0 mt-2"
+                                    <div class="col-lg-6">
+                                        <button class="btn bg-gradient-danger mt-lg-auto w-50 mb-0 mt-2"
                                             data-toggle="modal" data-target="#confirmDeleteJobModal">Delete job</button>
                                     </div>
-                                @endif
-                            </div>
+                                    </div>
+                                        @endif
+                                </div>
                             <div class="row mt-5">
                                 <div class="col-12">
                                     <h5 class="ms-3">Related Jobs</h5>
@@ -142,7 +137,7 @@ $jobsRequest = JobRequest::all();
                                                                 <td>
                                                                     <div class="d-flex px-2 py-1">
                                                                         <div>
-                                                                            <a href="{{ route('job.showByUser', $job->slug) }}">
+                                                                            <a href="{{ route('job.show', $job->slug) }}">
                                                                                 <img src="/images/{{ $job->user->photo->name }}"
                                                                                     class="avatar avatar-md me-3"
                                                                                     alt="table image">
@@ -150,7 +145,7 @@ $jobsRequest = JobRequest::all();
                                                                         </div>
                                                                         <div
                                                                             class="d-flex flex-column justify-content-center">
-                                                                            <a href="{{ route('job.showByUser', $job->slug) }}">
+                                                                            <a href="{{ route('job.show', $job->slug) }}">
                                                                                 <h6 class="mb-0 text-sm">
                                                                                     {{ $job->title }}</h6>
                                                                             </a>
