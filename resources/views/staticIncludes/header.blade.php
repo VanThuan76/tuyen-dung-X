@@ -38,7 +38,7 @@
         <!-- Logo -->
         <div class="header-logo">
             <a href="{{route('index')}}"> <img class="logo-dark" style="height: 30px" src="{{asset('/assets/img/logos/logo.png')}}" alt=""></a>
-{{--            <h3><a href="{{route('index')}}">employingx</a></h3>--}}
+{{--            <h3><a href="{{route('index')}}">Employingx</a></h3>--}}
             <!--
             <img class="logo-dark" src="../assets/images/your-logo-dark.png" alt="">
             <img class="logo-light" src="../assets/images/your-logo-light.png" alt="">
@@ -70,22 +70,52 @@
             </ul>
         </div>
         <!-- Menu Extra -->
-        <div class="header-menu-extra">
+        <!-- <div class="navbar-nav justify-content-end">
             <ul class="list-inline">
-
                 @if(auth()->user())
                     @if(auth()->user()->email_verified_at == null)
-                    <a href="https://mail.google.com" target="_blank">
-                        <button style="padding-right: 50px; color: red; background: none; border: none; cursor: pointer;">
-                            Not verify email
-                        </button>
-                    </a>
+                    <form method="post" action="{{ route('verification.resend', ['id' => auth()->user()->id]) }}">
+        @csrf
+        <button type="submit" class="btn btn-danger mx-2 mb-2">
+            <i class="fas fa-envelope"></i> Resend Verification Email
+        </button>
+    </form>
                     @endif
                 @endif
                 <li><a href="{{route('login')}}">@if (!auth()->guest()) @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{auth()->user()->name. " " . auth()->user()->surname}} @else {{auth()->user()->company->name}} @endif @else Log in @endif </a></li>
 
             </ul>
-        </div>
+        </div> -->
+        <div class="header-menu-extra">
+    <ul class="list-inline">
+        @if(auth()->user())
+            <li class="list-inline-item">
+                @if(auth()->user()->email_verified_at == null)
+                    <form method="post" action="{{ route('verification.resend', ['id' => auth()->user()->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger mx-2 mb-2">
+                            <i class="fas fa-envelope"></i> Verification Email
+                        </button>
+                    </form>
+                @endif
+            </li>
+            <li class="list-inline-item">
+                <a href="{{route('login')}}">
+                    @if (!auth()->guest())
+                        @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user')
+                            {{auth()->user()->name. " " . auth()->user()->surname}}
+                        @else
+                            {{auth()->user()->company->name}}
+                        @endif
+                    @else
+                        Log in
+                    @endif
+                </a>
+            </li>
+        @endif
+    </ul>
+</div>
+
         <!-- Menu Toggle -->
         <button class="header-toggle">
             <span></span>

@@ -44,7 +44,7 @@
         </div>
         <div class="col-lg-2 col-6" style="padding: 10px;">
             <select class="form-select" name="price_type" id="price_type" style="border-radius: 10px; height: 100%;" aria-label="Default select example">
-                <option value="" selected>Price Type</option>
+                <option value="" selected>Payment</option>
                 <option value="Fixed">Fixed</option>
                 <option value="Hourly">Hourly</option>
             </select>

@@ -30,10 +30,7 @@
             <p class="form-text text-muted text-xs ms-1">
                 This is how others will learn about the project, so make it good!
             </p>
-
-
                 <textarea id="body" name="body" class="form-control" rows="5">{{old('body')}}</textarea>
-
             @error('body')
             <span style="color:red;">{{ $message }}</span>
             @enderror
@@ -41,14 +38,12 @@
                 <div class="col-sm-6 col-12">
                     <label class="form-label mt-4">Address</label>
                     <input class="form-control address" type="text" name="address" autocomplete="off" placeholder="Address" value="{{old('address')}}">
-
                     @if (session('error_address'))
                         <span style="color:red;">{{ session('error_address') }}</span>
                     @endif
                     @error('address')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
-
                 </div>
                 <div class="col-sm-6 col-12">
 
@@ -58,7 +53,6 @@
                         <div class="form-check form-switch ms-1">
                             <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault">
 {{--                            <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >--}}
-
                             <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Work is remote</label>
                         </div>
                     </div>
@@ -131,7 +125,6 @@
                     @endif
                 </div>
             </div>
-
                 <div class="row mt-2">
                     <div class="col-sm-6 col-12">
                         <div class="form-group mt-4">
@@ -152,7 +145,7 @@
                         <div class="form-group">
                             <label class="form-label mt-4">Job Type</label>
                             <select class="form-select" name="job_type" aria-label="Default select example">
-                                <option value="" selected>Select Payment</option>
+                                <option value="" selected disabled>Select Type</option>
                                 <option value="1" @if (old('job_type')==1) selected @endif>Part Time</option>
                                 <option value="2" @if (old('job_type')==2) selected @endif>Full Time</option>
                             </select>
@@ -162,13 +155,11 @@
                         </div>
                     </div>
                 </div>
-
-
             <div class="row mt-2">
                 <div class="col-6">
-                    <label class="form-label">Payment</label>
+                    <label class="form-label">Payment Type</label>  
                     <select class="form-select" name="price_type" aria-label="Default select example">
-                        <option value="" selected>Select Payment</option>
+                        <option value="" selected disabled>Select Payment Type</option>
                         <option value="1" @if (old('price_type')==1) selected @endif>Fixed</option>
                         <option value="2" @if (old('price_type')==2) selected @endif>Hourly</option>
                     </select>
@@ -177,22 +168,16 @@
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label class="form-label">Price</label>
+                    <label class="form-label">Salary</label>
                     <div class="input-group mb-3">
-
                             <span class="input-group-text">€</span>
-
                         <input type="number" name="price" value="{{old('price')}}" style="outline: none !important;" class="form-control" aria-label="Amount (to the nearest dollar)">
-
                     </div>
                     @error('price')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-
-
-
             <div class="d-flex justify-content-end mt-4">
                 <a href="{{route('company.show',auth()->user()->slug)}}" class="btn btn-light m-0">Cancel</a>
                 <button type="submit" class="btn bg-gradient-dark m-0 ms-2">Create Job offer</button>
@@ -211,9 +196,8 @@
         flatpickr('.datetimepicker', {
             allowInput: true,
             disableMobile: true
-        }); // flatpickr
+        }); 
     }
-
     dateSwitch.addEventListener('click',function(){
         if (this.checked == true){
             document.querySelector('.endingDate').disabled = true;
@@ -230,16 +214,6 @@
         document.querySelector('.endingDate').disabled = false;
 
     }
-    // remoteSwitch.addEventListener('click',function(){
-    //     if (this.checked == true){
-    //        address.disabled = true;
-    //     }
-    //     else{
-    //         address.disabled = false;
-    //
-    //     }
-    // });
-
 </script>
-    @endsection
+@endsection
 

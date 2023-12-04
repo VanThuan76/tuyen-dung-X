@@ -233,13 +233,9 @@
                                          </span>
                                         @endif
                                     </div>
-
                                 </div>
-
                             <br>
-
                                 <div class="language-row">
-
                                     <div class = "row">
                                 <div class="col-sm-6 col-12">
                                         <label class="form-label mt-2">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
@@ -249,10 +245,7 @@
                                                 <option value="{{$language->id}}">{{$language->name}}</option>
                                             @endforeach
                                         </select>
-
-
                                     </div>
-
                                         <div class="col-sm-6 col-12">
                                             <label class="form-label mt-2">*Level of knowledge</label>
                                             <select class="form-select" name="level[]" aria-label="Default select example">
@@ -351,7 +344,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 col-12">
-                                            <label class="form-label mt-4">Mobile Number</label>
+                                            <label class="form-label mt-4">Phone Number</label>
                                             <div class="input-group">
                                                 <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" placeholder="Mobile Number" value="{{old('tel')}}">
                                             </div>
