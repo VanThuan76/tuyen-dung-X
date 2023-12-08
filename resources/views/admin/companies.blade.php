@@ -74,14 +74,11 @@
                                             <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">
                                                     <button class="btn btn-link delete-user-company-btn" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" type="button" data-toggle="modal" data-target="#confirmDeleteModal{{$user->id}}">Delete</button>
-
                                             </span>
                                             </td>
                                         </tr>
                                     @endforeach
-
                                     </tbody>
-
                                 </table>
                             @else
                                 <span style="color:red; margin-left: 25px;">Users not found.</span>
@@ -109,7 +106,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure want to delete this user?
+                    Are you sure want to delete this Company?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

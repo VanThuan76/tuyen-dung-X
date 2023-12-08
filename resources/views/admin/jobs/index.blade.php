@@ -121,7 +121,6 @@
                                             <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">
                                                     <button class="btn btn-link delete-job-btn" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" type="button" data-toggle="modal" data-target="#confirmDeleteModal{{$job->id}}">Delete</button>
-
                                             </span>
                                             </td>
                                         </tr>
@@ -156,7 +155,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure want to delete this job?
+                    Are you sure want to delete this Job?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -90,7 +90,7 @@
     <ul class="list-inline">
         @if(auth()->user())
             <li class="list-inline-item">
-                @if(auth()->user()->email_verified_at == null)
+            @if(auth()->user()->email_verified_at == null && (auth()->user()->role->name == 'company' || auth()->user()->role->name == 'user'))
                     <form method="post" action="{{ route('verification.resend', ['id' => auth()->user()->id]) }}">
                         @csrf
                         <button type="submit" class="btn btn-danger mx-2 mb-2">

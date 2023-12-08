@@ -86,13 +86,8 @@
                                             <h6 class="mb-0 text-sm">{{$category->created_at->diffForHumans()}}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold"><a href="{{route('admin.category.edit',$category->slug)}}">Change</a>/
-                                                <!-- <form action="{{route('admin.category.destroy',$category->slug)}}" method="POST" style="display: inline; ">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" name="remove_category" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Delete</button> </form> -->
+                                            <span class="text-secondary text-xs font-weight-bold"><a href="{{route('admin.category.edit',$category->slug)}}">Change</a>
                                                     <button class="btn btn-link delete-category-btn" data-toggle="modal" data-target="#confirmDeleteCategoryModal{{$category->id}}" style="text-decoration: none; color:red!important; padding: 0; margin:0!important;text-transform: none;">Delete</button>
-
                                             </span>
                                         </td>
 

@@ -24,7 +24,7 @@ class DeleteMail extends Mailable{
     {
         $user = User::where("id", $this->user->id)->first(); 
         return $this
-            ->subject('Delete Apply')
+            ->subject('Delete User')
             ->markdown('mail.delete-mail', [
                 'name' => $user->name,
                 'surname' => $user->surname, 
