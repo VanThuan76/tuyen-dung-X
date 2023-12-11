@@ -103,6 +103,7 @@ $jobsRequest = JobRequest::all();
                                     </div>
                                         @endif
                                 </div>
+                            @if (auth()->user()->role->name == 'company' || auth()->user()->role->name == 'administrator' )
                             <div class="row mt-5">
                                 <div class="col-12">
                                     <h5 class="ms-3">Related Jobs</h5>
@@ -181,6 +182,7 @@ $jobsRequest = JobRequest::all();
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
