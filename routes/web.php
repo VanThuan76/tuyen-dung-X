@@ -65,6 +65,7 @@ Route::middleware(['auth','company'])->group(function() {
     Route::get('/company/{company}', [App\Http\Controllers\CompanyProfileController::class, 'show'])->name('company.show');
     Route::patch('/company/update', [App\Http\Controllers\CompanyProfileController::class, 'update'])->name('company.update');
     Route::get('/company/jobs/response', [App\Http\Controllers\JobsRequestController::class, 'response'])->name('response.company.job');
+    Route::get('/company/jobs/response/search', [App\Http\Controllers\SearchController::class, 'jobsResponse'])->name('response.search');
     Route::patch('/company/jobs/response/{id}/{status}', [App\Http\Controllers\JobsRequestController::class, 'update'])->name('job.response.update');
     Route::get('/company/candidate/{user}', [App\Http\Controllers\UserProfileController::class, 'show'])->name('candidate.show');
     Route::get('/job/create', [App\Http\Controllers\JobsController::class, 'create'])->name('job.create');

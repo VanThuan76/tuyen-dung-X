@@ -1,6 +1,6 @@
 <?php
-    use App\Models\Job;
-    use App\Models\User;
+use App\Models\Job;
+use App\Models\User;
 ?>
 @extends('layouts.index')
 @section('title')
@@ -9,6 +9,45 @@
     </title>
 @endsection
 @section('content')
+    <form action="{{ route('response.search') }}" method="GET">
+        <div class="row g-0">
+            <div class="col-lg-3 col-6">
+                <input id="q" name="q" class="form-control"
+                    value="@if (isset($_GET['q'])) {{ $_GET['q'] }} @endif" type="text"
+                    style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search"
+                    autocomplete="off">
+            </div>
+            <div class="col-lg-2 col-6">
+                <select class="form-select" name="category" id="category" style="border-radius: 0px;"
+                    aria-label="Default select example">
+                    <option value ="" selected>Categories</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-lg-2 col-6">
+                <select class="form-select" name="job_type" id="job_type" style="border-radius: 0px;"
+                    aria-label="Default select example">
+                    <option value ="" selected>Job Type</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Full Time">Full Time</option>
+                </select>
+            </div>
+            <div class="col-lg-2 col-6">
+                <select class="form-select" name="language_level" id="language_level" style="border-radius: 0px;"
+                    aria-label="Default select example">
+                    <option value="" selected>Language Level</option>
+                    @foreach ($uniqueLanguageUsers as $languageUser)
+                        <option value="{{ $languageUser->user_id }}">{{ $languageUser->name . '-' . $languageUser->level }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-lg-3 col-12"><button type="submit" class="btn btn-dark search"
+                    style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
+        </div>
+    </form>
     <div class="container-fluid py-4">
         <div class="row mt-3">
             <div class="col-12">
@@ -16,10 +55,10 @@
                     <div class="card-header pb-0">
                         <h6>Jobs Response</h6>
                     </div>
-                    <div class="card-header">  
+                    <div class="card-header">
                         @if (session('updated_jobRequest'))
-                            <span style="color:green!important">{{session('updated_jobRequest')}}</span>
-                        @endif                 
+                            <span style="color:green!important">{{ session('updated_jobRequest') }}</span>
+                        @endif
                     </div>
                     <div class="card-body px-0 pb-2 pt-0">
                         <div class="table-responsive p-0">
@@ -28,7 +67,8 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Id</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Name</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -88,7 +128,7 @@
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center mt-3">
                                                     <h6 class="mb-0 text-sm">
-                                                        @if($jobResponse->status == '1')
+                                                        @if ($jobResponse->status == '1')
                                                             Agree
                                                         @elseif($jobResponse->status == '2')
                                                             Disagree
@@ -99,23 +139,31 @@
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle">
-                                            @if ($jobResponse->status === null)
-                                            <span class="text-secondary font-weight-bold text-xs">
-                                            <form action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 2]) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('PATCH')
-                                                    <button type="submit" name="disAgree_jobResponse" style="text-decoration: none; color:rgb(201, 201, 63)!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Disagree</button>
-                                            </form>
-                                            <form action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 1]) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('PATCH')
-                                                    <button type="submit" name="agree_jobResponse" style="text-decoration: none; color:green!important; padding: 0; margin:0!important;text-transform: none;" class="btn btn-link">Agree</button>
-                                            </form>
-                                            </span>
+                                                @if ($jobResponse->status === null)
+                                                    <span class="text-secondary font-weight-bold text-xs">
+                                                        <form
+                                                            action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 2]) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit" name="disAgree_jobResponse"
+                                                                style="text-decoration: none; color:rgb(201, 201, 63)!important; padding: 0; margin:0!important;text-transform: none;"
+                                                                class="btn btn-link">Disagree</button>
+                                                        </form>
+                                                        <form
+                                                            action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 1]) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit" name="agree_jobResponse"
+                                                                style="text-decoration: none; color:green!important; padding: 0; margin:0!important;text-transform: none;"
+                                                                class="btn btn-link">Agree</button>
+                                                        </form>
+                                                    </span>
                                                 @endif
                                             </td>
-                                                    </tr>
-                                            @endforeach
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
 
