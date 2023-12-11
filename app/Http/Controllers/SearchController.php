@@ -10,7 +10,7 @@ use App\Models\JobRequest;
 use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class SearchController extends Controller
 {
@@ -107,10 +107,103 @@ class SearchController extends Controller
 
 
     }
+    public function jobsResponse(Request $request)
+    {
+        $categories = Category::all();
+        $languageUsers = DB::table('language_user')
+            ->join('languages', 'language_user.language_id', '=', 'languages.id')
+            ->select('language_user.level', 'languages.name', 'languages.slug', 'language_user.user_id')
+            ->get();
+
+        $uniqueLanguageUsers = collect($languageUsers)->unique(function ($item) {
+            return $item->level . $item->name;
+        })->values()->all();
+
+        $input = $request->q;
+        $user = auth()->user();
+        $category = $request->category;
+        $job_type = $request->job_type;
+        $price_type = $request->price_type;
+        $language_level = $request->language_level;
+        $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
+        $jobs = Job::query();
+        if ($category != ''){
+            $category = Category::findBySlugOrFail($category);
+            $category = $category->id;
+        }
+        if ($input != '') {
+            if (strlen($input) <= 2) {
+                session()->flash('min_length_input', "Please give a longer word");
+                return redirect()->route('response.company.job');
+            }
+            $jobs_by_word = Job::where(function ($q) use ($separated_input) {
+                foreach ($separated_input as $input) {
+                    if (strlen($input) < 2) {
+                        continue;
+                    }
+                    $q->orWhere('title', 'like', "%{$input}%")
+                        ->orWhere('body', 'like', "%{$input}%")
+                        ->orWhere('duties', 'like', "%{$input}%")
+                        ->orWhere('address', 'like', "%{$input}%")
+                        ->orWhere('experience', 'like', "%{$input}%")
+                        ->orWhere('price', 'like', "%{$input}%")->orderBy('title', 'ASC');
+                }
+            });
+            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');
+            if ($category != ''){
+                $jobs->where('category_id', $category);
+                $jobs_by_word->where('category_id', $category);
+            }
+            if ($job_type != ''){
+                $jobs->where('job_type', $job_type);
+                $jobs_by_word->where('job_type', $job_type);
+
+            }
+            if ($price_type != ''){
+                $jobs->where('price_type', $price_type);
+                $jobs_by_word->where('price_type', $price_type);
+            }
+            $jobs->union($jobs_by_word);
+            $jobs = $jobs->paginate(10)->appends(request()->query());
+            $jobs_count = $jobs->count();
+            $user = auth()->user();
+            $jobs = Job::where('user_id', $user->id)->get();
+            $jobIds = $jobs->pluck('id')->toArray();
+            if ($language_level != ''){
+                $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get()->where('user_id', $language_level);
+            }else{
+                $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get();
+            }
+            return view('job.response', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
+        }
+        else{
+            if ($category == '' && $job_type == '' && $price_type == ''){
+                return redirect()->route('response.company.job');
+            }
+            if ($category != '') {
+                $jobs->where('category_id', $category)->toSql();
+            }
+            if ($job_type != '') {
+                $jobs->where('job_type', $job_type);
+            }
+            if ($price_type != '') {
+                $jobs->where('price_type', $price_type);
+            }
+
+            $jobs = $jobs->paginate(10)->appends(request()->query());
+            $jobs_count = $jobs->count();
+            $user = auth()->user();
+            $jobs = Job::where('user_id', $user->id)->get();
+            $jobIds = $jobs->pluck('id')->toArray();
+            $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get()->where('user_id', $language_level);
+            return view('job.response', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
+        }
+    }
     public function jobsByUser(Request $request){
         $categories = Category::all();
         $input = $request->q;
         $user = auth()->user();
+        $salary = $request->salary;
         $category = $request->category;
         $job_type = $request->job_type;
         $price_type = $request->price_type;
@@ -123,7 +216,7 @@ class SearchController extends Controller
         if ($input != '') {
             if (strlen($input) <= 2) {
                 session()->flash('min_length_input', "Please give a longer word");
-                return redirect()->route('admin.jobs');
+                return redirect()->route('job.list');
             }
 
             $jobs_by_word = Job::where(function ($q) use ($separated_input) {
@@ -141,6 +234,10 @@ class SearchController extends Controller
             });
 
             $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');//kerko me fjali
+            if ($salary != ''){
+                $jobs->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);
+                $jobs_by_word->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);
+            }
             if ($category != ''){
                 $jobs->where('category_id', $category);
                 $jobs_by_word->where('category_id', $category);
@@ -166,11 +263,12 @@ class SearchController extends Controller
 
         }
         else{
-
-            if ($category == '' && $job_type == '' && $price_type == ''){
-                return redirect()->route('admin.jobs');
+            if ($category == '' && $job_type == '' && $price_type == '' && $salary == ''){
+                return redirect()->route('job.list');
             }
-
+            if ($salary != ''){
+                $jobs->where('price', '<=', $salary);
+            }
             if ($category != '') {
 
                 $jobs->where('category_id', $category)->toSql();

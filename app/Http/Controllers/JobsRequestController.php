@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ApplyMail;
+use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use DB;
 
 class JobsRequestController extends Controller
 {
@@ -23,7 +25,7 @@ class JobsRequestController extends Controller
     {
         $user = auth()->user();
         $jobsRequest = JobRequest::where("user_id", $user->id)->get();
-        return view('job.request',compact('jobsRequest'));
+        return view('job.request', compact('jobsRequest'));
     }
     public function response()
     {
@@ -31,10 +33,24 @@ class JobsRequestController extends Controller
         $jobs = Job::where('user_id', $user->id)->get();
         $jobIds = $jobs->pluck('id')->toArray();
         $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get();
-        return view('job.response', compact('jobsResponse'));
+        $jobIdsResponse = $jobsResponse->pluck('job_id')->toArray();
+        $jobsResponseCategory = Job::whereIn('id', $jobIdsResponse)->pluck('category_id')->unique();
+        $categories = Category::whereIn('id', $jobsResponseCategory)->get();
+
+        $languageUsers = DB::table('language_user')
+            ->join('languages', 'language_user.language_id', '=', 'languages.id')
+            ->select('language_user.level', 'languages.name', 'languages.slug', 'language_user.user_id')
+            ->get();
+
+        $uniqueLanguageUsers = collect($languageUsers)->unique(function ($item) {
+            return $item->level . $item->name;
+        })->values()->all();
+
+        return view('job.response', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
     }
 
-     /**
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $userId
@@ -61,7 +77,7 @@ class JobsRequestController extends Controller
     {
         $jobRequest = JobRequest::where('id', $id);
         $jobRequest->delete();
-        session()->flash('deleted_jobRequest', 'Job Request deleted successfully');       
+        session()->flash('deleted_jobRequest', 'Job Request deleted successfully');
         return back();
     }
 
@@ -83,5 +99,5 @@ class JobsRequestController extends Controller
         session()->flash('updated_jobRequest', 'Job Request updated successfully.');
         return back();
     }
-    
+
 }
