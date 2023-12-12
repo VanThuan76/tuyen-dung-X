@@ -151,7 +151,7 @@
                                 <div class="form-group">
                                     <label class="form-label mt-4">Job Type</label>
                                     <select class="form-select" name="job_type" aria-label="Default select example">
-                                        <option value="" selected>Select Payment</option>
+                                        <option value="" selected>Select Job Type</option>
                                         <option value="1" @if ($job->job_type=='Part Time') selected @endif>Part Time</option>
                                         <option value="2" @if ($job->job_type=='Full Time') selected @endif>Full Time</option>
                                     </select>

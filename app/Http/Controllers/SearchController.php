@@ -10,7 +10,7 @@ use App\Models\JobRequest;
 use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -233,7 +233,7 @@ class SearchController extends Controller
                 }
             });
 
-            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');//kerko me fjali
+            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');
             if ($salary != ''){
                 $jobs->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);
                 $jobs_by_word->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);

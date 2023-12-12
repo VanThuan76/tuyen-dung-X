@@ -69,22 +69,6 @@
 
             </ul>
         </div>
-        <!-- Menu Extra -->
-        <!-- <div class="navbar-nav justify-content-end">
-            <ul class="list-inline-item">
-                @if(auth()->user())
-                    @if(auth()->user()->email_verified_at == null)
-                    <form method="post" action="{{ route('verification.resend', ['id' => auth()->user()->id]) }}">
-                @csrf
-                <button type="submit" class="btn btn-danger mx-2 mb-2">
-                    <i class="fas fa-envelope"></i>Verification Email
-                </button>
-                    </form>
-                    @endif
-                @endif
-                <li><a href="{{route('login')}}">@if (!auth()->guest()) @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') {{auth()->user()->name. " " . auth()->user()->surname}} @else {{auth()->user()->company->name}} @endif @else Log in @endif </a></li>
-            </ul>
-        </div> -->
         <div class="navbar-nav justify-content-end">
             <ul class="list-inline">
                 @if(auth()->user())

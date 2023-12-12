@@ -7,8 +7,8 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use DB;
 
 class JobsRequestController extends Controller
 {

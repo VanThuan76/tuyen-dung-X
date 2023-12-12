@@ -159,7 +159,12 @@
                                                     <option value="B2" {{ $userLanguage->pivot->level == 'B2' ? 'selected' : ''}}>B2</option>
                                                     <option value="C1" {{ $userLanguage->pivot->level == 'C1' ? 'selected' : ''}}>C1</option>
                                                     <option value="C2" {{ $userLanguage->pivot->level == 'C2' ? 'selected' : ''}}>C2</option>
-
+                                                    <option value="N1" {{ $userLanguage->pivot->level == 'N1' ? 'selected' : ''}}>N1</option>
+                                                    <option value="N2" {{ $userLanguage->pivot->level == 'N2' ? 'selected' : ''}}>N2</option>
+                                                    <option value="N3" {{ $userLanguage->pivot->level == 'N3' ? 'selected' : ''}}>N3</option>
+                                                    <option value="N4" {{ $userLanguage->pivot->level == 'N4' ? 'selected' : ''}}>N4</option>
+                                                    <option value="N5" {{ $userLanguage->pivot->level == 'C1' ? 'selected' : ''}}>N5</option>
+                                                
                                                 </select>
 
                                             </div>
@@ -182,7 +187,7 @@
                                                 <div class="col-sm-6 col-12">
                                                     <label class="form-label mt-2">*Level of knowledge</label>
                                                     <select class="form-select" name="level[]" aria-label="Default select example">
-                                                        <option value = "" selected>Choose Category</option>
+                                                        <option value = "" selected>Choose Level</option>
 
                                                         <option value="A1">A1</option>
                                                         <option value="A2">A2</option>
@@ -190,6 +195,11 @@
                                                         <option value="B2">B2</option>
                                                         <option value="C1">C1</option>
                                                         <option value="C2">C2</option>
+                                                        <option value="N1">N1</option>
+                                                        <option value="N2">N2</option>
+                                                        <option value="N3">N3</option>
+                                                        <option value="N4">N4</option>
+                                                        <option value="N5">N5</option>
 
                                                     </select>
 

@@ -32,37 +32,30 @@ $jobsRequest = JobRequest::all();
                             </div>
                             <div class="col-lg-8 mx-auto">
                                 <h3 class="mt-lg-0 mt-4">{{ $job->title }}</h3>
-                                <p><i class="fa fa-list-alt" aria-hidden="true"></i> {{ $job->category->name }}</p>
                                 <br>
+                                <i class="fa fa-list-alt" aria-hidden="true"></i> {{ $job->category->name }}<br>
                                 <i class="fas fa-address-card"></i> {{ $job->address }}<br>
                                 <i class="fas fa-calendar-alt"></i> {{ $job->startingDate }} |
                                 {{ $job->endingDate ? $job->endingDate : '/' }}<br>
-                                <h6 class="mb-0 mt-3">Price ({{ $job->price_type }})</h6>
-                                <h5>€{{ $job->price }}</h5>
-
+                                <h6 class="mb-0 mt-3">Price ({{ $job->price_type }}) : €{{ $job->price }}</h6>
                                 <br>
-                                <label>Description</label>
+                                <label style="font-size: 16px; font-weight: bold;">Description</label>
                                 <br>
                                 <span>
                                     {!! nl2br($job->body) !!}
                                 </span>
                                 <br>
-                                <label class="mt-1">Responsibilities</label><br>
+                                <label style="font-size: 16px; font-weight: bold;">Responsibilities</label><br>
                                 <span>
                                     {!! nl2br($job->duties) !!}
                                 </span>
                                 <br>
-                                <label class="mt-1">Address</label><br>
+                                <label style="font-size: 16px; font-weight: bold;">Experience</label><br>
                                 <span>
-                                    {{ $job->address }}
+                                    {{ $job->experience }} years
                                 </span>
                                 <br>
-                                <label class="mt-1">Experience</label><br>
-                                <span>
-                                    {{ $job->experience }}
-                                </span>
-                                <br>
-                                <label class="mt-1">Job Type</label>
+                                <label style="font-size: 16px; font-weight: bold;">Job Type</label>
                                 <br>
                                 <span>
                                     {{ $job->job_type }}

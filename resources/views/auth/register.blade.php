@@ -256,6 +256,11 @@
                                                 <option value="B2">B2</option>
                                                 <option value="C1">C1</option>
                                                 <option value="C2">C2</option>
+                                                <option value="N1">N1</option>
+                                                <option value="N2">N2</option>
+                                                <option value="N3">N3</option>
+                                                <option value="N4">N4</option>
+                                                <option value="N5">N5</option>
                                             </select>
 
                                         </div>
