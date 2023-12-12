@@ -221,19 +221,16 @@ class SearchController extends Controller
 
             $jobs_by_word = Job::where(function ($q) use ($separated_input) {
                 foreach ($separated_input as $input) {
+                    $trimmedInput = trim($input);
                     if (strlen($input) < 2) {
                         continue;
                     }
-                    $q->orWhere('title', 'like', "%{$input}%")
-                        ->orWhere('body', 'like', "%{$input}%")
-                        ->orWhere('duties', 'like', "%{$input}%")
-                        ->orWhere('address', 'like', "%{$input}%")
-                        ->orWhere('experience', 'like', "%{$input}%")
-                        ->orWhere('price', 'like', "%{$input}%")->orderBy('title', 'ASC');
+                    $q->orWhere('title', 'like', "%{$trimmedInput}%")
+                        ->orWhere('address', 'like', "%{$trimmedInput}%");
                 }
             });
-
-            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');
+            $trimmedInput = trim($input);
+            $jobs->orWhere(DB::raw('title'), 'like', '%' . $trimmedInput . '%')->orderBy('title', 'ASC');//kerko me fjali
             if ($salary != ''){
                 $jobs->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);
                 $jobs_by_word->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);
@@ -253,8 +250,6 @@ class SearchController extends Controller
             }
 
             $jobs->union($jobs_by_word);
-
-
             $jobs = $jobs->paginate(10)->appends(request()->query());
             $jobs_count = $jobs->count();
             $jobsRequest = JobRequest::all();
