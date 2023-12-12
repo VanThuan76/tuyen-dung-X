@@ -127,14 +127,14 @@ class UserProfileController extends Controller
             session()->flash('category_error', 'Oops ... Category not found.');
             return back();
         }
-    $input = $request->all();
-        $applyLanguage = $this->addLanguages($input, $user);
+        $input = $request->all();
+        $this->addLanguages($input, $user);
         if($file = $request->file('cv')) {
 
             $file_name = time() . $file->getClientOriginalName();
             $file->move('files',$file_name);
             if ($user->cv) {
-                if (file_exists(public_path() . '/files/' . $user->cv)) {//kontrollo nese ekziston cv ne storage para se te fshihet
+                if (file_exists(public_path() . '/files/' . $user->cv)) {
                     unlink(public_path() . '/files/' . $user->cv);
                 }
             }
