@@ -102,15 +102,23 @@
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-5" style="margin-bottom: 50px;">
-                                <a href="{{route('job.create')}}">
+                            @if(auth()->user()->email_verified_at == null)
                                 <div class="card h-100 card-plain border">
                                     <div class="card-body d-flex flex-column justify-content-center text-center">
-                                            <i class="fa fa-plus text-secondary mb-3"></i>
-                                            <h5 class=" text-secondary"> Create job </h5>
+                                        <span class="text-danger" style="font-weight: bold;">PLEASE VERIFY YOUR MAIL BEFORE CREATE JOB</span>
                                     </div>
                                 </div>
+                            @else
+                                <a href="{{ route('job.create') }}">
+                                    <div class="card h-100 card-plain border">
+                                        <div class="card-body d-flex flex-column justify-content-center text-center">
+                                            <i class="fa fa-plus text-secondary mb-3"></i>
+                                                <h5 class="text-secondary">Create job</h5>
+                                        </div>
+                                    </div>
                                 </a>
-                            </div>
+                            @endif
+                        </div>
                         @foreach($jobs as $job)
                             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-5">
                                 <div class="card card-blog card-plain">
