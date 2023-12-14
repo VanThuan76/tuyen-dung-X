@@ -22,7 +22,7 @@ class Job extends Model
         ];
     }
     protected $fillable = [
-        'title', 'body','user_id', 'slug','address','remote','experience','job_type', 'category_id', 'duties', 'startingDate', 'endingDate', 'price_type', 'price'
+        'title', 'body','user_id', 'slug','address','remote','experience','job_type', 'category_id', 'duties', 'startingDate', 'endingDate', 'price_type', 'price', 'ageFrom', 'ageTo'
     ];
 
     public function user(){

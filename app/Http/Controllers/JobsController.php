@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class JobsController extends Controller
 {
@@ -29,6 +30,7 @@ class JobsController extends Controller
     {
         $user = auth()->user();
         $categories = Category::all();
+
         return view('job.create', compact('user', 'categories'));
     }
 
@@ -83,7 +85,6 @@ class JobsController extends Controller
 
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
-
         Job::create($input);
         session()->flash('job_created', 'Job offer successfully created.');
         return back();
@@ -129,7 +130,16 @@ class JobsController extends Controller
         $jobs = Job::all();
         $categories = Category::all();
         $jobsRequest = JobRequest::all();
-        return view('job.list', compact('user', 'jobs', 'categories', 'jobsRequest'));
+        $languageUsers = DB::table('language_user')
+            ->join('languages', 'language_user.language_id', '=', 'languages.id')
+            ->select('language_user.level', 'languages.name', 'languages.slug', 'language_user.user_id')
+            ->get();
+
+        $uniqueLanguageUsers = collect($languageUsers)->unique(function ($item) {
+            return $item->level . $item->name;
+        })->values()->all();
+
+        return view('job.list', compact('user', 'jobs', 'categories', 'jobsRequest', 'uniqueLanguageUsers'));
     }
     /**
      * Show the form for editing the specified resource.

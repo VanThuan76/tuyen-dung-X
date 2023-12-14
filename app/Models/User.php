@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'surname', 'gender', 'username', 'slug', 'about', 'email', 'password', 'cv', 'photo_id', 'role_id','category_id', 'investigation_id', 'username_changed','is_deleted'
+        'name', 'surname', 'gender', 'age', 'address', 'phone_number', 'username', 'slug', 'about', 'email', 'password', 'cv', 'photo_id', 'role_id','category_id', 'investigation_id', 'username_changed'
     ];
     public function photo(){
         return $this->belongsTo(Photo::class);
