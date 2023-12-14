@@ -10,6 +10,9 @@
     <div class="col-lg-9 col-12 mx-auto">
 
     <form id="form-store" action="{{route('job.store')}}" method="POST">
+
+    <form action="{{route('job.store')}}" method="POST">
+
         @csrf
         @method('POST')
         <div class="card card-body mt-4">
@@ -207,6 +210,19 @@
                         @error('language_level')
                         <span style="color:red;">{{ $message }}</span>
                         @enderror
+                                <option value="A1">A1</option>
+                                <option value="A2">A2</option>
+                                <option value="B1">B1</option>
+                                <option value="B2">B2</option>
+                                <option value="C1">C1</option>
+                                <option value="C2">C2</option>
+                                <option value="N1">N1</option>
+                                <option value="N2">N2</option>
+                                <option value="N3">N3</option>
+                                <option value="N4">N4</option>
+                                <option value="N5">N5</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-2">
