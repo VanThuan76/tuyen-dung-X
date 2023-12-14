@@ -96,7 +96,12 @@ use App\Models\SucessfulUsers;
                         <a href="mailto:{{$user->email}}">{{$user->email}}</a>
                     @endif
                 </li>
-               @if ($user->category)
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Birthday:</strong> &nbsp;{{\Carbon\Carbon::parse($user->birthday)->format('Y-m-d')}}</li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Province:</strong> &nbsp;{{ $user->province->name }}</li>
+                @if ($user->phone_number)
+                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Phone number:</strong> &nbsp;{{ $user->phone_number }}</li>
+                @endif
+                @if ($user->category)
                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Category:</strong> &nbsp;{{$user->category->name}}</li>@endif
                @if ($user->cv)
                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">CV:</strong> &nbsp; <a href="/files/{{$user->cv}}"><img src="{{asset('/assets/img/pdf.webp')}}" style="width: 20px"></a> </li>@endif

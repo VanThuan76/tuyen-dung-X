@@ -76,6 +76,8 @@ use App\Models\User;
                                 {{ $job->endingAge }}
                             </span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Province:</strong> <span>{{ $job->province->name ?? '' }}</span></div>
+                            <div class="col-12 col-sm-4 mt-1"><strong>Language:</strong> <span>{{ $job->language->name ?? '' }}</span></div>
+                            <div class="col-12 col-sm-4 mt-1"><strong>Language level:</strong> <span>{{ $job->language_level ?? '' }}</span></div>
                         </div>
                     </div>
                     <div class="card-header">
@@ -108,6 +110,9 @@ use App\Models\User;
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             Year Age</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                            Language Level</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             Created</th>
@@ -160,6 +165,13 @@ use App\Models\User;
                                                 </h6>
                                             </td>
                                             <td class="text-center align-middle text-sm">
+                                                @foreach ($jobResponse->user->language as $language)
+                                                    <h6 class="mb-0 text-sm">
+                                                        {{ $language->name}} - {{ $language->pivot->level }}
+                                                    </h6>
+                                                @endforeach
+                                            </td>
+                                            <td class="text-center align-middle text-sm">
                                                 <h6 class="mb-0 text-sm">{{ $jobResponse->created_at->diffForHumans() }}
                                                 </h6>
                                             </td>
@@ -206,7 +218,6 @@ use App\Models\User;
                                                         </form>
                                                     </span>
                                                 @endif
-                                                <span> ({{ $jobResponse->priority }}) </span>
                                             </td>
                                         </tr>
                                     @endforeach

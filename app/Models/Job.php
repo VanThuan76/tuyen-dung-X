@@ -23,7 +23,7 @@ class Job extends Model
     }
     protected $fillable = [
         'title', 'body','user_id', 'slug','address','remote','experience','job_type', 'category_id', 'duties', 'startingDate', 'endingDate', 'price_type', 'price',
-        'province_id', 'gender', 'startingAge', 'endingAge'
+        'province_id', 'gender', 'startingAge', 'endingAge', 'language_id', 'language_level'
     ];
 
     public function user(){
@@ -45,5 +45,10 @@ class Job extends Model
     public function jobRequests()
     {
         return $this->hasMany(JobRequest::class);
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
     }
 }
