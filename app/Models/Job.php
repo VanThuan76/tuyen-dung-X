@@ -22,7 +22,8 @@ class Job extends Model
         ];
     }
     protected $fillable = [
-        'title', 'body','user_id', 'slug','address','remote','experience','job_type', 'category_id', 'duties', 'startingDate', 'endingDate', 'price_type', 'price'
+        'title', 'body','user_id', 'slug','address','remote','experience','job_type', 'category_id', 'duties', 'startingDate', 'endingDate', 'price_type', 'price',
+        'province_id', 'gender', 'startingAge', 'endingAge'
     ];
 
     public function user(){
@@ -34,5 +35,15 @@ class Job extends Model
     public function category(){
 
         return $this->belongsTo(Category::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_id', 'id');
+    }
+
+    public function jobRequests()
+    {
+        return $this->hasMany(JobRequest::class);
     }
 }

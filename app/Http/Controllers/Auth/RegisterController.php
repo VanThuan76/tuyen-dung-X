@@ -6,12 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Mail\WelcomeMail;
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\Language;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ResgisterRequest;
+use App\Models\Province;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -71,7 +76,6 @@ class RegisterController extends Controller
             'website' => ['nullable', 'string', 'min:2', 'max:255'],
             'language_id.*' => ['required_if:is_business,0', 'nullable', 'numeric'],
             'level.*' => ['required_if:is_business,0', 'nullable'],
-            'is_deleted' => ['required', 'numeric', 'min:0', 'max:1'],
         ]);
     }
 
@@ -131,5 +135,31 @@ class RegisterController extends Controller
             $this->addLanguages($data, $user);
         }
         return $user;
+    }
+
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+        $languages = Language::all();
+        $provinces = Province::all();
+
+        return view('auth.register', compact('categories', 'languages', 'provinces'));
+    }
+
+    public function register(ResgisterRequest $request)
+    {
+        $data = $request->validated();
+        $user = $this->create($data);
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Register successfully.'
+        ]);
     }
 }

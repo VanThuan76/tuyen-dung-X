@@ -6,7 +6,9 @@ use App\Http\Requests\JobStoreRequest;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
+use App\Models\Province;
 use App\Models\User;
+use Carbon\Carbon;
 
 class JobsController extends Controller
 {
@@ -29,7 +31,9 @@ class JobsController extends Controller
     {
         $user = auth()->user();
         $categories = Category::all();
-        return view('job.create', compact('user', 'categories'));
+        $provinces = Province::all();
+
+        return view('job.create', compact('user', 'categories', 'provinces'));
     }
 
     /**
@@ -123,10 +127,44 @@ class JobsController extends Controller
         $jobs = $company->job->where('id', '<>', $job->id);
         return view('job.show', compact('user', 'job', 'jobs'));
     }
+
+    public function calculatePriority($jobs, $user)
+    {
+        $userAge = Carbon::parse($user->birthday)->age;
+        foreach ($jobs as $response) {
+            $priority = 0;
+
+            if ($userAge > $response->startingAge && $userAge < $response->endingAge) {
+                $priority += 2;
+            }
+
+            if ($user->gender == $response->gender) {
+                $priority += 3;
+            }
+
+            if ($user->province_id == $response->province_id) {
+                $priority += 7;
+            }
+
+            if ($user->category_id == $response->category_id) {
+                $priority += 2;
+            }
+
+            $response->priority = $priority;
+        }
+
+        return $jobs;
+    }
+
     public function list()
     {
         $user = auth()->user();
         $jobs = Job::all();
+        $jobs = $this->calculatePriority($jobs, $user);
+        $jobs = $jobs->sortBy([
+            ['priority', 'desc'],
+        ]);
+
         $categories = Category::all();
         $jobsRequest = JobRequest::all();
         return view('job.list', compact('user', 'jobs', 'categories', 'jobsRequest'));

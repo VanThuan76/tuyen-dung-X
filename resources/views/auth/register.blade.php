@@ -35,7 +35,7 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('/assets/css/soft-ui-dashboard.css?v=1.0.3')}}" rel="stylesheet" />
     <meta name="description" content="EmployingX - Online Recruitment Platform" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .hidden{
             display: none;
@@ -118,7 +118,7 @@
                 <div class="row">
                     <div class="col-lg-9 col-12 mx-auto">
 
-                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                        <form id="form-register" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
                             <div class="card card-body mt-4">
@@ -131,21 +131,14 @@
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Name</label>
                                         <div class="input-group">
-                                            <input id="name" name="name" class="form-control" type="text" placeholder="Name" required="required" autocomplete="off" value="{{old('name')}}">
+                                            <input id="name" name="name" class="form-control" type="text" placeholder="Name" autocomplete="off" value="{{old('name')}}">
                                         </div>
-                                        @error('name')
-                                        <span style="color:red; ">{{ $message }}</span>
-                                        @enderror
-
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Surname</label>
                                         <div class="input-group">
-                                            <input id="surname" name="surname" class="form-control" type="text" placeholder="Surname" required="required" autocomplete="off" value="{{old('surname')}}">
+                                            <input id="surname" name="surname" class="form-control" type="text" placeholder="Surname" autocomplete="off" value="{{old('surname')}}">
                                         </div>
-                                        @error('surname')
-                                        <span style="color:red">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">
@@ -153,11 +146,7 @@
                                         <label class="form-label mt-4">About</label>
                                         <div class="input-group">
                                             <textarea id="about" name="about" class="form-control" rows="5">{{old('about')}}</textarea>
-
                                         </div>
-                                        @error('about')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
 
@@ -165,45 +154,64 @@
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Email</label>
                                         <div class="input-group">
-                                            <input id="email" name="email" class="form-control" type="email" autocomplete="off" placeholder="Email" value="{{old('email')}}" required>
+                                            <input id="email" name="email" class="form-control" type="email" autocomplete="off" placeholder="Email" value="{{old('email')}}">
                                         </div>
-                                        @error('email')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Username</label>
                                         <div class="input-group">
-                                            <input id="username" name="username" class="form-control" type="text" autocomplete="off" placeholder="Username" value="{{old('username')}}" required>
+                                            <input id="username" name="username" class="form-control" type="text" autocomplete="off" placeholder="Username" value="{{old('username')}}">
                                         </div>
-                                        @error('username')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
                                     </div>
-
-
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <label class="form-label mt-4">*Birthday</label>
+                                        <div class="input-group">
+                                            <input id="date" name="birthday" class="form-control" type="date" autocomplete="off" placeholder="Email" value="{{old('birthday')}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <label class="form-label mt-4">*Provice</label>
+                                        <select class="form-select" name="province_id" aria-label="Default select example">
+                                            <option value = "" selected>Choose Category</option>
+                                            @foreach($provinces as $province)
+                                                <option value="{{$province->id}}">{{$province->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <label class="form-label mt-4">*Gender</label>
+                                        <div class="input-group">
+                                            <select class="form-select" name="gender" aria-label="Default select example">
+                                                <option value = "" selected>Choose Gender</option>
+                                                <option value = "1">Male</option>
+                                                <option value = "2">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <label class="form-label mt-4">Phone number</label>
+                                        <div class="input-group">
+                                            <input id="phone_number" name="phone_number" class="form-control" type="phone_number" placeholder="Phone number" value="{{old('phone_number')}}">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Password</label>
                                         <div class="input-group">
-                                            <input id="password" name="password" class="form-control" type="password" placeholder="Password" value="{{old('password')}}" required>
+                                            <input id="password" name="password" class="form-control" type="password" placeholder="Password" value="{{old('password')}}">
                                         </div>
-                                        @error('password')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Password Confirmation</label>
                                         <div class="input-group">
-                                            <input id="password_confirmation" name="password_confirmation" class="form-control" type="password" placeholder="Password Confirmation" value="{{old('password_confirmation')}}" required>
+                                            <input id="password_confirmation" name="password_confirmation" class="form-control" type="password" placeholder="Password Confirmation" value="{{old('password_confirmation')}}">
                                         </div>
-                                        @error('password_confirmation')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
                                     </div>
-
-
                                 </div>
                                 <div class="user-row">
                                 <div class="row">
@@ -212,9 +220,6 @@
                                         <div class="input-group">
                                             <input id="cv" name="cv" class="form-control" type="file" placeholder="Attach CV">
                                         </div>
-                                        @error('cv')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Category</label>
@@ -224,14 +229,6 @@
                                                 <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
                                             @endforeach
                                         </select>
-                                        @error('category_id')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
-                                        @if (session('category_error'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ session('category_error') }}</strong>
-                                         </span>
-                                        @endif
                                     </div>
                                 </div>
                             <br>
@@ -265,24 +262,6 @@
 
                                         </div>
                                      </div>
-                                    @error('language_id.*')
-                                    <span style="color:red;">{{ $message }}</span>
-                                    <br>
-                                    @enderror
-                                    @error('language_id')
-                                    <span style="color:red;">{{ $message }}</span>
-                                    <br>
-                                    @enderror
-
-                                    @error('level.*')
-                                    <span style="color:red;">{{ $message }}</span>
-                                    <br>
-                                    @enderror
-                                    @error('level')
-                                    <span style="color:red;">{{ $message }}</span>
-                                    <br>
-                                    @enderror
-
                                 </div>
                                     <button type="button" class="btn btn-secondary add-language mt-2">+ Add</button>
 
@@ -299,9 +278,6 @@
                                                 <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Company</label>
                                             </div>
                                         </div>
-                                        @error('remote')
-                                        <span style="color:red;">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="company-details hidden">
@@ -311,18 +287,12 @@
                                             <div class="input-group">
                                                 <input id="business_name" name="business_name" class="form-control" autocomplete="off" type="text" placeholder="Business name" value="{{old('business_name')}}">
                                             </div>
-                                            @error('business_name')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                         <div class="col-sm-6 col-12">
                                             <label class="form-label">Industry</label>
                                             <div class="input-group">
                                                 <input id="industry" name="industry" class="form-control" autocomplete="off" type="text" placeholder="Industry" value="{{old('industry')}}">
                                             </div>
-                                            @error('industry')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                     </div>
 
@@ -332,18 +302,12 @@
                                             <div class="input-group">
                                                 <input id="capacity" name="capacity" class="form-control" autocomplete="off" type="text" placeholder="Capacity" value="{{old('capacity')}}">
                                             </div>
-                                            @error('capacity')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                         <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Address</label>
                                             <div class="input-group">
                                                 <input id="address" name="address" class="form-control" autocomplete="off" type="text" placeholder="Address" value="{{old('address')}}">
                                             </div>
-                                            @error('address')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            @enderror
                                         </div>
 
                                     </div>
@@ -353,18 +317,12 @@
                                             <div class="input-group">
                                                 <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" placeholder="Mobile Number" value="{{old('tel')}}">
                                             </div>
-                                            @error('tel')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                         <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">Website</label>
                                             <div class="input-group">
                                                 <input id="website" name="website" class="form-control" autocomplete="off" type="text" placeholder="Website" value="{{old('website')}}">
                                             </div>
-                                            @error('website')
-                                            <span style="color:red;">{{ $message }}</span>
-                                            @enderror
                                         </div>
 
                                     </div>
@@ -401,6 +359,8 @@
 <script src="{{asset('/assets/js/core/bootstrap.min.js')}}"></script>
 <script src="{{asset('/assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('/assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+<script src="{{asset('/static/assets/plugins/jquery.min.js')}}"></script>
+<script src="{{asset('/static/assets/plugins/plugins.js')}}"></script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -413,8 +373,9 @@
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+{{-- <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script> --}}
 <script src="{{asset('/assets/js/script.js')}}"></script>
+<script src="{{asset('/js/form.js')}}"></script>
 <script type="text/javascript">
     const companyDetails = document.querySelector('.company-details');
     const companyButton = document.querySelector('#businessFlexSwitchCheckDefault');
@@ -441,6 +402,41 @@
         this.value = 0;//per kompani
         userRow.classList.remove('hidden');
     }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $('#form-register').on('submit', function (event) {
+        event.preventDefault();
+        let formData = new FormData(this)
+        new clearValidate();
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: "POST",
+            dataType: "JSON",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data){
+                $.toast({
+                    heading: 'Success',
+                    text: data.message,
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    position: 'top-right',
+                    afterHidden: () => {
+                        window.location.reload()
+                    },
+                })
+            },
+            error: function(reject){
+                if (reject.status == 422) {
+                    let errors = $.parseJSON(reject.responseText).errors;
+                    new setErrors(errors);
+                }
+            }
+        });
+    })
 </script>
 </body>
 

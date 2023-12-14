@@ -70,7 +70,7 @@
                                             src="/images/{{ $job->user->photo->name }}" alt="{{ $job->title }}">
                                     </div>
                                     <div class="col-md-8">
-                                        <h3 class="mt-1">{{ $job->title }}</h3>
+                                        <h3 class="mt-1">{{ $job->title }}({{$job->priority}})</h3>
                                         <p style="font-weight: bold; color: red; font-size: 24px;">
                                             {{ $job->user->company->name }}</p>
                                         <p><i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -82,8 +82,15 @@
                                         <p><strong>Price ({{ $job->price_type }}):</strong>
                                             <span>${{ $job->price }}</span>
                                         </p>
-                                        <p><strong>Experience:</strong> <span>{{ $job->experience }} years</span></p>
-                                        <p><strong>Job Type:</strong> <span>{{ $job->job_type }}</span></p>
+                                        <div class="col ">
+                                            <p><strong>Experience:</strong> <span>{{ $job->experience }} years</span></p>
+                                            <p><strong>Job Type:</strong> <span>{{ $job->job_type }}</span></p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Province:</strong> <span>{{ $job->province->name }}</span></p>
+                                            <p><strong>Year Age:</strong> <span>{{ $job->startingAge }} - {{ $job->endingAge }}</span></p>
+                                        </div>
+                                        <p><strong>Gender:</strong> <span>{{ $job->gender == 1 ? 'Male' : 'Female' }}</span></p>
                                         <div class="d-flex mt-3 justify-between">
                                             <a href="{{ route('job.showByUser', $job->slug) }}"
                                                 class="btn btn-primary mr-2">See job</a>

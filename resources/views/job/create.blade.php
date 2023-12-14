@@ -96,6 +96,52 @@
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Provinces</label>
+                    <select class="form-select" name="province_id" aria-label="Default select example">
+                        <option value="" selected>Choose Province</option>
+                        @foreach($provinces as $province)
+                            <option value="{{$province->id}}" {{ old('province_id') == $province->id ? 'selected' : ''}} >{{$province->name}}</option>
+                        @endforeach
+                    </select>
+
+                    @error('province_id')
+                    <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Gender</label>
+                    <div class="input-group">
+                        <select class="form-select" name="gender" aria-label="Default select example">
+                            <option value = "" selected>Choose Gender</option>
+                            <option value = "1" {{ $user->gender == 1 ? 'selected' : ''}} >Male</option>
+                            <option value = "2" {{ $user->gender == 2 ? 'selected' : ''}} >Female</option>
+                        </select>
+                    </div>
+                    @error('gender')
+                        <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Starting age</label>
+                    <input class="form-control" type="number" name="startingAge" placeholder="Start age" value="{{old('startingAge')}}">
+
+                    @error('startingAge')
+                    <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Ending age</label>
+                    <input class="form-control" type="number" name="endingAge" placeholder="End age" value="{{old('endingAge')}}">
+
+                    @error('endingAge')
+                        <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
             <div class="row mt-2">
 
                 <div class="col-12">

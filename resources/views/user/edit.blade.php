@@ -92,6 +92,52 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 col-12">
+                                            <label class="form-label mt-4">Gender</label>
+                                            <div class="input-group">
+                                                <select class="form-select" name="gender" aria-label="Default select example">
+                                                    <option value = "" selected>Choose Gender</option>
+                                                    <option value = "1" {{ $user->gender == 1 ? 'selected' : ''}} >Male</option>
+                                                    <option value = "2" {{ $user->gender == 2 ? 'selected' : ''}} >Female</option>
+                                                </select>
+                                            </div>
+                                            @error('gender')
+                                                <span style="color:red;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-sm-6 col-12">
+                                            <label class="form-label mt-4">Phone number</label>
+                                            <div class="input-group">
+                                                <input id="phone_number" name="phone_number" class="form-control" type="phone_number" placeholder="Phone number" value="{{old('phone_number') ?? $user->phone_number}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-12">
+                                            <label class="form-label mt-4">Birthday</label>
+                                            <div class="input-group">
+                                                <input id="birthday" name="birthday" class="form-control" type="date" placeholder="{{\Carbon\Carbon::parse($user->birthday)->format('Y-m-d')}}" value="{{\Carbon\Carbon::parse($user->birthday)->format('Y-m-d')}}">
+                                            </div>
+                                            @error('birthday')
+                                                <span style="color:red;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-sm-6 col-12">
+                                            <label class="form-label mt-4">Province</label>
+                                            <div class="input-group">
+                                                <select class="form-select" name="province_id" aria-label="Default select example">
+                                                    <option value="" selected>Choose Province</option>
+                                                    @foreach($provinces as $province)
+                                                        <option value="{{$province->id}}" {{ $user->province_id == $province->id ? 'selected' : ''}} >{{$province->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('province_id')
+                                                <span style="color:red;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">CV</label>
                                             <div class="input-group">
                                                 <input id="cv" name="cv" class="form-control" type="file">

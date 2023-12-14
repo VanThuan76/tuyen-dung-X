@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -30,12 +32,69 @@ class JobsRequestController extends Controller
     public function response()
     {
         $user = auth()->user();
-        $jobs = Job::where('user_id', $user->id)->get();
-        $jobIds = $jobs->pluck('id')->toArray();
-        $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get();
-        $jobIdsResponse = $jobsResponse->pluck('job_id')->toArray();
-        $jobsResponseCategory = Job::whereIn('id', $jobIdsResponse)->pluck('category_id')->unique();
-        $categories = Category::whereIn('id', $jobsResponseCategory)->get();
+        $jobs = Job::where('user_id', $user->id)
+            ->withCount('jobRequests')
+            ->get();
+
+        return view('job.response', compact('jobs'));
+    }
+
+    public function calculatePriority($jobsResponse, $job)
+    {
+        foreach ($jobsResponse as $response) {
+            $priority = 0;
+            $user = $response->user;
+            $userAge = Carbon::parse($user->birthday)->age;
+
+            if ($userAge > $job->startingAge && $userAge < $job->endingAge) {
+                $priority += 2;
+            }
+
+            if ($user->gender == $response->job->gender) {
+                $priority += 3;
+            }
+
+            if ($user->province_id == $response->job->province_id) {
+                $priority += 7;
+            }
+
+            if ($user->category_id == $response->job->category_id) {
+                $priority += 2;
+            }
+
+            $response->priority = $priority;
+        }
+
+        return $jobsResponse;
+    }
+
+    public function jobsResponse(Request $request, string $id)
+    {
+        $jobsResponse = JobRequest::where('job_id', $id)
+            ->when($request->name, function ($query) use ($request) {
+                $query->whereHas('user', function ($subQuery) use ($request) {
+                    $subQuery->where('name', 'Like', '%'.$request->name.'%');
+                });
+            })
+            ->when($request->category, function ($query) use ($request) {
+                $query->whereHas('user.category', function ($subQuery) use ($request) {
+                    $subQuery->where('slug', $request->category);
+                });
+            })
+            ->when($request->gender, function ($query) use ($request) {
+                $query->whereHas('user', function ($subQuery) use ($request) {
+                    $subQuery->where('gender', $request->gender);
+                });
+            })
+            ->when($request->age, function ($query) use ($request) {
+                $query->whereHas('user', function ($subQuery) use ($request) {
+                    $subQuery->where('birthday', '<=', Carbon::now()->subYears($request->age)->format('Y-m-d 00:00'));
+                });
+            })
+            ->get();
+        $job = Job::findOrFail($id);
+        
+        $categories = Category::all();
 
         $languageUsers = DB::table('language_user')
             ->join('languages', 'language_user.language_id', '=', 'languages.id')
@@ -46,7 +105,14 @@ class JobsRequestController extends Controller
             return $item->level . $item->name;
         })->values()->all();
 
-        return view('job.response', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
+        $jobsResponse = $this->calculatePriority($jobsResponse , $job);
+        $jobsResponse = $jobsResponse->sortBy([
+            ['priority', 'desc'],
+            ['user.birthday', 'desc'],
+            ['user.gender', 'desc'],
+        ]);
+
+        return view('job.response-detail', compact('jobsResponse', 'job', 'categories', 'uniqueLanguageUsers'));
     }
 
 
