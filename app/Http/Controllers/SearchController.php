@@ -33,7 +33,7 @@ class SearchController extends Controller
         $price_type = $request->price_type;
         $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
         $jobs = Job::query();
-        if ($category != ''){
+        if ($category != '') {
             $category = Category::findBySlugOrFail($category);
             $category = $category->id;
         }
@@ -58,17 +58,17 @@ class SearchController extends Controller
             });
 
             //Metoda tani duke i ndare fjalet e fjalise edhe duke kerkuar bazuar ne ato fjale
-            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');//kerko me fjali
-            if ($category != ''){
+            $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC'); //kerko me fjali
+            if ($category != '') {
                 $jobs->where('category_id', $category);
                 $jobs_by_word->where('category_id', $category);
             }
-            if ($job_type != ''){
+            if ($job_type != '') {
                 $jobs->where('job_type', $job_type);
                 $jobs_by_word->where('job_type', $job_type);
 
             }
-            if ($price_type != ''){
+            if ($price_type != '') {
                 $jobs->where('price_type', $price_type);
                 $jobs_by_word->where('price_type', $price_type);
             }
@@ -82,10 +82,9 @@ class SearchController extends Controller
             //Kjo appends per te marrur edhe get requestat tjere ne get metoden
             return view('admin.search.jobs', compact('jobs', 'jobs_count', 'user', 'categories'));
 
-        }
-        else{
+        } else {
 
-            if ($category == '' && $job_type == '' && $price_type == ''){
+            if ($category == '' && $job_type == '' && $price_type == '') {
                 return redirect()->route('admin.jobs');
             }
 
@@ -100,8 +99,8 @@ class SearchController extends Controller
                 $jobs->where('price_type', $price_type);
             }
             $jobs = $jobs->paginate(10)->appends(request()->query());
-                $jobs_count = $jobs->count();
-                return view('admin.search.jobs', compact('jobs', 'jobs_count', 'user', 'categories'));
+            $jobs_count = $jobs->count();
+            return view('admin.search.jobs', compact('jobs', 'jobs_count', 'user', 'categories'));
 
         }
 
@@ -127,7 +126,7 @@ class SearchController extends Controller
         $language_level = $request->language_level;
         $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
         $jobs = Job::query();
-        if ($category != ''){
+        if ($category != '') {
             $category = Category::findBySlugOrFail($category);
             $category = $category->id;
         }
@@ -150,16 +149,16 @@ class SearchController extends Controller
                 }
             });
             $jobs->orWhere(DB::raw('title'), 'like', '%' . $input . '%')->orderBy('title', 'ASC');
-            if ($category != ''){
+            if ($category != '') {
                 $jobs->where('category_id', $category);
                 $jobs_by_word->where('category_id', $category);
             }
-            if ($job_type != ''){
+            if ($job_type != '') {
                 $jobs->where('job_type', $job_type);
                 $jobs_by_word->where('job_type', $job_type);
 
             }
-            if ($price_type != ''){
+            if ($price_type != '') {
                 $jobs->where('price_type', $price_type);
                 $jobs_by_word->where('price_type', $price_type);
             }
@@ -169,9 +168,9 @@ class SearchController extends Controller
             $user = auth()->user();
             $jobs = Job::where('user_id', $user->id)->get();
             $jobIds = $jobs->pluck('id')->toArray();
-            if ($language_level != ''){
+            if ($language_level != '') {
                 $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get()->where('user_id', $language_level);
-            }else{
+            } else {
                 $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get();
             }
             return view('job.response-detail', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
@@ -199,17 +198,28 @@ class SearchController extends Controller
             return view('job.response-detail', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
         }
     }
-    public function jobsByUser(Request $request){
+    public function jobsByUser(Request $request)
+    {
         $categories = Category::all();
         $input = $request->q;
         $user = auth()->user();
         $salary = $request->salary;
+        $age = $request->age;
         $category = $request->category;
         $job_type = $request->job_type;
         $price_type = $request->price_type;
+        $language_level = $request->language_level;
         $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
         $jobs = Job::query();
-        if ($category != ''){
+        $languageUsers = DB::table('language_user')
+            ->join('languages', 'language_user.language_id', '=', 'languages.id')
+            ->select('language_user.level', 'languages.name', 'languages.slug', 'language_user.user_id')
+            ->get();
+
+        $uniqueLanguageUsers = collect($languageUsers)->unique(function ($item) {
+            return $item->level . $item->name;
+        })->values()->all();
+        if ($category != '') {
             $category = Category::findBySlugOrFail($category);
             $category = $category->id;
         }
@@ -226,25 +236,27 @@ class SearchController extends Controller
                         continue;
                     }
                     $q->orWhere('title', 'like', "%{$trimmedInput}%")
-                        ->orWhere('address', 'like', "%{$trimmedInput}%");
+                        ->orWhere('address', 'like', "%{$trimmedInput}%")
+                        ->orWhere('duties', 'like', "%{$trimmedInput}%")
+                        ->orWhere('body', 'like', "%{$trimmedInput}%");
                 }
             });
             $trimmedInput = trim($input);
-            $jobs->orWhere(DB::raw('title'), 'like', '%' . $trimmedInput . '%')->orderBy('title', 'ASC');//kerko me fjali
-            if ($salary != ''){
-                $jobs->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);
-                $jobs_by_word->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int)$salary);
+            $jobs->orWhere(DB::raw('title'), 'like', '%' . $trimmedInput . '%')->orderBy('title', 'ASC'); //kerko me fjali
+            if ($salary != '') {
+                $jobs->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int) $salary);
+                $jobs_by_word->where(DB::raw('CAST(price AS UNSIGNED)'), '<=', (int) $salary);
             }
-            if ($category != ''){
+            if ($category != '') {
                 $jobs->where('category_id', $category);
                 $jobs_by_word->where('category_id', $category);
             }
-            if ($job_type != ''){
+            if ($job_type != '') {
                 $jobs->where('job_type', $job_type);
                 $jobs_by_word->where('job_type', $job_type);
 
             }
-            if ($price_type != ''){
+            if ($price_type != '') {
                 $jobs->where('price_type', $price_type);
                 $jobs_by_word->where('price_type', $price_type);
             }
@@ -253,16 +265,16 @@ class SearchController extends Controller
             $jobs = $jobs->paginate(10)->appends(request()->query());
             $jobs_count = $jobs->count();
             $jobsRequest = JobRequest::all();
-
-            return view('job.list', compact('jobs', 'jobs_count', 'user', 'jobsRequest', 'categories'));
-
-        }
-        else{
-            if ($category == '' && $job_type == '' && $price_type == '' && $salary == ''){
+            return view('job.list', compact('jobs', 'jobs_count', 'user', 'jobsRequest', 'categories', 'uniqueLanguageUsers'));
+        } else {
+            if ($category == '' && $job_type == '' && $price_type == '' && $salary == '') {
                 return redirect()->route('job.list');
             }
-            if ($salary != ''){
+            if ($salary != '') {
                 $jobs->where('price', '<=', $salary);
+            }
+            if ($age != '') {
+                $jobs->where('ageFrom', '<=', $age)->where('ageTo', '>=', $age);
             }
             if ($category != '') {
 
@@ -276,8 +288,8 @@ class SearchController extends Controller
             }
             $jobsRequest = JobRequest::all();
             $jobs = $jobs->paginate(10)->appends(request()->query());
-                $jobs_count = $jobs->count();
-                return view('job.list', compact('jobs', 'jobs_count', 'jobsRequest', 'user', 'categories'));
+            $jobs_count = $jobs->count();
+            return view('job.list', compact('jobs', 'jobs_count', 'jobsRequest', 'user', 'categories', 'uniqueLanguageUsers'));
 
         }
     }
@@ -293,11 +305,11 @@ class SearchController extends Controller
 
         $separated_input = preg_split('/(?<=\w)\b\s*[!?.]*/', $input, -1, PREG_SPLIT_NO_EMPTY);
         $users = User::query();
-        if ($category != ''){
+        if ($category != '') {
             $category = Category::findBySlugOrFail($category);
             $category = $category->id;
         }
-        if ($language != ''){
+        if ($language != '') {
             $language = Language::findBySlugOrFail($language);
             $language = $language->id;
         }
@@ -322,14 +334,14 @@ class SearchController extends Controller
             });
 
             //Metoda tani duke i ndare fjalet e fjalise edhe duke kerkuar bazuar ne ato fjale
-            $users->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', '%' . $input . '%')->orderBy('name', 'ASC');//kerko me fjali
-            if ($category != ''){
+            $users->orWhere(DB::raw('CONCAT(name, " ", surname)'), 'like', '%' . $input . '%')->orderBy('name', 'ASC'); //kerko me fjali
+            if ($category != '') {
                 $users->where('category_id', $category);
                 $users_by_word->where('category_id', $category);
             }
-            if ($language != ''){
-               $language = Language::find($language);
-               $id = $language->user->pluck('id');
+            if ($language != '') {
+                $language = Language::find($language);
+                $id = $language->user->pluck('id');
                 $users->whereIn('id', $id);
                 $users_by_word->whereIn('id', $id);
             }
@@ -342,12 +354,11 @@ class SearchController extends Controller
             $users_count = $users->count();
 
             //Kjo appends per te marrur edhe get requestat tjere ne get metoden
-            return view('admin.search.users', compact('users', 'users_count', 'user', 'categories','languages'));
+            return view('admin.search.users', compact('users', 'users_count', 'user', 'categories', 'languages'));
 
-        }
-        else{
+        } else {
 
-            if ($category == '' && $language == ''){
+            if ($category == '' && $language == '') {
                 return redirect()->route('admin.users');
             }
 
@@ -355,7 +366,7 @@ class SearchController extends Controller
 
                 $users->where('category_id', $category)->toSql();
             }
-            if ($language != ''){
+            if ($language != '') {
                 $language = Language::find($language);
                 $id = $language->user->pluck('id');
                 $users->whereIn('id', $id);
@@ -363,13 +374,14 @@ class SearchController extends Controller
             }
             $users = $users->paginate(10)->appends(request()->query());
             $users_count = $users->count();
-            return view('admin.search.users', compact('users', 'users_count', 'user', 'categories','languages'));
+            return view('admin.search.users', compact('users', 'users_count', 'user', 'categories', 'languages'));
 
         }
 
 
     }
-    public function companies(Request $request){
+    public function companies(Request $request)
+    {
         $categories = Category::all();
         $user = auth()->user();
         $input = $request->q;
@@ -382,7 +394,7 @@ class SearchController extends Controller
             }
 
             //Metoda tani duke i ndare fjalet e fjalise edhe duke kerkuar bazuar ne ato fjale
-            $users_by_sentence = Company::Where(DB::raw('name'), 'like', '%' . $input . '%')->orderBy('name', 'ASC');//kerko me fjali
+            $users_by_sentence = Company::Where(DB::raw('name'), 'like', '%' . $input . '%')->orderBy('name', 'ASC'); //kerko me fjali
             $users_by_word = Company::where(function ($q) use ($separated_input) {
                 foreach ($separated_input as $input) {
                     if (strlen($input) < 2) {
@@ -393,7 +405,7 @@ class SearchController extends Controller
                         ->orWhere('capacity', 'like', "%{$input}%")
                         ->orWhere('address', 'like', "%{$input}%")
                         ->orWhere('tel', 'like', "%{$input}%")
-                        ->orWhere('website','like', "%{$input}%")->orderBy('name', 'ASC');
+                        ->orWhere('website', 'like', "%{$input}%")->orderBy('name', 'ASC');
                 }
             });
 
@@ -402,9 +414,8 @@ class SearchController extends Controller
             $users_count = $users->count();
 
             //Kjo appends per te marrur edhe get requestat tjere ne get metoden
-            return view('admin.search.companies', compact('users','user', 'categories', 'users_count'));
-        }
-        else{
+            return view('admin.search.companies', compact('users', 'user', 'categories', 'users_count'));
+        } else {
 
             return redirect()->route('admin.companies');
         }

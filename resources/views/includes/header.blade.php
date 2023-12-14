@@ -50,21 +50,16 @@
                 <b>EmployingX</b>
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                 </div>
-                <div class="card-header">                  
-                        @if (session('Verify_mail_sent'))
-                            <span style="color:blue!important">{{session('Verify_mail_sent')}}</span>
-                        @endif
-                    </div>
                 <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                 @if(auth()->user()->email_verified_at == null && (auth()->user()->role->name == 'company' || auth()->user()->role->name == 'user'))
-                        <form method="post" action="{{ route('verification.resend', ['id' => auth()->user()->id]) }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger mx-2 mb-2">
-                        <i class="fas fa-envelope"></i> Verification Email
-                    </button>
+                    <form id="verificationForm" method="post" action="{{ route('verification.resend', ['id' => auth()->user()->id]) }}">
+                        @csrf
+                        <button type="button" onclick="resendVerification()" class="btn btn-danger mx-2 mb-2">
+                            <i class="fas fa-envelope"></i> Verification Email
+                        </button>
                     </form>
-                    @endif
+                @endif
                 <a @if (auth()->user()->role->name=='administrator' || auth()->user()->role->name=='user') href="{{route('user.show',auth()->user()->slug)}}" @else href="{{route('company.show',auth()->user()->slug)}}"  @endif class="nav-link text-body font-weight-bold px-2">
                     <i class="fa fa-user me-1"></i>
                 <span class="d-sm-inline d-none">
@@ -90,5 +85,25 @@
             </div>
         </div>
     </nav>
-
     <!-- End Navbar -->
+<script>
+    function resendVerification() {
+        fetch("{{ route('verification.resend', ['id' => auth()->user()->id]) }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "https://mail.google.com";
+            } else {
+                console.error('Error resending verification email');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
