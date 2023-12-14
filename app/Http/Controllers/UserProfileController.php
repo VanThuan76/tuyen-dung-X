@@ -6,6 +6,7 @@ use App\Http\Requests\UserChangeProfileRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\Category;
 use App\Models\Language;
+use App\Models\Province;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -68,10 +69,12 @@ class UserProfileController extends Controller
         $user = auth()->user();
         $categories = Category::all();
         $languages = Language::all();
+        $provinces = Province::all();
+
         if ($user->role->name == 'company'){
             return redirect()->route('home');//redirekto nese nuk eshte perdorues
         }
-        return view('user.edit',compact('user', 'categories','languages'));
+        return view('user.edit',compact('user', 'categories','languages', 'provinces'));
     }
 
     /**

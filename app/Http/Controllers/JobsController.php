@@ -6,7 +6,11 @@ use App\Http\Requests\JobStoreRequest;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
+use App\Models\Language;
+use App\Models\Province;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class JobsController extends Controller
@@ -30,8 +34,10 @@ class JobsController extends Controller
     {
         $user = auth()->user();
         $categories = Category::all();
+        $provinces = Province::all();
+        $languages = Language::all();
 
-        return view('job.create', compact('user', 'categories'));
+        return view('job.create', compact('user', 'categories', 'provinces', 'languages'));
     }
 
     /**
@@ -124,22 +130,88 @@ class JobsController extends Controller
         $jobs = $company->job->where('id', '<>', $job->id);
         return view('job.show', compact('user', 'job', 'jobs'));
     }
-    public function list()
+
+    public function calculatePriority($jobs, $user)
+    {
+        $userAge = Carbon::parse($user->birthday)->age;
+        foreach ($jobs as $response) {
+            $priority = 0;
+
+            if ($userAge > $response->startingAge && $userAge < $response->endingAge) {
+                $priority += 2;
+            }
+
+            if ($user->gender == $response->gender) {
+                $priority += 3;
+            }
+
+            if ($user->province_id == $response->province_id) {
+                $priority += 7;
+            }
+
+            if ($user->category_id == $response->category_id) {
+                $priority += 2;
+            }
+
+            $response->priority = $priority;
+        }
+
+        return $jobs;
+    }
+
+    public function list(Request $request)
     {
         $user = auth()->user();
-        $jobs = Job::all();
+        $jobs = Job::query()
+            ->when($request->title, function ($query) use ($request) {
+                $query->where('title', 'Like', '%'.$request->title.'%');
+            })
+            ->when($request->category, function ($query) use ($request) {
+                $query->whereHas('category', function ($subQuery) use ($request) {
+                    $subQuery->where('slug', $request->category);
+                });
+            })
+            ->when($request->job_type, function ($query) use ($request) {
+                $query->where('job_type', $request->job_type);
+            })
+            ->when($request->age, function ($query) use ($request) {
+                $query->where('startingAge', '<=', $request->age)
+                    ->where('endingAge', '>=', $request->age);
+            })
+            ->when($request->salary, function ($query) use ($request) {
+                $query->where('price', $request->salary);
+            })
+            ->when($request->gender, function ($query) use ($request) {
+                $query->whereHas('user', function ($subQuery) use ($request) {
+                    $subQuery->where('gender', $request->gender);
+                });
+            })
+            ->when($request->language_level, function ($query) use ($request) {
+                $query->where('user_id', $request->user_id);
+            })
+            ->when($request->province_id, function ($query) use ($request) {
+                $query->where('province_id', $request->province_id);
+            })
+            ->get();
+
+        $jobs = $this->calculatePriority($jobs, $user);
+        $jobs = $jobs->sortBy([
+            ['priority', 'desc'],
+        ]);
+
         $categories = Category::all();
         $jobsRequest = JobRequest::all();
         $languageUsers = DB::table('language_user')
             ->join('languages', 'language_user.language_id', '=', 'languages.id')
             ->select('language_user.level', 'languages.name', 'languages.slug', 'language_user.user_id')
             ->get();
+        $provinces = Province::all();
 
         $uniqueLanguageUsers = collect($languageUsers)->unique(function ($item) {
             return $item->level . $item->name;
         })->values()->all();
 
-        return view('job.list', compact('user', 'jobs', 'categories', 'jobsRequest', 'uniqueLanguageUsers'));
+        return view('job.list', compact('user', 'jobs', 'categories', 'jobsRequest', 'uniqueLanguageUsers', 'provinces'));
     }
     /**
      * Show the form for editing the specified resource.

@@ -1,5 +1,19 @@
 @extends('layouts.staticIndex')
 @section('styles')
+<style>
+    .form-control {
+        height: 40px;
+        width: 100%;
+        padding: 0 12px;
+    }
+    .row div[class^="col-"]:not(.row) {
+        margin-bottom: 0px
+    }
+    button.search {
+        height: 100%;
+        width: 100px;
+    }
+</style>
 @endsection
 @section('title')
     <title>
@@ -8,65 +22,79 @@
 @endsection
 @section('content')
     <div class="container-fluid py-2">
-        <form action="{{ route('user.search.jobs') }}" method="GET">
-            <div class="row g-0 align-items-center justify-content-center">
+        <form action="{{ route('job.list') }}" method="GET">
+            <div class="row g-0 align-items-center justify-content-center mb-1">
                 <div class="col-lg-3 col-6">
-                    <input id="q" name="q" class="form-control"
-                        value="@if (isset($_GET['q'])) {{ $_GET['q'] }} @endif" type="text"
+                    <input id="title" name="title" class="form-control"
+                        value="{{ $_GET['title'] ?? '' }}" type="text"
                         style="border-bottom-right-radius: 0px; border-top-right-radius: 0px; border: 1px solid #ced4da; padding: 10px;"
                         placeholder="Search" autocomplete="off">
                 </div>
 
-                <div class="col-lg-2 col-6 mt-3" style="padding: 10px; margin-left: 20px;">
-                    <select class="form-select" name="category" id="category" style="border-radius: 0px;"
+                <div class="col-lg-2 col-6">
+                    <select class="form-control" name="category" id="category" style="border-radius: 0px;"
                         aria-label="Default select example">
                         <option value ="" selected>Categories</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                            <option value="{{ $category->slug }}" {{ ($_GET['category'] ?? '')== $category->slug ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-6 mt-3" style="padding: 10px; margin-left: -40px;">
-                    <select class="form-select" name="job_type" id="job_type" aria-label="Default select example"
+                <div class="col-lg-2 col-6">
+                    <select class="form-control" name="job_type" id="job_type" aria-label="Default select example"
                         style="border-radius: 0px;">
                         <option value="" selected>Job Type</option>
-                        <option value="Part Time">Part Time</option>
-                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time" {{ ($_GET['job_type'] ?? '') == 'Part Time' ? 'selected' : '' }}>Part Time</option>
+                        <option value="Full Time" {{ ($_GET['job_type'] ?? '') == 'Full Time' ? 'selected' : '' }}>Full Time</option>
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-6 mt-3" style="padding: 10px; margin-left: -60px;">
-                    <select class="form-select" name="price_type" id="price_type" aria-label="Default select example"
+                <div class="col-lg-2 col-6">
+                    <select class="form-control" name="price_type" id="price_type" aria-label="Default select example"
                         style="border-radius: 0px;">
                         <option value="" selected>Payment</option>
-                        <option value="Fixed">Fixed</option>
-                        <option value="Hourly">Hourly</option>
+                        <option value="Fixed" {{ ($_GET['price_type'] ?? '') == 'Fixed' ? 'selected' : '' }}>Fixed</option>
+                        <option value="Hourly" {{ ($_GET['price_type'] ?? '') == 'Hourly' ? 'selected' : '' }}>Hourly</option>
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-6" style="padding: 10px; margin-left: -80px;">
-                    <label for="age" style="font-weight: bold;">Age</label>
-                    <input type="number" name="age">
+                <div class="col-lg-2 col-6">
+                    <input class="form-control" type="number" name="age" placeholder="Age" value="{{ $_GET['age'] ?? '' }}">
                 </div>
 
-                <div class="col-lg-2 col-6" style="padding: 10px; margin-left: -80px;">
-                    <label for="salary" style="font-weight: bold;">Salary</label>
-                    <input type="number" name="salary">
+                <div class="col-lg-2 col-6">
+                    <input class="form-control" type="number" name="salary" placeholder="Salary" value="{{ $_GET['salary'] ?? '' }}">
+                </div>
+                <div class="col-lg-2 col-6">
+                    <select class="form-control" name="province_id" id="province_id" style="border-radius: 0px;"
+                        aria-label="Default select example">
+                        <option value="" selected>Province</option>
+                        @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}"
+                                {{ ($_GET['province_id'] ?? '') == $province->id ? 'selected' : '' }}
+                            >
+                                {{ $province->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 
                 <div class="col-lg-2 col-6">
-                    <select class="form-select" name="language_level" id="language_level" style="border-radius: 0px;"
+                    <select class="form-control" name="language_level" id="language_level" style="border-radius: 0px;"
                         aria-label="Default select example">
                         <option value="" selected>Language Level</option>
                         @foreach ($uniqueLanguageUsers as $languageUser)
-                            <option value="{{ $languageUser->user_id }}">{{ $languageUser->name . '-' . $languageUser->level }}
+                            <option value="{{ $languageUser->user_id }}"
+                                {{ ($_GET['language_level'] ?? '') == $languageUser->user_id ? 'selected' : '' }}
+                            >
+                                {{ $languageUser->name . '-' . $languageUser->level }}
                             </option>
                         @endforeach
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-12 mt-3" style="padding: 10px; margin-left: 10px;">
+                <div class="col-lg-2 col-12 mb-3">
                     <button type="submit" class="btn btn-dark search" style="border-radius: 0px;">Search</button>
                 </div>
             </div>
@@ -76,7 +104,7 @@
                 <span style="color:green!important">{{ session('added_jobRequest') }}</span>
             @endif
         </div>
-        <div class="row">
+        <div class="row mb-3">
             @if (count($jobs) > 0)
                 @foreach ($jobs as $job)
                     <div class="col-md-6 mb-4">
@@ -100,8 +128,15 @@
                                         <p><strong>Price ({{ $job->price_type }}):</strong>
                                             <span>${{ $job->price }}</span>
                                         </p>
-                                        <p><strong>Experience:</strong> <span>{{ $job->experience }} years</span></p>
-                                        <p><strong>Job Type:</strong> <span>{{ $job->job_type }}</span></p>
+                                        <div class="col ">
+                                            <p><strong>Experience:</strong> <span>{{ $job->experience }} years</span></p>
+                                            <p><strong>Job Type:</strong> <span>{{ $job->job_type }}</span></p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Province:</strong> <span>{{ $job->province->name }}</span></p>
+                                            <p><strong>Year Age:</strong> <span>{{ $job->startingAge }} - {{ $job->endingAge }}</span></p>
+                                        </div>
+                                        <p><strong>Gender:</strong> <span>{{ $job->gender == 1 ? 'Male' : 'Female' }}</span></p>
                                         <div class="d-flex mt-3 justify-between">
                                             <a href="{{ route('job.showByUser', $job->slug) }}"
                                                 class="btn btn-primary mr-2">See job</a>

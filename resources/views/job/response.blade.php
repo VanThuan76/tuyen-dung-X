@@ -9,51 +9,14 @@ use App\Models\User;
     </title>
 @endsection
 @section('content')
-    <form action="{{ route('response.search') }}" method="GET">
-        <div class="row g-0">
-            <div class="col-lg-3 col-6">
-                <input id="q" name="q" class="form-control"
-                    value="@if (isset($_GET['q'])) {{ $_GET['q'] }} @endif" type="text"
-                    style="border-bottom-right-radius: 0px; border-top-right-radius: 0px" placeholder="Search"
-                    autocomplete="off">
-            </div>
-            <div class="col-lg-2 col-6">
-                <select class="form-select" name="category" id="category" style="border-radius: 0px;"
-                    aria-label="Default select example">
-                    <option value ="" selected>Categories</option>
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-lg-2 col-6">
-                <select class="form-select" name="job_type" id="job_type" style="border-radius: 0px;"
-                    aria-label="Default select example">
-                    <option value ="" selected>Job Type</option>
-                    <option value="Part Time">Part Time</option>
-                    <option value="Full Time">Full Time</option>
-                </select>
-            </div>
-            <div class="col-lg-2 col-6">
-                <select class="form-select" name="language_level" id="language_level" style="border-radius: 0px;"
-                    aria-label="Default select example">
-                    <option value="" selected>Language Level</option>
-                    @foreach ($uniqueLanguageUsers as $languageUser)
-                        <option value="{{ $languageUser->user_id }}">{{ $languageUser->name . '-' . $languageUser->level }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-lg-3 col-12"><button type="submit" class="btn btn-dark search"
-                    style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">Search</button></div>
-        </div>
-    </form>
     <div class="container-fluid py-4">
         <div class="row mt-3">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Jobs Response</h6>
+                        <h6 class="text-uppercase font-weight-bolder">
+                            <span>List Job</span>
+                        </h6>
                     </div>
                     <div class="card-header">
                         @if (session('updated_jobRequest'))
@@ -68,23 +31,29 @@ use App\Models\User;
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Id</th>
                                         <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 w-10">
                                             Name</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Address</th>
+                                        <th 
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Province</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Price</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            About age</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                            About time</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             Created</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                            Link</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
-                                            Status</th>
+                                            Quantity</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             Options</th>
@@ -92,75 +61,51 @@ use App\Models\User;
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jobsResponse as $jobResponse)
+                                    @foreach ($jobs as $job)
                                         <tr>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
 
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{ $jobResponse->id }}</h6>
+                                                        <h6 class="mb-0 text-sm">{{ $job->id }}</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <h6 class="mb-0 text-sm">
-                                                    {{ Job::where('id', $jobResponse->job_id)->first()->title }}</h6>
+                                                    {{ $job->title }}</h6>
                                             </td>
                                             <td>
                                                 <h6 class="mb-0 text-sm">
-                                                    {{ Job::where('id', $jobResponse->job_id)->first()->address }}</h6>
+                                                    {{ $job->address }}</h6>
                                             </td>
                                             <td>
                                                 <h6 class="mb-0 text-sm">
-                                                    {{ Job::where('id', $jobResponse->job_id)->first()->price }} $</h6>
+                                                    {{ $job->province?->name }}</h6>
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0 text-sm">
+                                                    {{ $job->price }} $</h6>
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0 text-sm">
+                                                    {{ $job->startingAge ? $job->startingAge . ' - ' . $job->endingAge . ' age' : '' }} </h6>
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0 text-sm">
+                                                    {{ $job->startingDate . ' - ' . $job->endingDate }} </h6>
                                             </td>
                                             <td class="text-center align-middle text-sm">
-                                                <h6 class="mb-0 text-sm">{{ $jobResponse->created_at->diffForHumans() }}
+                                                <h6 class="mb-0 text-sm">{{ $job->created_at->diffForHumans() }}
                                                 </h6>
                                             </td>
+                                            <td class="text-center align-middle text-sm">{{ $job->job_requests_count }}</td>
                                             <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center mt-3">
-                                                    <a class="nav-link"
-                                                        href="{{ route('candidate.show', User::where('id', $jobResponse->user_id)->first()->slug) }}">Detail
-                                                        Candidate</a>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center mt-3">
-                                                    <h6 class="mb-0 text-sm">
-                                                        @if ($jobResponse->status == '1')
-                                                            Agree
-                                                        @elseif($jobResponse->status == '2')
-                                                            Disagree
-                                                        @else
-                                                            Not Response
-                                                        @endif
-                                                    </h6>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                @if ($jobResponse->status === null)
-                                                    <span class="text-secondary font-weight-bold text-xs">
-                                                        <form
-                                                            action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 2]) }}"
-                                                            method="POST" style="display: inline;">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit" name="disAgree_jobResponse"
-                                                                style="text-decoration: none; color:rgb(201, 201, 63)!important; padding: 0; margin:0!important;text-transform: none;"
-                                                                class="btn btn-link">Disagree</button>
-                                                        </form>
-                                                        <form
-                                                            action="{{ route('job.response.update', ['id' => $jobResponse->id, 'status' => 1]) }}"
-                                                            method="POST" style="display: inline;">
-                                                            @csrf
-                                                            @method('PATCH')
-                                                            <button type="submit" name="agree_jobResponse"
-                                                                style="text-decoration: none; color:green!important; padding: 0; margin:0!important;text-transform: none;"
-                                                                class="btn btn-link">Agree</button>
-                                                        </form>
-                                                    </span>
-                                                @endif
+                                                <a  href="{{ route('response.job.detail', $job->id) }}">
+                                                    <button type="submit" name="disAgree_jobResponse"
+                                                        style="text-decoration: none; color:rgb(201, 201, 63)!important; padding: 0; margin:0!important;text-transform: none;"
+                                                        class="btn btn-link">Detail</button>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

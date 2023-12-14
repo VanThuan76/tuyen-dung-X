@@ -19,6 +19,8 @@ class Language {
         const cln = itm.cloneNode(true);
         this._parentElement.insertAdjacentElement("beforeend", cln);
         this._count++;
+        $(document).find("span.invalid-feedback").remove();
+        $(document).find(".is-invalid").removeClass("is-invalid");
     }
     removeLanguage(e) {
         if (this._count == 1) {

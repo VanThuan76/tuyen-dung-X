@@ -173,9 +173,10 @@ class SearchController extends Controller
             } else {
                 $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get();
             }
-            return view('job.response', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
-        } else {
-            if ($category == '' && $job_type == '' && $price_type == '') {
+            return view('job.response-detail', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
+        }
+        else{
+            if ($category == '' && $job_type == '' && $price_type == ''){
                 return redirect()->route('response.company.job');
             }
             if ($category != '') {
@@ -194,7 +195,7 @@ class SearchController extends Controller
             $jobs = Job::where('user_id', $user->id)->get();
             $jobIds = $jobs->pluck('id')->toArray();
             $jobsResponse = JobRequest::whereIn('job_id', $jobIds)->get()->where('user_id', $language_level);
-            return view('job.response', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
+            return view('job.response-detail', compact('jobsResponse', 'categories', 'uniqueLanguageUsers'));
         }
     }
     public function jobsByUser(Request $request)

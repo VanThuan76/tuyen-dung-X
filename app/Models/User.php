@@ -31,8 +31,15 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'surname', 'gender', 'age', 'address', 'phone_number', 'username', 'slug', 'about', 'email', 'password', 'cv', 'photo_id', 'role_id','category_id', 'investigation_id', 'username_changed'
+        'name', 'surname', 'gender', 'username', 'slug', 'about', 'email', 'password', 'cv', 'photo_id', 'role_id','category_id', 'investigation_id', 'username_changed','is_deleted',
+        'birthday', 'province_id', 'phone_number'
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
     public function photo(){
         return $this->belongsTo(Photo::class);
     }
