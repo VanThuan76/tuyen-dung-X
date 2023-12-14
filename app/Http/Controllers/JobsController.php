@@ -9,6 +9,7 @@ use App\Models\JobRequest;
 use App\Models\Province;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class JobsController extends Controller
 {
