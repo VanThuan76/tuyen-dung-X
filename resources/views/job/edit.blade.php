@@ -32,7 +32,6 @@
                             This is how others will learn about the project, so make it good!
                         </p>
 
-
                         <textarea id="body" name="body" class="form-control" rows="5">{{ $job->body }}</textarea>
 
                         @error('body')
@@ -187,7 +186,7 @@
                                 <div class="form-group">
                                     <label class="form-label mt-4">Job Type</label>
                                     <select class="form-select" name="job_type" aria-label="Default select example">
-                                        <option value="" selected>Select Job Type</option>
+                                        <option value="" selected disabled>Select Job Type</option>
                                         <option value="1" @if ($job->job_type == 'Part Time') selected @endif>Part Time
                                         </option>
                                         <option value="2" @if ($job->job_type == 'Full Time') selected @endif>Full Time
@@ -231,9 +230,6 @@
                                 @enderror
                             </div>
                         </div>
-
-
-
                         <div class="d-flex justify-content-end mt-4">
                             <a href="{{ route('company.show', auth()->user()->slug) }}"
                                 class="btn btn-light m-0">Cancel</a>

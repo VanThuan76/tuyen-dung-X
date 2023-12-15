@@ -55,7 +55,6 @@
 
                         <div class="form-check form-switch ms-1">
                             <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault">
-{{--                            <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >--}}
                             <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Work is remote</label>
                         </div>
                     </div>
@@ -210,21 +209,9 @@
                         @error('language_level')
                         <span style="color:red;">{{ $message }}</span>
                         @enderror
-                                <option value="A1">A1</option>
-                                <option value="A2">A2</option>
-                                <option value="B1">B1</option>
-                                <option value="B2">B2</option>
-                                <option value="C1">C1</option>
-                                <option value="C2">C2</option>
-                                <option value="N1">N1</option>
-                                <option value="N2">N2</option>
-                                <option value="N3">N3</option>
-                                <option value="N4">N4</option>
-                                <option value="N5">N5</option>
-                            </select>
                         </div>
                     </div>
-                </div>
+               
                 <div class="row mt-2">
                     <div class="col-sm-6 col-12">
                         <div class="form-group mt-4">
@@ -236,7 +223,6 @@
                             </p>
                             <div class="form-check form-switch ms-1">
                                 <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault">
-{{--                                <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault" onclick="notify(this)" >--}}
                                 <label class="form-check-label" for="flexSwitchCheckDefault">Work is long-term</label>
                             </div>
                         </div>
@@ -284,6 +270,7 @@
             </div>
         </div>
     </form>
+    </div>
     </div>
 </div>
 @endsection
