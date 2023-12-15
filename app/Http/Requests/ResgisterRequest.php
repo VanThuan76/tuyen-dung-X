@@ -40,6 +40,7 @@ class ResgisterRequest extends FormRequest
             'industry' => ['nullable', 'string', 'min:2', 'max:255'],
             'capacity' => ['nullable', 'string', 'min:2', 'max:255'],
             'address' => ['nullable', 'string', 'min:2', 'max:255'],
+            'certificate' => ['nullable', 'string', 'max:255'],
             'phone_number' => ['nullable', 'string', 'min:10', 'max:11'],
             'tel' => ['nullable', 'string', 'min:2', 'numeric', 'digits_between:7,12'],
             'website' => ['nullable', 'string', 'min:2', 'max:255'],

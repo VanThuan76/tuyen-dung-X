@@ -171,6 +171,18 @@
                     @endif
                 </div>
             </div>
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <label class="form-label mt-4">Certificate</label>
+                        <select class="form-select" name="certificate" aria-label="Default select example">
+                            <option value = "" selected>Choose Certificate</option>
+                            <option value = "Associate degree" {{ old('certificate') == 'Associate degree' ? 'selected' : ''}}>Associate degree</option>
+                            <option value = "Bachelor's degree" {{ old('certificate') == "Bachelor's degree" ? 'selected' : ''}}>Bachelor's degree</option>
+                            <option value = "Master's degree" {{ old('certificate') == "Master's degree" ? 'selected' : ''}}>Master's degree</option>
+                            <option value = "Doctoral degree" {{ old('certificate') == "Doctoral degree" ? 'selected' : ''}}>Doctoral degree</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="row mt-2">
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
@@ -188,7 +200,7 @@
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <label class="form-label mt-4">*Level of knowledge</label>
+                            <label class="form-label mt-4">Level of knowledge</label>
                             <select class="form-select" name="language_level" aria-label="Default select example">
                                 <option value = "" selected>Choose Level</option>
                                 <option value="A1" {{ old('language_level') == 'A1' ? 'selected' : ''}}>A1</option>

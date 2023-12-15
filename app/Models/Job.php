@@ -23,7 +23,7 @@ class Job extends Model
     }
     protected $fillable = [
         'title', 'body','user_id', 'slug','address','remote','experience','job_type', 'category_id', 'duties', 'startingDate', 'endingDate', 'price_type', 'price',
-        'province_id', 'gender', 'startingAge', 'endingAge', 'language_id', 'language_level'
+        'province_id', 'gender', 'startingAge', 'endingAge', 'language_id', 'language_level', 'certificate'
     ];
 
     public function user(){

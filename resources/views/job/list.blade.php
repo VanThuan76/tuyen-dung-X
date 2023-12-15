@@ -110,7 +110,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row">
+                                <div class="row mb-4">
                                     <div class="col-md-4">
                                         <img class="w-100 border-radius-lg shadow-lg"
                                             src="/images/{{ $job->user->photo->name }}" alt="{{ $job->title }}">
@@ -128,7 +128,7 @@
                                         <p><strong>Price ({{ $job->price_type }}):</strong>
                                             <span>${{ $job->price }}</span>
                                         </p>
-                                        <div class="col ">
+                                        <div>
                                             <p><strong>Experience:</strong> <span>{{ $job->experience }} years</span></p>
                                             <p><strong>Job Type:</strong> <span>{{ $job->job_type }}</span></p>
                                         </div>
@@ -137,6 +137,9 @@
                                             <p><strong>Year Age:</strong> <span>{{ $job->startingAge }} - {{ $job->endingAge }}</span></p>
                                         </div>
                                         <p><strong>Gender:</strong> <span>{{ $job->gender == 1 ? 'Male' : 'Female' }}</span></p>
+                                        @if ($job->certificate)
+                                            <p><strong>Certificate:</strong> <span>{{ $job->certificate ?? ''}}</span></p>
+                                        @endif
                                         <div class="d-flex mt-3 justify-between">
                                             <a href="{{ route('job.showByUser', $job->slug) }}"
                                                 class="btn btn-primary mr-2">See job</a>
