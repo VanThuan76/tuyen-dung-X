@@ -9,7 +9,10 @@
 <div class="row">
     <div class="col-lg-9 col-12 mx-auto">
 
+    <form id="form-store" action="{{route('job.store')}}" method="POST">
+
     <form action="{{route('job.store')}}" method="POST">
+
         @csrf
         @method('POST')
         <div class="card card-body mt-4">
@@ -52,7 +55,6 @@
 
                         <div class="form-check form-switch ms-1">
                             <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault">
-{{--                            <input class="form-check-input" type="checkbox" {{ old('remote') == 'on' ? 'checked' : ''}} name="remote" id="remoteFlexSwitchCheckDefault" onclick="notify(this)" >--}}
                             <label class="form-check-label" for="remoteFlexSwitchCheckDefault">Work is remote</label>
                         </div>
                     </div>
@@ -106,6 +108,52 @@
                     @enderror
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Provinces</label>
+                    <select class="form-select" name="province_id" aria-label="Default select example">
+                        <option value="" selected>Choose Province</option>
+                        @foreach($provinces as $province)
+                            <option value="{{$province->id}}" {{ old('province_id') == $province->id ? 'selected' : ''}} >{{$province->name}}</option>
+                        @endforeach
+                    </select>
+
+                    @error('province_id')
+                    <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Gender</label>
+                    <div class="input-group">
+                        <select class="form-select" name="gender" aria-label="Default select example">
+                            <option value = "" selected>Choose Gender</option>
+                            <option value = "1" {{ $user->gender == 1 ? 'selected' : ''}} >Male</option>
+                            <option value = "2" {{ $user->gender == 2 ? 'selected' : ''}} >Female</option>
+                        </select>
+                    </div>
+                    @error('gender')
+                        <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Starting age</label>
+                    <input class="form-control" type="number" name="startingAge" placeholder="Start age" value="{{old('startingAge')}}">
+
+                    @error('startingAge')
+                    <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-sm-6 col-12">
+                    <label class="form-label mt-4">Ending age</label>
+                    <input class="form-control" type="number" name="endingAge" placeholder="End age" value="{{old('endingAge')}}">
+
+                    @error('endingAge')
+                        <span style="color:red;">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
             <div class="row mt-2">
                 <div class="col-6">
                     <label class="form-label mt-4">Starting Date</label>
@@ -145,21 +193,25 @@
                             <label class="form-label mt-4">*Level of knowledge</label>
                             <select class="form-select" name="language_level" aria-label="Default select example">
                                 <option value = "" selected>Choose Level</option>
-                                <option value="A1">A1</option>
-                                <option value="A2">A2</option>
-                                <option value="B1">B1</option>
-                                <option value="B2">B2</option>
-                                <option value="C1">C1</option>
-                                <option value="C2">C2</option>
-                                <option value="N1">N1</option>
-                                <option value="N2">N2</option>
-                                <option value="N3">N3</option>
-                                <option value="N4">N4</option>
-                                <option value="N5">N5</option>
+                                <option value="A1" {{ old('language_level') == 'A1' ? 'selected' : ''}}>A1</option>
+                                <option value="A2" {{ old('language_level') == 'A2' ? 'selected' : ''}}>A2</option>
+                                <option value="B1" {{ old('language_level') == 'B1' ? 'selected' : ''}}>B1</option>
+                                <option value="B2" {{ old('language_level') == 'B2' ? 'selected' : ''}}>B2</option>
+                                <option value="C1" {{ old('language_level') == 'C1' ? 'selected' : ''}}>C1</option>
+                                <option value="C2" {{ old('language_level') == 'C2' ? 'selected' : ''}}>C2</option>
+                                <option value="N1" {{ old('language_level') == 'N1' ? 'selected' : ''}}>N1</option>
+                                <option value="N2" {{ old('language_level') == 'N2' ? 'selected' : ''}}>N2</option>
+                                <option value="N3" {{ old('language_level') == 'N3' ? 'selected' : ''}}>N3</option>
+                                <option value="N4" {{ old('language_level') == 'N4' ? 'selected' : ''}}>N4</option>
+                                <option value="N5" {{ old('language_level') == 'N5' ? 'selected' : ''}}>N5</option>
                             </select>
                         </div>
+                        @error('language_level')
+                        <span style="color:red;">{{ $message }}</span>
+                        @enderror
+                        </div>
                     </div>
-                </div>
+               
                 <div class="row mt-2">
                     <div class="col-sm-6 col-12">
                         <div class="form-group mt-4">
@@ -171,7 +223,6 @@
                             </p>
                             <div class="form-check form-switch ms-1">
                                 <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault">
-{{--                                <input class="form-check-input" type="checkbox" {{ old('has_endDate') == 'on' ? 'checked' : ''}} name="has_endDate" id="flexSwitchCheckDefault" onclick="notify(this)" >--}}
                                 <label class="form-check-label" for="flexSwitchCheckDefault">Work is long-term</label>
                             </div>
                         </div>
@@ -219,6 +270,7 @@
             </div>
         </div>
     </form>
+    </div>
     </div>
 </div>
 @endsection

@@ -30,6 +30,8 @@ class JobStoreRequest extends FormRequest
             'job_type'=>'required|numeric|max:2|min:1',
             'experience'=>'required|numeric|min:0|max:3',
             'category_id' => 'required|numeric',
+            'language_id' => 'required|numeric',
+            'language_level' => 'required|string',
             'province_id' => 'required|numeric',
             'gender' => 'required|numeric|in:1,2',
             'startingAge' => 'required|numeric',
