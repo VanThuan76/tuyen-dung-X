@@ -332,7 +332,7 @@ class JobsController extends Controller
         if (auth()->user()->role->name == 'administrator') {
             return back();
         } else {
-            return redirect()->route('jobs.request');
+            return redirect()->route('home');
         }
     }
 }
