@@ -103,10 +103,13 @@ use App\Models\SucessfulUsers;
                 @endif
                 @if ($user->category)
                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Category:</strong> &nbsp;{{$user->category->name}}</li>@endif
+                @if ($user->certificate)
+                   <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Certificate:</strong> &nbsp;{{ $user->certificate }}</li>
+                @endif
                @if ($user->cv)
                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">CV:</strong> &nbsp; <a href="/files/{{$user->cv}}"><img src="{{asset('/assets/img/pdf.webp')}}" style="width: 20px"></a> </li>@endif
 
-               <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Languages:</strong> <br>@foreach($user->language as $language)
+               <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Languages:</strong> @foreach($user->language as $language)
                        {{$language->name}} - <b>{{$language->pivot->level}}</b> <br>
                    @endforeach</li>
 

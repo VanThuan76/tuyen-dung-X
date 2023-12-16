@@ -37,6 +37,7 @@ $jobsRequest = JobRequest::all();
                                 <i class="fas fa-address-card"></i> {{ $job->address }}<br>
                                 <i class="fas fa-calendar-alt"></i> {{ $job->startingDate }} |
                                 {{ $job->endingDate ? $job->endingDate : '/' }}<br>
+                                <p><strong>Year Age:</strong> <span>{{ $job->startingAge }} - {{ $job->endingAge }}</span></p>
                                 <h6 class="mb-0 mt-3">Price ({{ $job->price_type }}) : €{{ $job->price }}</h6>
                                 <br>
                                 <label style="font-size: 16px; font-weight: bold;">Description</label>

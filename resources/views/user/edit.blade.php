@@ -138,6 +138,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 col-12">
+                                            <label class="form-label mt-4">Certificate</label>
+                                            <select class="form-select" name="certificate" aria-label="Default select example">
+                                                <option value = "" selected>Choose Certificate</option>
+                                                <option value = "Associate degree" {{ $user->certificate == 'Associate degree' ? 'selected' : ''}}>Associate degree</option>
+                                                <option value = "Bachelor's degree" {{ $user->certificate == "Bachelor's degree" ? 'selected' : ''}}>Bachelor's degree</option>
+                                                <option value = "Master's degree" {{ $user->certificate == "Master's degree" ? 'selected' : ''}}>Master's degree</option>
+                                                <option value = "Doctoral degree" {{ $user->certificate == "Doctoral degree" ? 'selected' : ''}}>Doctoral degree</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-12">
                                             <label class="form-label mt-4">CV</label>
                                             <div class="input-group">
                                                 <input id="cv" name="cv" class="form-control" type="file">

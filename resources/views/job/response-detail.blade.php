@@ -76,6 +76,7 @@ use App\Models\User;
                                 {{ $job->endingAge }}
                             </span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Province:</strong> <span>{{ $job->province->name ?? '' }}</span></div>
+                            <div class="col-12 col-sm-4 mt-1"><strong>Certificate:</strong> <span>{{ $job->certificate ?? '' }}</span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Language:</strong> <span>{{ $job->language->name ?? '' }}</span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Language level:</strong> <span>{{ $job->language_level ?? '' }}</span></div>
                         </div>
@@ -113,6 +114,9 @@ use App\Models\User;
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             Language Level</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                            Certificate</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             Created</th>
@@ -170,6 +174,10 @@ use App\Models\User;
                                                         {{ $language->name}} - {{ $language->pivot->level }}
                                                     </h6>
                                                 @endforeach
+                                            </td>
+                                            <td class="text-center align-middle text-sm">
+                                                <h6 class="mb-0 text-sm">{{ $jobResponse->user->certificate ?? '-' }}
+                                                </h6>
                                             </td>
                                             <td class="text-center align-middle text-sm">
                                                 <h6 class="mb-0 text-sm">{{ $jobResponse->created_at->diffForHumans() }}

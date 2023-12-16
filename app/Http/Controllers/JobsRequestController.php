@@ -20,6 +20,7 @@ class JobsRequestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public $languageLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'N1', 'N2', 'N3', 'N4', 'N5'];
+    public $certificates = ['Associate degree', "Bachelor's degree", "Master's degree", "Doctoral degree"];
 
     public function index()
     {
@@ -72,6 +73,14 @@ class JobsRequestController extends Controller
                 if ($language->id == $response->job->language_id) {
                     $findLanguageLevel = array_search($response->job->language_level, $this->languageLevels) ?? 8;
                     $priority += count($this->languageLevels) - $findLanguageLevel;
+                }
+            }
+
+            $findCertificateUser = array_search($user->certificate, $this->certificates);
+            $findCertificateJob = array_search($response->job->certificate, $this->certificates);
+            if ($findCertificateJob && $findCertificateUser) {
+                if ($findCertificateUser >= $findCertificateJob) {
+                    $priority += ($findCertificateUser - $findCertificateJob + 1) * 2;
                 }
             }
 

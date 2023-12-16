@@ -32,12 +32,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'surname', 'gender', 'username', 'slug', 'about', 'email', 'password', 'cv', 'photo_id', 'role_id','category_id', 'investigation_id', 'username_changed','is_deleted',
-        'birthday', 'province_id', 'phone_number'
+        'birthday', 'province_id', 'phone_number', 'certificate'
     ];
 
     public function province()
     {
         return $this->belongsTo(Province::class);
+    }
+
+    public function jobRequests(){
+        return $this->hasMany(JobRequest::class, 'user_id', 'id');
     }
 
     public function photo(){

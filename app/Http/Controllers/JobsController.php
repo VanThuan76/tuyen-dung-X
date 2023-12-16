@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\DB;
 
 class JobsController extends Controller
 {
+    public $languageLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'N1', 'N2', 'N3', 'N4', 'N5'];
+    public $certificates = ['Associate degree', "Bachelor's degree", "Master's degree", "Doctoral degree"];
+
     /**
      * Display a listing of the resource.
      *
@@ -134,23 +137,42 @@ class JobsController extends Controller
     public function calculatePriority($jobs, $user)
     {
         $userAge = Carbon::parse($user->birthday)->age;
+        $jobRequestIds = $user->jobRequests()->pluck('job_id')->toArray();
         foreach ($jobs as $response) {
             $priority = 0;
 
-            if ($userAge > $response->startingAge && $userAge < $response->endingAge) {
-                $priority += 2;
-            }
-
-            if ($user->gender == $response->gender) {
-                $priority += 3;
-            }
-
-            if ($user->province_id == $response->province_id) {
-                $priority += 7;
-            }
-
-            if ($user->category_id == $response->category_id) {
-                $priority += 2;
+            if (in_array($response->id, $jobRequestIds)) {
+                $priority = -1;
+            } else {
+                if ($userAge > $response->startingAge && $userAge < $response->endingAge) {
+                    $priority += 2;
+                }
+    
+                if ($user->gender == $response->gender) {
+                    $priority += 3;
+                }
+    
+                if ($user->province_id == $response->province_id) {
+                    $priority += 7;
+                }
+    
+                if ($user->category_id == $response->category_id) {
+                    $priority += 2;
+                }
+                foreach ($user->language as $language) {
+                    if ($language->id == $response->language_id) {
+                        $findLanguageLevel = array_search($response->language_level, $this->languageLevels) ?? 8;
+                        $priority += count($this->languageLevels) - $findLanguageLevel;
+                    }
+                }
+                
+                $findCertificateUser = array_search($user->certificate, $this->certificates);
+                $findCertificateJob = array_search($response->certificate, $this->certificates);
+                if ($findCertificateJob && $findCertificateUser) {
+                    if ($findCertificateUser >= $findCertificateJob) {
+                        $priority += ($findCertificateUser - $findCertificateJob + 1) * 2;
+                    }
+                }
             }
 
             $response->priority = $priority;
@@ -224,7 +246,10 @@ class JobsController extends Controller
         $user = auth()->user();
         $categories = Category::all();
         $job = Job::findBySlugOrFail($slug);
-        return view('job.edit', compact('user', 'categories', 'job'));
+        $provinces = Province::all();
+        $languages = Language::all();
+
+        return view('job.edit', compact('user', 'categories', 'job', 'provinces', 'languages'));
     }
 
     /**
@@ -307,7 +332,7 @@ class JobsController extends Controller
         if (auth()->user()->role->name == 'administrator') {
             return back();
         } else {
-            return redirect()->route('jobs.request');
+            return redirect()->route('home');
         }
     }
 }

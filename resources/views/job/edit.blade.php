@@ -122,6 +122,53 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-12">
+                                <label class="form-label mt-4">Provinces</label>
+                                <select class="form-select" name="province_id" aria-label="Default select example">
+                                    <option value="" selected>Choose Province</option>
+                                    @foreach($provinces as $province)
+                                        <option value="{{$province->id}}" {{ $job->province_id == $province->id ? 'selected' : ''}} >{{$province->name}}</option>
+                                    @endforeach
+                                </select>
+            
+                                @error('province_id')
+                                <span style="color:red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6 col-12">
+                                <label class="form-label mt-4">Gender</label>
+                                <div class="input-group">
+                                    <select class="form-select" name="gender" aria-label="Default select example">
+                                        <option value = "" selected>Choose Gender</option>
+                                        <option value = "1" {{ $job->gender == 1 ? 'selected' : ''}} >Male</option>
+                                        <option value = "2" {{ $job->gender == 2 ? 'selected' : ''}} >Female</option>
+                                    </select>
+                                </div>
+                                @error('gender')
+                                    <span style="color:red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <label class="form-label mt-4">Starting Age</label>
+                                <input class="form-control ageFrom" type="number" style="cursor: pointer"
+                                    name="startingAge" placeholder="Starting Age" autocomplete="off" data-input
+                                    value="{{ $job->startingAge }}">
+                                @error('startingAge')
+                                    <span style="color:red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label mt-4">Ending Age</label>
+                                <input class="form-control ageTo" type="number" style="cursor: pointer" name="endingAge"
+                                    placeholder="Ending Age" autocomplete="off" data-input value="{{ $job->endingAge }}">
+                                @error('endingAge')
+                                    <span style="color:red;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="row mt-2">
                             <div class="col-6">
                                 <label class="form-label mt-4">Starting Date</label>
@@ -145,22 +192,53 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <label class="form-label mt-4">Age From</label>
-                                <input class="form-control ageFrom" type="number" style="cursor: pointer"
-                                    name="ageFrom" placeholder="Age From" autocomplete="off" data-input
-                                    value="{{ $job->ageFrom }}">
-                                @error('ageFrom')
-                                    <span style="color:red;">{{ $message }}</span>
-                                @enderror
+                        <div class="row">
+                            <div class="col-sm-6 col-12">
+                                <label class="form-label mt-4">Certificate</label>
+                                <select class="form-select" name="certificate" aria-label="Default select example">
+                                    <option value = "" selected>Choose Certificate</option>
+                                    <option value = "Associate degree" {{ $job->certificate == 'Associate degree' ? 'selected' : ''}}>Associate degree</option>
+                                    <option value = "Bachelor's degree" {{ $job->certificate == "Bachelor's degree" ? 'selected' : ''}}>Bachelor's degree</option>
+                                    <option value = "Master's degree" {{ $job->certificate == "Master's degree" ? 'selected' : ''}}>Master's degree</option>
+                                    <option value = "Doctoral degree" {{ $job->certificate == "Doctoral degree" ? 'selected' : ''}}>Doctoral degree</option>
+                                </select>
                             </div>
-                            <div class="col-6">
-                                <label class="form-label mt-4">Age To</label>
-                                <input class="form-control ageTo" type="number" style="cursor: pointer" name="ageTo"
-                                    placeholder="Age To" autocomplete="off" data-input value="{{ $job->ageTo }}">
-                                @error('ageTo')
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label mt-4">Language</label>
+                                    <select class="form-select" name="language_id" aria-label="Default select example">
+                                        <option value="" selected>Choose Language</option>
+                                        @foreach($languages as $language)
+                                            <option value="{{$language->id}}" {{ $job->language_id == $language->id ? 'selected' : ''}} >{{$language->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('language_id')
                                     <span style="color:red;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label mt-4">Level of knowledge</label>
+                                    <select class="form-select" name="language_level" aria-label="Default select example">
+                                        <option value = "" selected>Choose Level</option>
+                                        <option value="A1" {{ $job->language_level == 'A1' ? 'selected' : ''}}>A1</option>
+                                        <option value="A2" {{ $job->language_level == 'A2' ? 'selected' : ''}}>A2</option>
+                                        <option value="B1" {{ $job->language_level == 'B1' ? 'selected' : ''}}>B1</option>
+                                        <option value="B2" {{ $job->language_level == 'B2' ? 'selected' : ''}}>B2</option>
+                                        <option value="C1" {{ $job->language_level == 'C1' ? 'selected' : ''}}>C1</option>
+                                        <option value="C2" {{ $job->language_level == 'C2' ? 'selected' : ''}}>C2</option>
+                                        <option value="N1" {{ $job->language_level == 'N1' ? 'selected' : ''}}>N1</option>
+                                        <option value="N2" {{ $job->language_level == 'N2' ? 'selected' : ''}}>N2</option>
+                                        <option value="N3" {{ $job->language_level == 'N3' ? 'selected' : ''}}>N3</option>
+                                        <option value="N4" {{ $job->language_level == 'N4' ? 'selected' : ''}}>N4</option>
+                                        <option value="N5" {{ $job->language_level == 'N5' ? 'selected' : ''}}>N5</option>
+                                    </select>
+                                </div>
+                                @error('language_level')
+                                <span style="color:red;">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>

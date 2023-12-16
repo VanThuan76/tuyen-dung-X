@@ -213,6 +213,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <label class="form-label mt-4">*Certificate</label>
+                                        <select class="form-select" name="certificate" aria-label="Default select example">
+                                            <option value = "" selected>Choose Certificate</option>
+                                            <option value = "Associate degree" {{ old('certificate') == 'Associate degree' ? 'selected' : ''}}>Associate degree</option>
+                                            <option value = "Bachelor's degree" {{ old('certificate') == "Bachelor's degree" ? 'selected' : ''}}>Bachelor's degree</option>
+                                            <option value = "Master's degree" {{ old('certificate') == "Master's degree" ? 'selected' : ''}}>Master's degree</option>
+                                            <option value = "Doctoral degree" {{ old('certificate') == "Doctoral degree" ? 'selected' : ''}}>Doctoral degree</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="user-row">
                                 <div class="row">
                                     <div class="col-sm-6 col-12">
@@ -231,11 +243,10 @@
                                         </select>
                                     </div>
                                 </div>
-                            <br>
                                 <div class="language-row">
                                     <div class = "row">
                                 <div class="col-sm-6 col-12">
-                                        <label class="form-label mt-2">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
+                                        <label class="form-label mt-4">*Language <span style="color:red; cursor:pointer" class="remove-language">(remove)</span></label>
                                         <select class="form-select" name="language_id[]" aria-label="Default select example">
                                             <option value = "" selected>Choose Language</option>
                                             @foreach($languages as $language)
@@ -244,7 +255,7 @@
                                         </select>
                                     </div>
                                         <div class="col-sm-6 col-12">
-                                            <label class="form-label mt-2">*Level of knowledge</label>
+                                            <label class="form-label mt-4">*Level of knowledge</label>
                                             <select class="form-select" name="level[]" aria-label="Default select example">
                                                 <option value = "" selected>Choose Level</option>
                                                 <option value="A1">A1</option>
