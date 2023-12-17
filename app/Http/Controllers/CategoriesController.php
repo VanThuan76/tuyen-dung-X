@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminStoreCategoriesRequest;
 use App\Http\Requests\AdminUpdateCategoriesRequest;
 use App\Models\Category;
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -94,8 +96,17 @@ class CategoriesController extends Controller
     public function destroy($slug)
     {
         $category = Category::findBySlugOrFail($slug);
-        $category->delete();
-        session()->flash('deleted_category', 'Category deleted successfully.');
-        return back();
+
+        $jobsWithCategory = Job::where('category_id', $category->id)->count();
+        $usersWithCategory = User::where('category_id', $category->id)->count();
+
+        if ($jobsWithCategory > 0 || $usersWithCategory > 0) {
+            session()->flash('category_in_use', 'Category is in use and cannot be deleted.');
+            return back();
+        } else {
+            $category->delete();
+            session()->flash('deleted_category', 'Category deleted successfully.');
+            return back();
+        }
     }
 }

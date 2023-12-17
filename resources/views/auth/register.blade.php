@@ -174,7 +174,7 @@
                                     <div class="col-sm-6 col-12">
                                         <label class="form-label mt-4">*Provice</label>
                                         <select class="form-select" name="province_id" aria-label="Default select example">
-                                            <option value = "" selected>Choose Category</option>
+                                            <option value = "" selected>Choose Province</option>
                                             @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
                                             @endforeach

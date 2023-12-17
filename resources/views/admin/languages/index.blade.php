@@ -22,7 +22,9 @@
                     @if (session('updated_language'))
                         <span style="color:green">{{session('updated_language')}}</span>
                     @endif
-
+                    @if(session('language_in_use'))
+                        <span style="color:red !important">{{session('language_in_use')}}</span>
+                    @endif
                 </div>
                 <div class="card-body pt-0">
                     <div class="row d-flex justify-content-center">

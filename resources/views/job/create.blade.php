@@ -63,14 +63,14 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-12">
-                    <label class="form-label mt-4">Category</label>
+                    <label class="form-label mt-4" style="color: #b87c30;">Category</label>
                     <select class="form-select" name="category_id" aria-label="Default select example">
                         <option value="" selected>Choose Category</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
                         @endforeach
                     </select>
-
+                    <input type="number" class="form-control" name="category_priority" placeholder="priority" style="width: 110px; margin-top: 10px;">
                     @error('category_id')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
@@ -108,27 +108,30 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-12">
-                    <label class="form-label mt-4">Provinces</label>
+                    <label class="form-label mt-4" style="color: #b87c30;">Provinces</label>
                     <select class="form-select" name="province_id" aria-label="Default select example">
                         <option value="" selected>Choose Province</option>
                         @foreach($provinces as $province)
                             <option value="{{$province->id}}" {{ old('province_id') == $province->id ? 'selected' : ''}} >{{$province->name}}</option>
                         @endforeach
                     </select>
-
+                    <input type="number" class="form-control" name="province_priority" placeholder="priority" style="width: 110px; margin-top: 10px;">
                     @error('province_id')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-sm-6 col-12">
-                    <label class="form-label mt-4">Gender</label>
+                    <label class="form-label mt-4" style="color: #b87c30;">Gender</label>
                     <div class="input-group">
                         <select class="form-select" name="gender" aria-label="Default select example">
                             <option value = "" selected>Choose Gender</option>
                             <option value = "1" {{ $user->gender == 1 ? 'selected' : ''}} >Male</option>
                             <option value = "2" {{ $user->gender == 2 ? 'selected' : ''}} >Female</option>
+                            <option value = "3" {{ $user->gender == 3 ? 'selected' : ''}} >Male/Female</option>
+
                         </select>
                     </div>
+                    <input type="number" class="form-control" name="gender_priority" placeholder="priority" style="width: 110px; margin-top: 10px;">
                     @error('gender')
                         <span style="color:red;">{{ $message }}</span>
                     @enderror
@@ -136,7 +139,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-12">
-                    <label class="form-label mt-4">Starting age</label>
+                    <label class="form-label mt-4" style="color: #b87c30;">Starting age</label>
                     <input class="form-control" type="number" name="startingAge" placeholder="Start age" value="{{old('startingAge')}}">
 
                     @error('startingAge')
@@ -144,9 +147,9 @@
                     @enderror
                 </div>
                 <div class="col-sm-6 col-12">
-                    <label class="form-label mt-4">Ending age</label>
+                    <label class="form-label mt-4" style="color: #b87c30;">Ending age</label>
                     <input class="form-control" type="number" name="endingAge" placeholder="End age" value="{{old('endingAge')}}">
-
+                    <input type="number" class="form-control" name="age" placeholder="priority" style="width: 110px; margin-top: 10px;">
                     @error('endingAge')
                         <span style="color:red;">{{ $message }}</span>
                     @enderror
@@ -173,7 +176,7 @@
             </div>
                 <div class="row">
                     <div class="col-sm-6 col-12">
-                        <label class="form-label mt-4">Certificate</label>
+                        <label class="form-label mt-4" style="color: #b87c30;">Certificate</label>
                         <select class="form-select" name="certificate" aria-label="Default select example">
                             <option value = "" selected>Choose Certificate</option>
                             <option value = "Associate degree" {{ old('certificate') == 'Associate degree' ? 'selected' : ''}}>Associate degree</option>
@@ -181,18 +184,20 @@
                             <option value = "Master's degree" {{ old('certificate') == "Master's degree" ? 'selected' : ''}}>Master's degree</option>
                             <option value = "Doctoral degree" {{ old('certificate') == "Doctoral degree" ? 'selected' : ''}}>Doctoral degree</option>
                         </select>
+                        <input type="number" class="form-control" name="certificate_priority" placeholder="priority" style="width: 110px; margin-top: 10px;">
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <label class="form-label mt-4">Language</label>
+                            <label class="form-label mt-4" >Language</label>
                             <select class="form-select" name="language_id" aria-label="Default select example">
                                 <option value="" selected>Choose Language</option>
                                 @foreach($languages as $language)
                                     <option value="{{$language->id}}" {{ old('language_id') == $language->id ? 'selected' : ''}} >{{$language->name}}</option>
                                 @endforeach
                             </select>
+                          
                             @error('language_id')
                             <span style="color:red;">{{ $message }}</span>
                             @enderror
@@ -200,7 +205,7 @@
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <label class="form-label mt-4">Level of knowledge</label>
+                            <label class="form-label mt-4" style="color: #b87c30;">Level of knowledge</label>
                             <select class="form-select" name="language_level" aria-label="Default select example">
                                 <option value = "" selected>Choose Level</option>
                                 <option value="A1" {{ old('language_level') == 'A1' ? 'selected' : ''}}>A1</option>
@@ -215,6 +220,7 @@
                                 <option value="N4" {{ old('language_level') == 'N4' ? 'selected' : ''}}>N4</option>
                                 <option value="N5" {{ old('language_level') == 'N5' ? 'selected' : ''}}>N5</option>
                             </select>
+                            <input type="number" class="form-control" name="language_priority" placeholder="priority" style="width: 110px; margin-top: 10px;">
                         </div>
                         @error('language_level')
                         <span style="color:red;">{{ $message }}</span>
@@ -244,6 +250,7 @@
                                 <option value="" selected disabled>Select Type</option>
                                 <option value="1" @if (old('job_type')==1) selected @endif>Part Time</option>
                                 <option value="2" @if (old('job_type')==2) selected @endif>Full Time</option>
+                                <option value="3" @if (old('job_type')==3) selected @endif>Part Time/Full time</option> 
                             </select>
                             @error('job_type')
                             <span style="color:red;">{{ $message }}</span>
@@ -267,12 +274,13 @@
                     <label class="form-label">Salary</label>
                     <div class="input-group mb-3">
                             <span class="input-group-text">€</span>
-                        <input type="number" name="price" value="{{old('price')}}" style="outline: none !important;" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input type="text" name="price" value="{{old('price')}}" style="outline: none !important;" class="form-control" aria-label="Amount (to the nearest dollar)">
                     </div>
                     @error('price')
                     <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
+
             </div>
             <div class="d-flex justify-content-end mt-4">
                 <a href="{{route('company.show',auth()->user()->slug)}}" class="btn btn-light m-0">Cancel</a>
@@ -285,6 +293,28 @@
 @endsection
 @section('scripts')
 <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var priceInput = document.querySelector('input[name="price"]');
+        priceInput.addEventListener('input', function () {
+            var inputValue = parseFloat(priceInput.value.replace(/\D/g, ''));
+            if (!isNaN(inputValue)) {
+                priceInput.value = inputValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            }
+        });
+
+        priceInput.addEventListener('keypress', function (event) {
+    
+            var isNumber = /\d/.test(String.fromCharCode(event.keyCode));
+            if (!isNumber) {
+                event.preventDefault();
+            }
+        });
+    });
+
+
+
+
     const dateSwitch = document.querySelector('#flexSwitchCheckDefault');
     const remoteSwitch = document.querySelector('#remoteFlexSwitchCheckDefault');
     const address = document.querySelector('.address');

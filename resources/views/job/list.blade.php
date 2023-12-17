@@ -116,7 +116,7 @@
                                             src="/images/{{ $job->user->photo->name }}" alt="{{ $job->title }}">
                                     </div>
                                     <div class="col-md-8">
-                                        <h3 class="mt-1">{{ $job->title }}</h3>
+                                        <h3 class="mt-1">{{ $job->title }} {{$job->priority}} </h3>
                                         <p style="font-weight: bold; color: red; font-size: 24px;">
                                             {{ $job->user->company->name }}</p>
                                         <p><i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -136,7 +136,8 @@
                                             <p><strong>Province:</strong> <span>{{ $job->province->name }}</span></p>
                                             <p><strong>Year Age:</strong> <span>{{ $job->startingAge }} - {{ $job->endingAge }}</span></p>
                                         </div>
-                                        <p><strong>Gender:</strong> <span>{{ $job->gender == 1 ? 'Male' : 'Female' }}</span></p>
+                                        <p><strong>Gender:</strong> <span>{{ $job->gender == 1 ? 'Male' :($job->gender == 2 ? 'Female': 'Female/Male') }}</span></p>
+
                                         @if ($job->certificate)
                                             <p><strong>Certificate:</strong> <span>{{ $job->certificate ?? ''}}</span></p>
                                         @endif

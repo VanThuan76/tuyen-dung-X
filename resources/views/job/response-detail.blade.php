@@ -69,14 +69,15 @@ use App\Models\User;
                             </div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Experience:</strong> <span>{{ $job->experience }} years</span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Job Type:</strong> <span>{{ $job->job_type }}</span></div>
-                            <div class="col-12 col-sm-4 mt-1"><strong>Gender:</strong> <span>{{ $job->gender == 1 ? 'Male' : 'Female' }}</span></div>
-                            <div class="col-12 col-sm-4 mt-1"><strong>Job Type:</strong> <span>{{ $job->job_type }}</span></div>
+                            <div class="col-12 col-sm-4 mt-1"><strong>Gender:</strong> <span>{{ $job->gender == 1 ? 'Male' : ($job->gender == 2 ? 'Male': 'Male/Female') }}</span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>About Age: </strong>
                                 {{ $job->startingAge }} -
                                 {{ $job->endingAge }}
                             </span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Province:</strong> <span>{{ $job->province->name ?? '' }}</span></div>
+                            @if($job->certificate)
                             <div class="col-12 col-sm-4 mt-1"><strong>Certificate:</strong> <span>{{ $job->certificate ?? '' }}</span></div>
+                            @endif
                             <div class="col-12 col-sm-4 mt-1"><strong>Language:</strong> <span>{{ $job->language->name ?? '' }}</span></div>
                             <div class="col-12 col-sm-4 mt-1"><strong>Language level:</strong> <span>{{ $job->language_level ?? '' }}</span></div>
                         </div>
@@ -93,10 +94,14 @@ use App\Models\User;
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Id</th>
+                                            <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Priority</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             User Name</th>
                                         <th
+                                        
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Email</th>
                                         <th
@@ -140,6 +145,14 @@ use App\Models\User;
 
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">{{ $jobResponse->id }}</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ $jobResponse->priority }}</h6>
                                                     </div>
                                                 </div>
                                             </td>

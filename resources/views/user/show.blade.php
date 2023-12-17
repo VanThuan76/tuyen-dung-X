@@ -97,7 +97,12 @@ use App\Models\SucessfulUsers;
                     @endif
                 </li>
                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Birthday:</strong> &nbsp;{{\Carbon\Carbon::parse($user->birthday)->format('Y-m-d')}}</li>
+                @if($user->gender)
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Gender:</strong> &nbsp;{{ $user->gender  == 1 ? 'Male' : 'Female' }}</li>
+                @endif
+                @if($user->province)
                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Province:</strong> &nbsp;{{ $user->province->name }}</li>
+                @endif
                 @if ($user->phone_number)
                     <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Phone number:</strong> &nbsp;{{ $user->phone_number }}</li>
                 @endif
@@ -108,11 +113,11 @@ use App\Models\SucessfulUsers;
                 @endif
                @if ($user->cv)
                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">CV:</strong> &nbsp; <a href="/files/{{$user->cv}}"><img src="{{asset('/assets/img/pdf.webp')}}" style="width: 20px"></a> </li>@endif
-
+                @if($user->language)
                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Languages:</strong> @foreach($user->language as $language)
                        {{$language->name}} - <b>{{$language->pivot->level}}</b> <br>
                    @endforeach</li>
-
+                @endif
                @if ($user->facebook || $user->linkedin)
                <li class="list-group-item border-0 ps-0 pb-0">
                    <strong class="text-dark text-sm">Social:</strong> &nbsp;

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
 use App\Models\Language;
+use App\Models\Priority;
 use App\Models\Province;
 use App\Models\User;
 use Carbon\Carbon;
@@ -88,13 +89,27 @@ class JobsController extends Controller
         }
         if ($request->job_type == 1) {
             $request['job_type'] = 'Part Time';
-        } else {
+        } else if($request->job_type == 2) {
             $request['job_type'] = 'Full Time';
+        }else{
+            $request['job_type'] = 'partyime/full';
         }
 
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
-        Job::create($input);
+        $job = Job::create($input); 
+
+        $priority = new Priority();
+        $priority->job_id = $job->id;
+        $priority->age = $request->input('age');
+        $priority->gender = $request->input('gender_priority');
+        $priority->category = $request->input('category_priority');
+        $priority->language = $request->input('language_priority');
+        $priority->certificate = $request->input('certificate_priority');
+        $priority->province_priority = $request->input('province_priority');
+        $total = $priority->age + $priority->gender + $priority->category + $priority->language + $priority->certificate + $priority->province_priority;
+        $priority->total = $total;
+        $priority->save();
         session()->flash('job_created', 'Job offer successfully created.');
         return back();
 
@@ -110,11 +125,11 @@ class JobsController extends Controller
     {
         $user = auth()->user();
         $job = Job::findBySlugOrFail($slug);
-
+        $job_request = JobRequest::where('job_id', $job->i)->count();
         //other jobs by same company
         $company = User::find($job->user_id);
         $jobs = $company->job->where('id', '<>', $job->id);
-        return view('job.show', compact('user', 'job', 'jobs'));
+        return view('job.show', compact('user','job_request', 'job', 'jobs'));
     }
 
     /**
@@ -133,44 +148,45 @@ class JobsController extends Controller
         $jobs = $company->job->where('id', '<>', $job->id);
         return view('job.show', compact('user', 'job', 'jobs'));
     }
-
     public function calculatePriority($jobs, $user)
     {
+
         $userAge = Carbon::parse($user->birthday)->age;
         $jobRequestIds = $user->jobRequests()->pluck('job_id')->toArray();
         foreach ($jobs as $response) {
+            $priority_job = Priority::where('job_id', $response->id)->get();
             $priority = 0;
-
-            if (in_array($response->id, $jobRequestIds)) {
-                $priority = -1;
-            } else {
-                if ($userAge > $response->startingAge && $userAge < $response->endingAge) {
-                    $priority += 2;
-                }
-    
-                if ($user->gender == $response->gender) {
-                    $priority += 3;
-                }
-    
-                if ($user->province_id == $response->province_id) {
-                    $priority += 7;
-                }
-    
-                if ($user->category_id == $response->category_id) {
-                    $priority += 2;
-                }
-                foreach ($user->language as $language) {
-                    if ($language->id == $response->language_id) {
-                        $findLanguageLevel = array_search($response->language_level, $this->languageLevels) ?? 8;
-                        $priority += count($this->languageLevels) - $findLanguageLevel;
+            foreach ($priority_job as $priority_job) {
+                if (in_array($response->id, $jobRequestIds)) {
+                    $priority = -1;
+                } else {
+                    if ($userAge > $response->startingAge && $userAge < $response->endingAge) {
+                        $priority += $priority_job->age;                       
                     }
-                }
-                
-                $findCertificateUser = array_search($user->certificate, $this->certificates);
-                $findCertificateJob = array_search($response->certificate, $this->certificates);
-                if ($findCertificateJob && $findCertificateUser) {
-                    if ($findCertificateUser >= $findCertificateJob) {
-                        $priority += ($findCertificateUser - $findCertificateJob + 1) * 2;
+                    if ($user->gender == $response->gender || $response->gender ==3) {
+                        $priority += $priority_job->gender;
+                    }
+
+                    if ($user->province_id == $response->province_id) {
+                        $priority += $priority_job->province_priority;
+                    }
+
+                    if ($user->category_id == $response->category_id) {
+                        $priority += $priority_job->category;
+                    }
+                    foreach ($user->language as $language) {
+                        if ($language->id == $response->language_id) {
+                            $findLanguageLevel = array_search($response->language_level, $this->languageLevels);
+                            $priority += $priority_job->language + (count($this->languageLevels) - $findLanguageLevel);
+                        }
+                    }
+
+                    $findCertificateUser = array_search($user->certificate, $this->certificates);
+                    $findCertificateJob = array_search($response->certificate, $this->certificates);
+                    if ($findCertificateJob && $findCertificateUser) {
+                        if ($findCertificateUser >= $findCertificateJob) {
+                            $priority += $priority_job->certificate + (($findCertificateUser - $findCertificateJob + 1));
+                        }
                     }
                 }
             }
@@ -246,10 +262,11 @@ class JobsController extends Controller
         $user = auth()->user();
         $categories = Category::all();
         $job = Job::findBySlugOrFail($slug);
+        $priority = Priority::where('job_id',$job->id)->first();
         $provinces = Province::all();
         $languages = Language::all();
 
-        return view('job.edit', compact('user', 'categories', 'job', 'provinces', 'languages'));
+        return view('job.edit', compact('priority','user', 'categories', 'job', 'provinces', 'languages'));
     }
 
     /**
@@ -303,13 +320,25 @@ class JobsController extends Controller
         }
         if ($request->job_type == 1) {
             $request['job_type'] = 'Part Time';
-        } else {
+        } else if($request->job_type == 2) {
             $request['job_type'] = 'Full Time';
+        }else{
+            $request['job_type'] = 'partyime/full';
         }
 
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
         $job->update($input);
+        $priority = Priority::firstOrNew(['job_id' => $job->id]);
+        $priority->age = $request->input('age');
+        $priority->gender = $request->input('gender_priority');
+        $priority->category = $request->input('category_priority');
+        $priority->language = $request->input('language_priority');
+        $priority->certificate = $request->input('certificate_priority');
+        $priority->province_priority = $request->input('province_priority');
+        $total = $priority->age + $priority->gender + $priority->category + $priority->language + $priority->certificate + $priority->province_priority;
+        $priority->total = $total;
+        $priority->save();
         session()->flash('job_updated', 'Job offer updated successfully.');
         return back();
     }

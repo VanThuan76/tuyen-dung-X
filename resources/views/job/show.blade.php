@@ -86,16 +86,20 @@ $jobsRequest = JobRequest::all();
                                     @endif
                                 @endif
                                 @if (auth()->user()->id == $job->user_id)
+
                                     <div class="row mt-4">
                                         <div class="col-lg-6">
                                             <a href="{{ route('job.edit', $job->slug) }}" class="btn bg-gradient-dark mt-lg-auto w-50 mb-0 mt-2" type="button">Edit job</a>
                                         </div>
                                     <div class="col-lg-6">
+                                    @if(!$job_request)
                                         <button class="btn bg-gradient-danger mt-lg-auto w-50 mb-0 mt-2"
                                             data-toggle="modal" data-target="#confirmDeleteJobModal">Delete job</button>
+                                            @endif
                                     </div>
                                     </div>
-                                        @endif
+                                   
+                                    @endif
                                 </div>
                             @if (auth()->user()->role->name == 'company' || auth()->user()->role->name == 'administrator' )
                             <div class="row mt-5">

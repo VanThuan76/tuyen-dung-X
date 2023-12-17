@@ -73,7 +73,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-12">
-                                <label class="form-label mt-4">Category</label>
+                                <label class="form-label mt-4" style="color: #b87c30;">Category</label>
                                 <select class="form-select" name="category_id" aria-label="Default select example">
                                     <option value="" selected>Choose Category</option>
                                     @foreach ($categories as $category)
@@ -82,7 +82,7 @@
                                             {{ $category->name }}</option>
                                     @endforeach
                                 </select>
-
+                                <input type="number" class="form-control" name="category_priority" value="{{ $priority->category }}" placeholder="priority" style="width: 110px; margin-top: 10px;">
                                 @error('category_id')
                                     <span style="color:red;">{{ $message }}</span>
                                 @enderror
@@ -124,27 +124,30 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-12">
-                                <label class="form-label mt-4">Provinces</label>
+                                <label class="form-label mt-4" style="color: #b87c30;">Provinces</label>
                                 <select class="form-select" name="province_id" aria-label="Default select example">
                                     <option value="" selected>Choose Province</option>
                                     @foreach($provinces as $province)
                                         <option value="{{$province->id}}" {{ $job->province_id == $province->id ? 'selected' : ''}} >{{$province->name}}</option>
                                     @endforeach
                                 </select>
-            
+                                <input type="number" class="form-control" name="province_priority" value="{{$priority->province_priority}}" placeholder="priority" style="width: 110px; margin-top: 10px;">
                                 @error('province_id')
                                 <span style="color:red;">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-sm-6 col-12">
-                                <label class="form-label mt-4">Gender</label>
+                                <label class="form-label mt-4" style="color: #b87c30;">Gender</label>
                                 <div class="input-group">
                                     <select class="form-select" name="gender" aria-label="Default select example">
                                         <option value = "" selected>Choose Gender</option>
                                         <option value = "1" {{ $job->gender == 1 ? 'selected' : ''}} >Male</option>
                                         <option value = "2" {{ $job->gender == 2 ? 'selected' : ''}} >Female</option>
+                                        <option value = "3" {{ $job->gender == 3 ? 'selected' : ''}} >Male/Female</option>
                                     </select>
                                 </div>
+                                <input type="number" class="form-control" name="gender_priority" value="{{$priority->gender}}" placeholder="priority" style="width: 110px; margin-top: 10px;">
+
                                 @error('gender')
                                     <span style="color:red;">{{ $message }}</span>
                                 @enderror
@@ -152,7 +155,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <label class="form-label mt-4">Starting Age</label>
+                                <label class="form-label mt-4" style="color: #b87c30;">Starting Age</label>
                                 <input class="form-control ageFrom" type="number" style="cursor: pointer"
                                     name="startingAge" placeholder="Starting Age" autocomplete="off" data-input
                                     value="{{ $job->startingAge }}">
@@ -161,9 +164,11 @@
                                 @enderror
                             </div>
                             <div class="col-6">
-                                <label class="form-label mt-4">Ending Age</label>
+                                <label class="form-label mt-4" style="color: #b87c30;">Ending Age</label>
                                 <input class="form-control ageTo" type="number" style="cursor: pointer" name="endingAge"
                                     placeholder="Ending Age" autocomplete="off" data-input value="{{ $job->endingAge }}">
+                                    <input type="number" class="form-control" name="age" value="{{$priority->age}}" placeholder="priority" style="width: 110px; margin-top: 10px;">
+
                                 @error('endingAge')
                                     <span style="color:red;">{{ $message }}</span>
                                 @enderror
@@ -194,7 +199,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-12">
-                                <label class="form-label mt-4">Certificate</label>
+                                <label class="form-label mt-4" style="color: #b87c30;">Certificate</label>
                                 <select class="form-select" name="certificate" aria-label="Default select example">
                                     <option value = "" selected>Choose Certificate</option>
                                     <option value = "Associate degree" {{ $job->certificate == 'Associate degree' ? 'selected' : ''}}>Associate degree</option>
@@ -202,12 +207,13 @@
                                     <option value = "Master's degree" {{ $job->certificate == "Master's degree" ? 'selected' : ''}}>Master's degree</option>
                                     <option value = "Doctoral degree" {{ $job->certificate == "Doctoral degree" ? 'selected' : ''}}>Doctoral degree</option>
                                 </select>
+                                <input type="number" class="form-control" value="{{$priority->certificate}}" name="certificate_priority" placeholder="priority" style="width: 110px; margin-top: 10px;">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label class="form-label mt-4">Language</label>
+                                    <label class="form-label mt-4" >Language</label>
                                     <select class="form-select" name="language_id" aria-label="Default select example">
                                         <option value="" selected>Choose Language</option>
                                         @foreach($languages as $language)
@@ -221,7 +227,7 @@
                             </div>
                             <div class="col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label class="form-label mt-4">Level of knowledge</label>
+                                    <label class="form-label mt-4" style="color: #b87c30;">Level of knowledge</label>
                                     <select class="form-select" name="language_level" aria-label="Default select example">
                                         <option value = "" selected>Choose Level</option>
                                         <option value="A1" {{ $job->language_level == 'A1' ? 'selected' : ''}}>A1</option>
@@ -236,6 +242,7 @@
                                         <option value="N4" {{ $job->language_level == 'N4' ? 'selected' : ''}}>N4</option>
                                         <option value="N5" {{ $job->language_level == 'N5' ? 'selected' : ''}}>N5</option>
                                     </select>
+                                    <input type="number" class="form-control" value="{{$priority->language}}" name="language_priority" placeholder="priority" style="width: 110px; margin-top: 10px;">
                                 </div>
                                 @error('language_level')
                                 <span style="color:red;">{{ $message }}</span>
@@ -270,6 +277,9 @@
                                         </option>
                                         <option value="2" @if ($job->job_type == 'Full Time') selected @endif>Full Time
                                         </option>
+                                        <option value="3" @if ($job->job_type == 'partyime/full') selected @endif>partyime/ful
+                                        </option>
+
                                     </select>
                                     @error('job_type')
                                         <span style="color:red;">{{ $message }}</span>
@@ -299,7 +309,7 @@
 
                                     <span class="input-group-text">€</span>
 
-                                    <input type="number" name="price" style="outline: none !important;"
+                                    <input type="text" name="price" style="outline: none !important;"
                                         value="{{ $job->price }}" class="form-control"
                                         aria-label="Amount (to the nearest dollar)">
 
@@ -324,6 +334,23 @@
     @endsection
     @section('scripts')
         <script>
+                document.addEventListener('DOMContentLoaded', function () {
+        var priceInput = document.querySelector('input[name="price"]');
+        priceInput.addEventListener('input', function () {
+            var inputValue = parseFloat(priceInput.value.replace(/\D/g, ''));
+            if (!isNaN(inputValue)) {
+                priceInput.value = inputValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            }
+        });
+
+        priceInput.addEventListener('keypress', function (event) {
+    
+            var isNumber = /\d/.test(String.fromCharCode(event.keyCode));
+            if (!isNumber) {
+                event.preventDefault();
+            }
+        });
+    });
             const endingDate = document.querySelector('.endingDate');
             const dateSwitch = document.querySelector('#flexSwitchCheckDefault');
             const remoteSwitch = document.querySelector('#remoteFlexSwitchCheckDefault');

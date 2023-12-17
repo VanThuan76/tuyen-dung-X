@@ -6,11 +6,13 @@ use App\Mail\ApplyMail;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobRequest;
+use App\Models\Priority;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Expr\Print_;
 
 class JobsRequestController extends Controller
 {
@@ -42,48 +44,48 @@ class JobsRequestController extends Controller
         return view('job.response', compact('jobs'));
     }
 
+ 
     public function calculatePriority($jobsResponse, $job)
     {
         foreach ($jobsResponse as $response) {
+
+            $priority_job = Priority::where('job_id', $response->job_id)->get();
             $priority = 0;
             $user = $response->user;
             $userAge = Carbon::parse($user->birthday)->age;
+            foreach ($priority_job as $priority_job) {
+                if ($userAge > $job->startingAge && $userAge < $job->endingAge) {
+                    $priority += $priority_job->age;
+                }
 
-            if ($userAge > $job->startingAge && $userAge < $job->endingAge) {
-                $priority += 2;
-            }
+                if ($user->gender == $response->job->gender || $response->job->gender ==3) {
+                    $priority += $priority_job->gender;
+                }
 
-            if ($user->gender == $response->job->gender) {
-                $priority += 3;
-            }
+                if ($user->province_id == $response->job->province_id) {
+                    $priority += $priority_job->province_priority;
+                }
 
-            if ($user->province_id == $response->job->province_id) {
-                $priority += 7;
-            }
+                if ($user->category_id == $response->job->category_id) {
+                    $priority += $priority_job->category;
+                }
 
-            if ($user->category_id == $response->job->category_id) {
-                $priority += 2;
-            }
+                foreach ($user->language as $language) {
+                    if ($language->id == $response->job->language_id) {
+                        $findLanguageLevel = array_search($response->job->language_level, $this->languageLevels) ?? 8;
+                        $priority += $priority_job->language + (count($this->languageLevels) - $findLanguageLevel);
+                    }
+                }
 
-            if ($user->category_id == $response->job->category_id) {
-                $priority += 2;
-            }
-
-            foreach ($user->language as $language) {
-                if ($language->id == $response->job->language_id) {
-                    $findLanguageLevel = array_search($response->job->language_level, $this->languageLevels) ?? 8;
-                    $priority += count($this->languageLevels) - $findLanguageLevel;
+                $findCertificateUser = array_search($user->certificate, $this->certificates);
+                $findCertificateJob = array_search($response->job->certificate, $this->certificates);
+                if ($findCertificateJob && $findCertificateUser) {
+                    if ($findCertificateUser >= $findCertificateJob) {
+                        // $priority += ($findCertificateUser - $findCertificateJob + 1) * 2;
+                        $priority += $priority_job->certificate;
+                    }
                 }
             }
-
-            $findCertificateUser = array_search($user->certificate, $this->certificates);
-            $findCertificateJob = array_search($response->job->certificate, $this->certificates);
-            if ($findCertificateJob && $findCertificateUser) {
-                if ($findCertificateUser >= $findCertificateJob) {
-                    $priority += ($findCertificateUser - $findCertificateJob + 1) * 2;
-                }
-            }
-
             $response->priority = $priority;
         }
 

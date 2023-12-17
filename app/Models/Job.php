@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\Print_;
 
 class Job extends Model
 {
@@ -50,5 +51,9 @@ class Job extends Model
     public function language()
     {
         return $this->belongsTo(Language::class);
+    }
+    public function priority()
+    {
+        return $this->belongsTo(Priority::class);
     }
 }

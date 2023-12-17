@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyEditRequest;
+use App\Models\JobRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,9 @@ class CompanyProfileController extends Controller
             return redirect()->route('home');//redirekto nese nuk eshte kompani
         }
         $jobs = $user->job()->orderBy('id','desc')->paginate(10);
-        return view('company.show',compact('user','jobs'));
+        $job_request = JobRequest::where('status', 1)->count();
+        
+        return view('company.show',compact('user','job_request','jobs'));
     }
 
     /**

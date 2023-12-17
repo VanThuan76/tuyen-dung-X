@@ -44,8 +44,8 @@ class ResgisterRequest extends FormRequest
             'phone_number' => ['nullable', 'string', 'min:10', 'max:11'],
             'tel' => ['nullable', 'string', 'min:2', 'numeric', 'digits_between:7,12'],
             'website' => ['nullable', 'string', 'min:2', 'max:255'],
-            'language_id.*' => ['required_if:is_business,0', 'nullable', 'numeric'],
-            'level.*' => ['required_if:is_business,0', 'nullable'],
+            'language_id.*' => ['nullable', 'nullable', 'numeric'],
+            'level.*' => ['nullable', 'nullable'],
         ];
     }
 }

@@ -17,12 +17,14 @@
                         <span style="color:green">{{session('added_category')}}</span>
                     @endif
                     @if (session('deleted_category'))
-                        <span style="color:red">{{session('deleted_category')}}</span>
+                        <span style="color:red !important">{{session('deleted_category')}}</span>
                     @endif
                     @if (session('updated_category'))
                         <span style="color:green">{{session('updated_category')}}</span>
                     @endif
-
+                    @if(session('category_in_use'))
+                        <span style="color:red !important">{{session('category_in_use')}}</span>
+                    @endif
                 </div>
                 <div class="card-body pt-0">
                     <div class="row d-flex justify-content-center">

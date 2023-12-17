@@ -73,7 +73,7 @@ use App\Models\Job;
                                             </td>
                                             <td>
                                                 <h6 class="mb-0 text-sm">
-                                                    {{ Job::where('id', $jobRequest->job_id)->first()->price }} $</h6>
+                                                    {{ Job::where('id', $jobRequest->job_id)->first()->price }} </h6>
                                             </td>
                                             <td class="text-center align-middle text-sm">
                                                 <h6 class="mb-0 text-sm">{{ $jobRequest->created_at->diffForHumans() }}

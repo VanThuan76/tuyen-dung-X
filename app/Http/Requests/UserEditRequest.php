@@ -34,9 +34,9 @@ class UserEditRequest extends FormRequest
             'linkedin' => 'nullable|max:255|min:2',
             'facebook' => 'nullable|max:255|min:2',
             'cv'=>'mimes:pdf|max:10240',
-            'language_id' => 'required','numeric',
-            'language_id.*' => 'required','numeric',
-            'level.*' => 'required'
+            'language_id' => 'nullable','numeric',
+            'language_id.*' => 'nullable','numeric',
+            'level.*' => 'nullable'
         ];
     }
     public function messages(){

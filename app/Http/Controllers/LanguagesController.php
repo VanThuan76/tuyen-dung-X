@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LanguagesController extends Controller
@@ -90,17 +92,25 @@ class LanguagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($slug)
-    {
-        $language = Language::findBySlugOrFail($slug);
-        foreach ($language->user as $languageUser){
-            $user_id = $languageUser->id;
-            $language->user()->detach($user_id);
+{
+    $language = Language::findBySlugOrFail($slug);
 
-        }
+    $jobsWithLanguage = Job::where('language_id', $language->id)->count();
+    $userHasLanguage = User::whereHas('language', function ($query) use ($language) {
+        $query->where('language_id', $language->id);
+    })->count();
 
+    if ($jobsWithLanguage > 0 || $userHasLanguage > 0) {
+        session()->flash('language_in_use', 'Language is in use and cannot be deleted.');
+        return back();
+    } else {
+        $language->user()->detach();
         $language->delete();
         session()->flash('deleted_language', 'Language deleted successfully.');
         return back();
     }
+}
+
 }
